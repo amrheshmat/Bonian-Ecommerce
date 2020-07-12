@@ -1,0 +1,65 @@
+﻿.checkOutNav{
+    background-color:#f3f3f3;
+    border-bottom:1px solid #DDD;
+}
+.checkOutNav .inner{
+    padding:15px 0
+}
+.checkOutNav .inner img{
+    width:135px;
+    height:120px
+}
+@include breakpoint(extra-small){
+    .checkOutNav .inner img{
+        width:75px;
+        height:60px
+    }
+}
+#checkOut .checkOutFrom{
+    padding:0 20px
+}
+#checkOut .checkOutFrom h3{
+    @extend .font-stack-subTitles;
+    font-size:35px;
+    font-weight:600
+}
+#checkOut .checkOutFrom form label,
+#checkOut .checkOutFrom form P{
+    font-size:16px
+}
+#checkOut .checkOutFrom form P{
+    margin-bottom:8px
+}
+#checkOut .checkOutFrom form input,
+#checkOut .checkOutFrom form select{
+    padding:5px 10px
+}
+
+#checkOut .custom-radio {
+    margin:20px 0
+}
+#checkOut .custom-checkbox{
+    margin-bottom:20px
+}
+#checkOut .radioLabels{
+    font-size:20px!important;
+    padding-left:20px
+}
+.creditCardPayments .custom-select{
+    width:45%
+}
+#checkOut .custom-radio label:before{
+    width:2rem;
+    height:2rem
+}
+#checkOut button[type*='submit']{
+    width:50%;
+    padding:10px 0;
+     @extend .font-stack-subTitles;
+     font-size:1.7em
+}
+@include breakpoint(extra-small){
+    #checkOut button[type*='submit']{
+        width:100%
+    }
+}

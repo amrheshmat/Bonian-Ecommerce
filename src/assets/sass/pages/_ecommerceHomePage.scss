@@ -1,0 +1,169 @@
+﻿
+#mainProductsSection .categorySectionName{
+    margin-bottom:30px;
+    font-size:5em;
+    text-align:center;
+    letter-spacing:2px
+}
+#mainProductsSection select,
+#mainProductsSection select option{
+    @extend .font-stack-navbar;
+}
+#mainProductsSection select option{
+    font-weight:400;
+}
+/*start aside in small screens*/
+aside.smallAndExtraSmall .collapse{
+    padding:15px;
+    border-bottom:1px solid #DDD;
+    margin-bottom:20px;
+    @include prefix(transition, all 0.3s, (webkit,moz ,ms,o))
+}
+#mainProductsSection aside.smallAndExtraSmall button{
+    font-size:2em
+}
+#mainProductsSection aside.smallAndExtraSmall button:hover{
+    @include colorOpacity($secondaryColor,0.9);
+    color:#FFF!important
+}
+#mainProductsSection .asideCategory {
+    padding:5px 10px;
+    border-radius:5px;
+    background-color:#CCC;
+    cursor:pointer;
+    color:#215529;
+    @include prefix(transition, all 0.3s, (webkit,moz ,ms,o))
+}
+#mainProductsSection .asideCategory:hover {
+    color:#222
+}
+#mainProductsSection .asideCategory .categoryName{
+    @extend .font-stack-navbar ;
+    font-weight:bold;
+    padding-top:2px
+}
+#mainProductsSection .asideCategory .categoryCount{
+    background-color:#EEE;
+    border-radius:50%;
+    padding:3px 5px;
+    font-weight:bold;
+    color:$secondaryColor
+}
+#mainProductsSection .category.active .asideCategory  {
+    color:$whiteColor;
+    background-color:#212121
+}
+#mainProductsSection .category .subCategory{
+   display:none
+}
+#mainProductsSection .category .subCategory.active{
+   display:block
+}
+#mainProductsSection aside.smallAndExtraSmall .asideCategory {
+    margin:5px
+}
+/*end aside in small screens*/
+
+/*start main products section*/
+main.productsList{
+    margin-top:30px
+}
+@include breakpoint(medium){
+    main.productsList{
+        margin-top:0
+    }
+}
+main.productsList .card {
+    padding: 20px 10px;
+    float: left;
+    margin: 1%;
+    margin-top:0;
+    position:relative;
+    overflow:hidden
+}
+@media (max-width:500px){
+    main.productsList .card {
+        width: calc(96% / 2)
+    }
+}
+@media (min-width:501px){
+    main.productsList .card {
+        width: calc(94% / 3)
+    }
+}
+@media (min-width:991px){
+    main.productsList .card {
+        width: calc(92% / 4)
+    }
+}
+@media (min-width:1200px){
+    main.productsList .card {
+        width: calc(90% / 5)
+    }
+}
+ main.productsList .card .card-img-top {
+    object-fit: cover;
+    object-position: 50% 50%; 
+    height: 150px;
+}
+main.productsList .card .card-body {
+    padding: 0;
+}
+main.productsList .card .card-body h3 {
+    margin: 10px 0;
+    font-family:'Raleway', arial, sans-serif;
+    color:#7e7b73;  
+    font-weight:600;
+    font-size:1.25em
+}
+main.productsList .card .card-body p.card-desc{
+    font-size:0.75em
+}
+main.productsList .card .card-body p.price{
+    margin:10px 0;
+    font-size:1em;
+    font-weight: bold;
+    font-family:'Raleway', arial, sans-serif;
+}
+/*end main products section*/
+
+/*start aside in large screens*/
+aside.largeAndMedium{
+    border:1px solid #EEE;
+    border-top-left-radius:8px;
+    background-color:#EEE
+}
+aside.largeAndMedium h2{
+    margin-bottom:20px;
+    background-color:#212121;
+    color:$whiteColor;
+    width:100%;
+    border-top-left-radius:8px;
+    padding:5px 10px;
+    text-align:center;
+    font-family:'Raleway', arial, sans-serif;
+}
+aside.largeAndMedium .largeAndMediumContent{
+    padding:0 5px;
+}
+aside.largeAndMedium .largeAndMediumContent .asideCategory {
+    margin-top:10px;
+    margin-bottom:5px
+}
+.formFilterProduct{
+    border-bottom:1px solid #ddd;
+    margin:5px 0;
+    padding:0 1em
+}
+.formFilterProduct  > .form-check-input{
+    right:15px;
+    width:16px;
+    height:16px
+}
+.formFilterProduct .form-check-label {
+    margin-bottom:5px
+}
+#mainProductsSection .dynamicMenu{
+    padding:0 20px
+}
+/*end aside in large screens*/

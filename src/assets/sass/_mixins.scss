@@ -1,0 +1,139 @@
+﻿
+//PREFIX
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+  #{$property}: $value;
+}
+
+
+
+
+//MEDIA QUERY
+@mixin breakpoint($point) {
+  @if $point == extra-small {
+    @media (max-width:576px) { @content; }
+  }
+  @if $point == small {
+    @media (min-width: 576px) { @content; }
+  }
+  @if $point == medium {
+    @media (min-width: 768px) { @content; }
+  }
+  @if $point == large {
+    @media (min-width: 992px) { @content; }
+  }
+  @if $point == extra-large {
+    @media (min-width: 1200px) { @content; }
+  }
+}
+@mixin colorOpacity($color, $opacity) {
+    background: rgba($color, $opacity);
+}
+
+
+//KEYFRAME
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content
+  }
+  @-moz-keyframes #{$name} {
+    @content
+  }
+  @-ms-keyframes #{$name} {
+    @content
+  }
+  @-o-keyframes #{$name} {
+    @content
+  }
+  @keyframes #{$name} {
+    @content
+  }
+}
+
+//ANIMATION
+@mixin animation($value) {
+  -webkit-animation: $value;
+  -moz-animation: $value;
+  -o-animation: $value;
+  animation: $value;
+}
+
+
+//RESET STYLES FOR ELEMENT
+@mixin reset($style) {
+    @if $style == 'reset' {
+        padding:0;
+        background-image:none;
+        background-color:transparent;
+        margin:0;
+        border:none;
+        line-height:1.5;
+    }
+}
+
+//OVERLAYS
+@mixin coverer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+//SCROLL BAR
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, #DDD,  20%)) {
+  // For Google Chrome
+  ::-webkit-scrollbar {
+      width:  $size;
+      height: $size;
+  }
+  ::-webkit-scrollbar-thumb {
+      background: $foreground-color;
+  }
+  ::-webkit-scrollbar-track {
+      background: $background-color;
+  }
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+
+//CIRCLE UNORDERED LIST
+@mixin on-circle($item-count, $circle-size, $item-size) {
+  position: relative;
+  width:  $circle-size;
+  height: $circle-size;
+  padding: 0;
+  border-radius: 50%; 
+  list-style: none;       
+  
+  > * {
+    display: block;
+    position: absolute;
+    top:  50%; 
+    left: 50%;
+    width:  $item-size;
+    height: $item-size;
+    margin: -($item-size / 2);
+  
+    $angle: (360 / $item-count);
+    $rot: 0;
+
+    @for $i from 1 through $item-count {
+      &:nth-of-type(#{$i}) {
+        transform: 
+          rotate($rot * 1deg) 
+          translate($circle-size / 2) 
+          rotate($rot * -1deg);
+      }
+
+      $rot: $rot + $angle;
+    }
+  }
+}

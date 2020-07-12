@@ -1,0 +1,27 @@
+<div class="cartOrderReview">
+    
+    <h3 class="w-100">Order Information <i class="fas fa-leaf fa-fw secondaryColor"></i> </h3>
+  
+    <div class="orederReview">
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Total Price:</span>
+            <span class="total">253.00 EGP</span>
+        </p>
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Branch:</span>
+            <span class="total">Nasr City</span>
+        </p>
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Total Discount:</span>
+            <span class="total">16%</span>
+        </p>
+        <div class="cartCallToActions text-center">
+            <a [routerLink]="['/checkout']" class="checkOut d-block btn btn-danger">
+                    CHECK OUT <i class="fas fa-door-open"></i>
+            </a>
+            <a [routerLink]="['/signin']" class="signIn d-block">
+                Sign In
+            </a>
+        </div>
+    </div>    
+</div>

@@ -1,0 +1,40 @@
+﻿#productOverView{
+    
+}
+#productOverView .productDescription h2{
+    color:$subTitleColor;
+    font-size:3em
+}
+#productOverView .productDescription h6{
+    font-family: 'Raleway', arial, sans-serif;
+    margin:15px 0
+}
+#productOverView .productDescription p.description{
+    font-size:15px;
+    margin-bottom: 20px;
+}
+#productOverView .productDescription p.price{
+    font-family: 'Raleway', arial, sans-serif;
+    font-weight:bold;
+    font-size:24px;
+    color:$greenColor;
+    margin:15px 0
+}
+#productOverView .productImage img{
+    border-bottom-right-radius:35px;
+    border-top-left-radius:35px;
+    max-height:500px;
+    object-fit:cover;
+    object-position:50% 50%;
+}
+@include breakpoint(medium){
+    .visibleInLarge{
+        display:none;
+        visibility:hidden
+    }
+}
+.breadcrumb{
+    background-color:transparent;
+    padding-left:0;
+    padding-right:0
+}

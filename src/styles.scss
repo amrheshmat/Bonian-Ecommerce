@@ -1,0 +1,1004 @@
+
+@import "assets/sass/_variables.scss";
+@import "assets/sass/_mixins.scss";
+
+//custom scroll
+@include scrollbars(.6em, #999); 
+
+
+//start global styles
+*,h1,h2,h3,h4,h5,h6,ul,li,p,div,section,article{
+    @include prefix(box-sizing, border-box, (webkit,moz,ms,o));
+    outline:0!important;
+    margin:0;
+    padding:0
+}
+h1,h2,h3,h4,h5,h6{
+    @extend .font-stack-headers;
+}
+a:focus,input:focus,select:focus{
+    box-shadow:none!important
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+input:focus,input:active,textarea:focus,textarea:active{
+    outline:0!important;
+    box-shadow:none!important
+}
+ul{
+    list-style-type:none!important
+}
+body{
+    font-size:14px;
+    line-height: 1.7;
+
+}
+.secondaryColor{
+    color:$secondaryColor;
+}
+.greenColor{
+    color:$greenColor
+}
+.headLineColor{
+    color:$headLineColor;
+}
+.subTitleColor{
+    color:$subTitleColor;
+}
+.greyBlueColor{
+    color:$greyBlueColor
+}
+a{
+    text-decoration:none!important
+}
+//end global styles
+
+//start navbar
+.main-nav{
+    position:fixed;
+    width:100%;
+    color:#FFF;
+    z-index:999;
+    background-color:rgba(0,0,0,0.4);
+    padding:15px 0
+}
+@include breakpoint(extra-small){
+    .main-nav .container-fluid{
+        padding:0
+    }
+}
+@include breakpoint(large){
+    .main-nav{
+        padding:0
+    }
+}
+.main-nav .navbarSmallScreen{
+    align-items: center;
+    justify-content: space-between
+}
+.main-nav .navbarSmallScreen .navbar-toggler{
+    padding:8px 16px;
+
+}
+.main-nav .navbarSmallScreen .rotate90{
+    @include prefix(transform,rotate(90deg),(webkit,moz,ms,o));
+    @include prefix(transition,all 0.3s,(webkit,moz,ms,o));
+    
+}
+.main-nav .navbarSmallScreen .rotate90 i{
+    color:$secondaryColor!important
+}
+@include breakpoint(extra-small){
+    .main-nav .navbarSmallScreen .navbar-toggler,
+    .main-nav .navbarSmallScreen a, .main-nav .sections li a{
+        padding:4px 8px
+    }
+    .main-nav .navbarSmallScreen .navbar-toggler{
+        padding-bottom:7px
+    }
+
+}
+.main-nav .navbarSmallScreen a,
+.main-nav .sections li a,
+.main-nav .loginAndLang li a,
+.main-nav .navbar-toggler {
+    @extend .font-stack-navbar;
+    color:$whiteColor;
+    cursor:pointer
+}
+.main-nav .navbarSmallScreen a:hover,
+.main-nav .navbarSmallScreen a.active,
+.main-nav .sections li a:hover,
+.main-nav .sections li a.active,
+.main-nav .loginAndLang li a:hover,
+.main-nav .navbar-toggler:hover{
+    color:$greyBlueColor!important
+}
+.main-nav .navbarSmallScreen a i,
+.main-nav .navbar-toggler i{
+    font-size:2em
+}
+@include breakpoint(extra-small){
+    .main-nav .navbarSmallScreen a i,
+    .main-nav .navbar-toggler i{
+        font-size:1.4em;
+    }
+}
+.main-nav .navbarSmallScreen .logoSmallScreens{
+    width:80px;
+    height:70px
+}
+@include breakpoint(extra-small){
+    .main-nav .navbarSmallScreen .logoSmallScreens{
+        width:70px;
+        height:60px
+    }
+}
+.main-nav .searchBarMobile{
+    display:none;
+    position:relative
+}
+
+.main-nav  .searchButton{
+    position:absolute;
+    top:0;
+    right:-2px;
+    background-color:#EEE;
+    color:$subTitleColor;
+    font-size:20px;
+    z-index:5;
+    border-top-right-radius:6px;
+    border-bottom-right-radius:6px;
+    padding:9px;
+    cursor:pointer;
+    border-left:1px solid #DDD
+}
+.main-nav .searchButton:hover{
+    background-color:#DDD
+}
+.main-nav #ajaxLoaderGif{
+    position: absolute;
+    z-index: 5;
+    left:85%;
+    width: 26px;
+    height: 26px;
+    top: 6px;
+    display:none
+}
+@include breakpoint(large){
+    .main-nav #ajaxLoaderGif{
+        left: 265px;
+    }
+}
+@include breakpoint(extra-small){
+    .main-nav #ajaxLoaderGif{
+        left: 75%;
+    }
+}
+.main-nav .searchBarMobile .input-group input{
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px
+}
+.main-nav .searchBarMobile .input-group .input-group-prepend button{
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px
+}
+.main-nav .searchBarMobile .viewItems{
+    position:absolute;
+    color:#000;
+    z-index:2;
+    top:85px;
+    width:99%;
+    background-color:#FFF;
+    border-radius:5px;
+    max-height:400px;
+    overflow-y:scroll;
+    border:1px solid #ced4da;
+    display:none;
+}
+.main-nav .searchBarMobile .viewItems ::-webkit-scrollbar {
+    width: 0px; 
+    background: transparent;
+}
+.main-nav .searchBarMobile .viewItems .itemInSearch{
+    padding:25px 20px;
+    cursor:pointer
+} 
+.main-nav .searchBarMobile .viewItems .itemInSearch:hover{
+    background-color:#EEE
+}
+.main-nav .searchBarMobile .viewItems .itemInSearch img{
+    object-fit:cover;
+    object-position:50% 50%;
+    width:100px;
+    height:100px
+}
+.main-nav .searchBarMobile .viewItems .itemInSearch .itemsDesc{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center
+}
+.main-nav .searchBarMobile .viewItems .itemInSearch .itemsDesc .itemDesc{
+    font-size:2em;
+    font-weight:bold;
+    @extend .font-stack-subTitles;
+    color:$subTitleColor
+}
+.main-nav .searchBarMobile .viewItems .itemInSearch .itemsDesc .itemPrice{
+    font-size:1.5em
+}
+.main-nav .searchAndLogoLarge form{
+  width:350px
+}
+.main-nav .searchAndLogoLarge .searchBarLargeScreen{
+    position:relative
+}
+.searchBarLargeScreen .input-group>.input-group-prepend:not(:first-child)>.input-group-text{
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px
+}
+.main-nav .searchAndLogoLarge .viewItems{
+    position:absolute;
+    color:#000;
+    z-index:2;
+    top:85px;
+    width:100%;
+    background-color:#FFF;
+    border-radius:5px;
+    max-height:400px;
+    overflow-y:scroll;
+    border:1px solid #ced4da;
+    display:none
+}
+.main-nav .searchAndLogoLarge ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;  
+}
+.main-nav .searchAndLogoLarge ::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+.main-nav .searchAndLogoLarge .viewItems .itemInSearch{
+    padding:25px 20px;
+    cursor:pointer
+} 
+.main-nav .searchAndLogoLarge .viewItems .itemInSearch:hover{
+    background-color:#EEE
+}
+.main-nav .searchAndLogoLarge .viewItems .itemInSearch img{
+    object-fit:cover;
+    object-position:50% 50%;
+    width:70px;
+    height:70px
+}
+.main-nav .searchAndLogoLarge .viewItems .itemInSearch .itemsDesc{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center
+}
+.main-nav .searchAndLogoLarge .viewItems .itemInSearch .itemsDesc .itemDesc{
+    font-size:1.5em;
+    font-weight:bold;
+    @extend .font-stack-subTitles;
+    color:$subTitleColor
+}
+.main-nav .navCart{
+    justify-content:space-between;
+    overflow:hidden;
+}
+.main-nav .navCart .carouselOuter{
+    position:relative;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    margin:0 15px
+}
+.main-nav .navCart .carouselOuter .controllers{
+    position:absolute;
+    top:0;
+    height:100%;
+    z-index:2
+}
+.main-nav .navCart .carouselOuter .controllers button{
+    height:100%;
+    background-color:rgba($secondaryColor,0.8);
+    border:0;
+    border-radius:5px;
+    font-size:24px;
+    padding:0 5px;
+    @include prefix(transition, all 0.3s, (webkit, moz,o ,ms))
+}
+.main-nav .navCart .carouselOuter .controllers button:hover{
+    background-color:rgba($secondaryColor,1);
+}
+
+.main-nav .navCart .carouselOuter .controllers.left{
+    left:0
+}
+.main-nav .navCart .carouselOuter .controllers.right{
+    right:0;
+
+}
+.main-nav .navCart .sliderBody{
+    padding:8px 30px 0;
+    position:absolute;
+    top:0;
+    right:0;
+    display:flex;
+}
+
+.navCart .sliderBody .item{
+    position:relative!important;
+    cursor:pointer;
+    width:60px;
+    margin:0 7px;
+}
+
+.navCart .sliderBody .item img{
+    object-fit:cover;
+    object-position: 50% 50%;
+    width:100%;
+    height:80px;
+    border-radius:5px
+} 
+.navCart .sliderBody .item .itemsCount{
+    position:absolute;
+    top:0;
+    right:5px;
+    padding:0 5px 3px 5px ;
+    background-color:$greenColor;
+    font-size:12px;
+    font-weight:bold;
+    border-bottom-left-radius:14px;
+    border-bottom-right-radius:14px
+}
+.navCart .sliderBody .item .cartItemsControl{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    background-color:rgba(0,0,0,0.7);
+    padding:3px 0;
+    display:none;
+   
+}
+.navCart .sliderBody .item:hover .cartItemsControl{
+    display:flex;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+}
+.navCart .sliderBody .item .cartItemsControl .plus{
+    color:$greenColor;
+    font-size:20px
+}
+.navCart .sliderBody .item .cartItemsControl .minus{
+    color:#dc3545;
+    font-size:20px
+}
+.navCart .item .cartItemsRemove{
+    position:absolute;
+    top:0;
+    left:0;
+    padding:0 3px;
+    background-color:rgba(0,0,0,0.7);
+    display:none;
+    width:100%;
+    text-align:center;
+}
+.navCart .item:hover .cartItemsRemove{
+    display:block;
+    border-top-left-radius:5px;
+    border-top-right-radius:5px;
+}
+.navCart .item .cartItemsRemove i:hover{
+    color:#CCC
+}
+.navCart .cartIcon{
+    position:relative;
+    margin-right:20px
+}
+.navCart .cartIcon .cartItemsCount{
+    font-size:15px;
+    color:#FFF;
+    background-color:$greenColor;
+    font-weight:bold;
+    border-radius:50%;
+    padding:6px 10px;
+    position:absolute;
+    top:0;
+    left:0;
+}
+
+
+.silderContent{
+    padding:0 10px
+}
+.silderContent .slick-slide{
+    margin:0 5px
+}
+//end navbar
+
+//start header
+header{
+    overflow:hidden
+}
+header .header-slider{
+    .overlay{
+        @include coverer;
+        z-index:1;
+        background-color:rgba(0,0,0,0.4)
+    }
+    .slick-item{
+        width:100%;
+        @include prefix(background-size, cover, (webkit,moz,ms,o));
+        background-repeat:no-repeat;
+        background-position:center center
+    }
+}
+header .header-content{
+    position:absolute;
+    top:20%;
+    left:0;
+    width:100%;
+    z-index:3;
+    color:$whiteColor;
+    text-align:center;
+}
+@include breakpoint(medium){
+    header .header-content{
+        top:30%;
+    }
+}
+header .header-content>h1{
+    font-size:3.14em;
+    color:$whiteColor
+}
+@include breakpoint(medium){
+    header .header-content h1{
+        font-size:5.14em
+    }
+}
+header .header-content>p{
+    @extend .font-stack-subTitles;
+    font-size: 1.4em;
+}
+@include breakpoint(medium){
+    header .header-content>p{
+        font-size: 1.9em;
+    }
+}
+header .header-content>i{
+    font-size:3em;
+    padding:25px 0
+}
+@include breakpoint(medium){
+    header .header-content>i{
+        font-size:3em;
+        padding:30px 0
+    }
+}
+header .header-content .callToActions{
+    margin-top:25px
+}
+header .header-content .callToActions button{
+    margin-top:0
+}
+@include breakpoint(extra-small){
+    header .header-content .callToActions button{
+        margin-top:15px
+    }
+}
+header .header-content .callToActions button.filledButton a{
+    color:$whiteColor
+}
+header .header-content .callToActions button.filledButton:hover a{
+    color:$secondaryColor
+}
+header .header-content .callToActions button.outLinedButton a{
+    color:$secondaryColor
+}
+header .header-content .callToActions button.outLinedButton:hover a{
+    color:$whiteColor
+}
+header .divider{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top:-5px;
+    z-index: 2;
+    overflow:hidden;
+    background-color:transparent
+}
+
+@include breakpoint(extra-large){
+    header .header-content{
+        top:40%;
+    }
+}
+//end header
+
+// start aboutus
+#aboutus{
+    margin:5em 0;
+}
+@include breakpoint(medium){
+    #aboutus .content {
+        padding-top:0
+    }
+}
+@include breakpoint(large){
+    #aboutus .content {
+        padding-top:3em
+    }
+}
+#aboutus .content {}
+#aboutus .content > h2{
+    font-size:3em;
+    margin-bottom:20px;
+    color:$headLineColor
+}
+#aboutus p{
+    color:$subTitleColor;
+    line-height:2
+}
+#aboutus .image img{
+    border-radius:20px
+}
+#aboutus .missionAndVision{
+    margin-top:40px
+}
+#aboutus .missionAndVision h3{
+    @extend .font-stack-headers;
+    font-size:2.5em;
+    color:$headLineColor;
+    margin :40px 0 25px 0;
+    text-align:center;
+}
+// end aboutus
+
+// start testimonials
+#testimonials{
+    position:relative;
+    padding:90px 0;
+    background-image:url(assets/images/animal-blur-bull-162240.jpg);
+    background-attachment: fixed;
+    background-size: cover
+}
+#testimonials .overlay{
+    @include coverer;
+    background-color:rgba(0,0,0,0.6)
+}
+#testimonials .content{
+    position:relative;
+    z-index:2;
+    color:$whiteColor
+}
+#testimonials .content h2{
+    font-size:3em;
+    margin:50px 0
+}
+#testimonials .content h2 i{
+    font-size:1em
+}
+@include breakpoint(extra-small){
+    #testimonials .content h2 i{
+        font-size:0.5em
+    }
+}
+#testimonials .f-slider > div{
+    display: none
+}
+#testimonials .f-slider .activ{
+    display:block
+}
+#testimonials .f-slider q{
+    font-size:14px;
+    padding:20px 20px;
+    display:block
+}
+@include breakpoint(medium){
+    #testimonials .f-slider q{
+        font-size:14px;
+        padding:20px 80px;
+        display:block
+    }
+}
+#testimonials .f-slider img{
+    width:10%;
+    border-radius:50%;
+    border:3px solid $secondaryColor
+}
+#testimonials .f-slider h3{
+    padding:20px 0;
+    color: $secondaryColor;
+    font-size:25px
+}
+#testimonials .f-slider span{
+    font-size:11px;
+    font-weight:bold
+}
+// end testimonials
+
+//start offer
+#offers{
+    overflow:hidden;
+    padding:40px 0;
+    @include prefix(box-shadow,3px 72px 24px -63px  rgba(238,238,238,1), (webkit,moz))
+}
+#offers h2{
+    margin:50px 0;
+    font-size:3em;
+    color:$headLineColor;
+}
+#offers .autoplay{
+    text-align:center;
+    position:relative
+}
+#offers .autoplay .offer-card{
+    position:relative;
+    overflow:hidden
+}
+#offers .autoplay .offer-card .overlay{
+    @include coverer;
+    @include prefix(transition , all 0.3s ,(webkit,moz,ms,o));
+    background-color:rgba(0,0,0,0.5);
+    z-index:1
+}
+#offers .autoplay .offer-card:hover .overlay{
+    background-color:rgba(0,0,0,0.7)
+}
+#offers .autoplay .slick-slide{
+    width:300px;
+    margin:0 15px;
+}
+#offers .autoplay .offer-card img{
+    width:100%;
+    @include prefix(transition , all 0.5s ,(webkit,moz,ms,o));
+}
+#offers .autoplay .offer-card:hover img{
+    @include prefix(transform,scale(1.1,1.1),(webkit,moz,ms,o))
+}
+#offers .autoplay .offer-card .offer-card-desc{
+    position:absolute;
+    top:30%;
+    width:100%;
+    text-align:center;
+    color:$whiteColor;
+    z-index:2
+}
+#offers .autoplay .offer-card .offer-card-desc p{
+    font-size:1.5em;
+    text-transform:uppercase;
+    @extend .font-stack-subTitles;
+
+}
+@include breakpoint(extra-small){
+    #offers .autoplay .offer-card .offer-card-desc p{
+        font-size:1.2em;
+    }
+}
+#offers .autoplay .offer-card .offer-card-desc span{
+    font-weight:bold
+}
+#offers .autoplay .offer-card .offer-card-desc button{
+    padding:5px 25px;
+    border-radius:25px;
+    @include prefix(transition,all 0.2s ,(webkit,moz,ms,o));
+    @extend .font-stack-subTitles;
+    margin-top:10px;
+    font-weight:bold;
+    font-size:18px
+}
+#offers .autoplay i{
+    display:none!important;
+    cursor:pointer
+}
+@include breakpoint(medium){ 
+    #offers .autoplay i{
+        display:inline!important;
+        position:absolute;
+        top:45%;
+        left:-5%; 
+        z-index:1;
+        color:$secondaryColor;
+        font-size:2em
+    }
+    #offers .autoplay i.fa-arrow-circle-right{
+        left:100%
+    }
+}@include breakpoint(large){  
+    #offers .autoplay i.fa-arrow-circle-right{
+        left:102%
+    }
+}
+//end offers
+
+//start products
+#products{
+    margin:100px 0 0 0 ;
+}
+#products h2.subtitle{
+    @extend .font-stack-navbar;
+    font-size:1.8em;
+    color:$headLineColor;
+    margin-bottom:50px
+}
+#products h2{
+    font-size:3em;
+    margin:20px 0;
+    color:$greyBlueColor
+}
+#products .programs,
+#products .courses {
+	margin: 8px 0 0 0;
+}
+
+#products .programs {
+	font-size: 0;
+	margin-bottom: 15px;
+}
+#products .programs .twelve{
+	overflow: hidden;
+}
+#products .programs .twelve:first-of-type{
+    border-radius:15px
+}
+#products .programs .twelve .filter-btn{
+    font-family:'raleway'
+}
+#products .programs .twelve button {
+	outline: none;
+	margin-bottom: 0;
+	background: whitesmoke;
+	width: 100%;
+	height: auto;
+	font-weight: normal;
+	border: 1px solid #ededed;
+	color: #000000;
+	font-size: 14px;
+	padding: 4px 0;
+	text-shadow: 0px 0px 0px #2f6627;
+    @include prefix(transition, all 0.3s ,(webkit,ms,o,moz))
+}
+#products .programs .twelve button:hover {
+	background-color: $secondaryColor;
+    color:$greyBlueColor
+}
+#products .programs .twelve button.active {
+	background:$greyBlueColor;
+	color: $whiteColor;
+    font-weight:bold
+}
+#products .courses {
+	margin-bottom: 25px;
+	font-size: 0;
+	padding: 15px
+}
+#products .courses li {
+	text-align: center;
+	font-size: 14px;
+    margin:20px 0;
+    display: none;
+}
+#products .courses li .card{
+    width:auto!important;
+}
+
+#products .courses li .card .card-img-top{
+    height:280px;
+    object-fit:cover;
+    object-position:50% 50%
+}
+#products .courses li .card h5{
+    @extend .font-stack-subTitles;
+    font-weight:bold;
+    font-size:1.5em;
+}
+#products .courses li a{
+    margin:15px 0;
+    display:block
+}
+#products .courses li a.customButton:hover{
+    color:$greyBlueColor!important
+}
+@include breakpoint(medium) {
+	#products .programs {
+		margin-bottom: 0;
+	}
+    #products .courses li .card{
+        width:18rem!important
+    }
+}
+//end products
+
+
+//start contact us
+.contactsDivider{
+    position:relative;
+    top:2px
+}
+#contactus{
+    background-color:#181A1E;
+    color:$whiteColor;
+    overflow:auto;
+    padding:70px 0
+}
+#contactus h2{
+    font-size:3em
+}
+#contactus p{
+    @extend .font-stack-subTitles;
+    margin:20px 0;
+    font-size:1.4em;
+}
+#contactus p i{
+    color:$secondaryColor
+}
+#contactus form label{
+    @extend .font-stack-subTitles;
+    font-size:0.8em;
+}
+#contactus form input,#contactus form textarea{
+    background-color:transparent;
+    border:1px solid $secondaryColor;
+    color:$whiteColor;
+    border-radius:20px;
+    padding:10px 5px 15px 15px 
+}
+#contactus ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    font-size: 10px;
+    font-family: 'Raleway';
+    line-height: 1;
+    font-weight:400;
+    color:$whiteColor!important
+}
+#contactus ::-moz-placeholder { /* Firefox 19+ */
+    font-size: 10px;
+    font-family: 'Raleway';
+    line-height: 1;
+    font-weight:400;
+    color:$whiteColor!important
+}
+#contactus :-ms-input-placeholder { /* IE 10+ */
+    font-size: 10px;
+    font-family: 'Raleway';
+    line-height: 1;
+    font-weight:400;
+    color:$whiteColor!important
+}
+#contactus :-moz-placeholder { /* Firefox 18- */
+    font-size: 10px;
+    font-family: 'Raleway';
+    line-height: 1;
+    font-weight:400;
+    color:$whiteColor!important
+}
+#contactus .info{
+    padding:100px 0 0 30px 
+}
+#contactus .row{
+    margin:20px 0
+}
+#contactus .row i{
+    font-size:15px
+}
+@include breakpoint(large){
+    #contactus .row i{
+        font-size:17px
+    }
+}
+#contactus .row .contact-desc{
+    padding-left:10px;
+    font-size:12px;
+    color:#DDD
+}
+#contactus .contact-social-links{
+    width:100%;
+}
+#contactus .contact-social-links li{
+    float:left;
+    border:1px solid $subTitleColor;
+    padding:10px;
+    cursor:pointer;
+    margin:0 3px;
+    @include prefix(transition, all 0.3s , (webkit, moz , ms , o))
+}
+#contactus .contact-social-links li:hover{
+    background-color:$secondaryColor
+}
+#contactus .contact-social-links li:hover a {
+    color:$greyBlueColor
+}
+#contactus .contact-social-links li a{
+    @include prefix(transition, all 0.3s , (webkit, moz , ms , o))
+}
+//end contact us
+
+//start footer
+#footer{
+    background-color:#181A1E;
+    border-top:1px dotted #555
+}
+//end footer
+
+//start up
+.up{
+    width:70px;
+    height:70px;
+    position:fixed;
+    bottom:-5px;
+    right:50px;
+    cursor:pointer;
+    display:none
+}
+.up img{
+    width:100%
+}
+//end up
+
+/*start spinner*/
+#spinnerScreen{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:$secondaryColor;
+    z-index:999999999
+}
+.spinner {
+  margin: 100px auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  top:30%;
+  text-align: center;
+  @include animation(sk-rotate 2.0s infinite linear) ;
+
+}
+
+.dot1, .dot2 {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #000;
+  border-radius: 100%;
+  @include animation(sk-bounce 2.0s infinite ease-in-out) ;
+
+}
+
+.dot2 {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+@include keyframes(sk-rotate){
+    100% { -webkit-transform: rotate(360deg) };
+    100% { transform: rotate(360deg); -webkit-transform: rotate(360deg) }
+}
+@include keyframes(sk-bounce){
+     0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+/*end spinner*/
+
+@import "assets/sass/pages/_ecommerceHomePage.scss";
+@import "assets/sass/pages/_productOverView.scss";
+@import "assets/sass/pages/_cartView.scss";
+@import "assets/sass/pages/_checkOut.scss";
+@import "assets/sass/pages/_signIn.scss";
+ 

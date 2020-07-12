@@ -1,0 +1,64 @@
+@import "assets/sass/_variables.scss";
+@import "assets/sass/_mixins.scss";
+
+html{
+    direction:rtl
+}
+.main-nav #ajaxLoaderGif{
+    left: 49px;
+}
+.main-nav .searchBarMobile .input-group input{
+    border-top-left-radius:0;
+    border-bottom-left-radius:0;
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px;
+}
+.main-nav .searchBarMobile .input-group .input-group-prepend button{
+    border-top-right-radius:0;
+    border-bottom-right-radius:0;
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px
+}
+.main-nav .searchBarLargeScreen .input-group{
+    padding-right:10px
+}
+.main-nav .searchBarLargeScreen .input-group>.input-group-prepend:not(:first-child)>.input-group-text{
+    border-top-right-radius:0;
+    border-bottom-right-radius:0;
+    border-top-left-radius:5px;
+    border-bottom-left-radius:5px;
+}
+.main-nav .searchBarLargeScreen .input-group input{
+    border-top-left-radius:0;
+    border-bottom-left-radius:0;
+    border-top-right-radius:5px;
+    border-bottom-right-radius:5px
+}
+#aboutus .content > h2{
+    text-align:right;
+}
+#aboutus p {
+    text-align:right
+}
+#offers h2{
+    text-align:right;
+}
+#contactus .form{
+    text-align:right
+}
+#contactus .info {
+    padding-left:0;
+    padding-right:30px
+}
+#contactus .info span{
+    padding-left:0;
+    padding-right:10px
+}
+#contactus .info .contact-social-links li{
+    float:right;
+}
+@import "assets/sass/pages/_ecommerceHomePage-ar.scss";
+@import "assets/sass/pages/_cartView-ar.scss";
+@import "assets/sass/pages/_productOverView-ar.scss";
+@import "assets/sass/pages/_checkOut-ar.scss";
+@import "assets/sass/pages/_signIn-ar.scss"; 
