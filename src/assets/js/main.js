@@ -18,9 +18,7 @@ $(document).ready(function () {
 
     // scroll top to section
     animateToSection()
-
-    //slick slider trigger
-    slickSliderTrigger();
+ 
 
     //Adjust Devdevider Position
     devdeviderPosition()

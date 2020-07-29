@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Products } from '../models/Products.model';
+import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Item } from '../models/Products.model';
 import { ProductsService } from '../services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -11,8 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProductDetailsComponent implements OnInit {
 
   private ParamterId: number;
-  product: Products;
-  public ProductsList: Array<Products> = [];
+  product: Item;
+  public ProductsList: Array<Item> = [];
 
   constructor(private _ProductsService: ProductsService, private route: ActivatedRoute, private router: Router) { }
 
@@ -25,17 +25,19 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
     debugger;
     this.ProductsList = this._ProductsService.getList();
-    this.ParamterId = parseInt(this.route.snapshot.paramMap.get("id"));
+     this.ParamterId = parseInt(this.route.snapshot.paramMap.get("id"));
 
 
     this.ProductsList.forEach(i => {
       if (i.Id == this.ParamterId) {
         this.product = i;
       }
-    });
-
+    }); 
   }
- 
+
+  updateService(){ 
+    this._ProductsService.updateProductsList(this.ProductsList); 
+  }
 
 
 }

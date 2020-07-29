@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MaterialModule } from './material/material.module';
+import { OwlModule } from 'ngx-owl-carousel';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,8 @@ import { OrderInformationComponent } from './order-information/order-information
 import { ViewCartComponent } from './view-cart/view-cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { NavbarCartComponent } from './layout-components/navbar-cart/navbar-cart.component';
+
 
 @NgModule({
   declarations: [
@@ -27,15 +30,19 @@ import { SignInComponent } from './sign-in/sign-in.component';
     OrderInformationComponent,
     ViewCartComponent,
     CheckOutComponent,
-    SignInComponent
+    SignInComponent,
+    NavbarCartComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     MaterialModule,
+    OwlModule,
     BrowserAnimationsModule
   ],
-  providers: [ProductsService],
+  providers: [
+    ProductsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

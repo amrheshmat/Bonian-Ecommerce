@@ -10,21 +10,7 @@ function adjustHeaderHeight() {
 
 let direction = $('html').css('direction');
 
-//slick slider trigger
-function slickSliderTrigger() {
 
- 
-        $('.single-item').slick({
-            accessibility: false,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            speed: 2000,
-            adaptiveHeight: false,
-            arrows: false,
-            rtl: (direction === 'rtl')? true : false   
-        });
-   
-}
 
 /*(F) first and last word function*/
 function firstAndLastWord() {
