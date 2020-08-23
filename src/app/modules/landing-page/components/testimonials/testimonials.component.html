@@ -1,0 +1,22 @@
+
+<!--start tesmimonials-->
+<section id="testimonials">
+    <div class="overlay"></div>
+    <div class="content text-center">
+        <h2>
+            <i class="fas fa-balance-scale-right secondaryColor"></i> Testimonials <i
+                class="fas fa-balance-scale-left secondaryColor"></i>
+        </h2>
+        <div class="container">
+            <div class="f-slider">
+                <div *ngFor="let i of TestimonialList">
+                    <q>{{i.Testimonial}}</q>
+                    <img src="./assets/images/p1.jpg" alt="client review image" />
+                    <h3>Rafael Alekhandro</h3>
+                    <span>UI/UX Designer</span>
+                </div> 
+            </div>
+        </div>
+    </div>
+</section>
+<!--end testimonials-->

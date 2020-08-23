@@ -1,0 +1,16 @@
+<div class="sliderBody" id="sliderBody">
+
+    <div class="item" *ngFor="let item of CartList; let i = index">
+        <img src="./assets/images/p2.jpg" />
+        <span class="itemsCount">
+            {{item.Quantity}}
+        </span>
+        <div class="cartItemsControl">
+            <i class="minus fas fa-minus-circle fa-fw"></i>
+            <i class="plus fas fa-plus-circle fa-fw"></i>
+        </div>
+        <div class="cartItemsRemove">
+            <i class="fas fa-times"></i>
+        </div>
+    </div>
+</div>

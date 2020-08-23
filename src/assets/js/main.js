@@ -27,10 +27,7 @@ $(document).ready(function () {
     animateToHeadButton()
 
     //spinner remover
-    removeSpinner()
-
-    //testimonials Slider trigger
-    testimonialsSlider();
+    removeSpinner();
 
     //textare Calculation
     textareCalculation();
@@ -44,8 +41,7 @@ $(document).ready(function () {
     //owl Carousel Trigger()
     owlCarouselTrigger()
 
-    //owl carousel special offers trigger
-    owlCarouselOffersTrigger()
+    
 
     //rotate nav bar toggler
     navBarTogglerRotation()

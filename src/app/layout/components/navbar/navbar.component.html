@@ -1,0 +1,143 @@
+<!--Navbar-->
+<nav class="main-nav">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg padding0">
+            <div class="row margin0 w-100">
+                <div class='col-12'>
+                    <div class="d-lg-none">
+                        <div class="d-flex navbarSmallScreen">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fas fa-bars fa-fw"></i>
+                            </button>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <img class="logoSmallScreens" src="./assets/images/output-onlinepngtools (1).png" width="80"
+                                    height="70">
+                            </a>
+                            <a href="cart-view.html" class="nav-link">
+                                <i class="fas fa-cart-arrow-down fa-fw"></i>
+                            </a>
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-user-circle fa-fw"></i>
+                            </a>
+                        </div>
+                        <form class="form-inline my-2 my-lg-0 searchBarMobile">
+                            <div class="input-group w-100">
+                                <img src="./assets/images/ajax-loader(2).gif" id="ajaxLoaderGif" />
+                                <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                                    aria-describedby="basic-addon1">
+                                <div class="input-group-prepend">
+                                    <button class="input-group-text" id="basic-addon1">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                            <div class="viewItems">
+                                <div class="itemInSearch d-flex justify-content-between">
+                                    <img src="./assets/images/animal-blur-bull-162240.jpg" />
+                                    <div class="itemsDesc">
+                                        <p class="itemDesc">Steak</p>
+                                        <span class="itemPrice">250 EGP</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto sections">
+                            <li class="nav-item active">
+                                <a class="nav-link" [routerLink]="['']">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"  [routerLink]="['']">Testimonials</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"  [routerLink]="['']">Products</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"  [routerLink]="['']">Contact Us</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav loginAndLang">
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    Login
+                                    <i class="fas fa-sign-in-alt"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link changeLangButton">
+                                    Arabic
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="d-none d-lg-block w-100">
+                    <div class="col-12 d-flex justify-content-between">
+                        <div class="searchAndLogoLarge d-flex">
+                            <a class="navbar-brand" href="#">
+                                <img src="./assets/images/output-onlinepngtools (1).png" width="100" height="85">
+                            </a>
+                            <form class="form-inline my-2 my-lg-0 searchBarLargeScreen">
+                                <div class="input-group w-100">
+                                    <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                                        aria-describedby="basic-addon1">
+                                    <img src="./assets/images/ajax-loader(2).gif" id="ajaxLoaderGif" />
+                                    <div class="input-group-prepend">
+                                        <button class="input-group-text" id="basic-addon1">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="viewItems">
+                                    <div class="itemInSearch d-flex justify-content-between">
+                                        <img src="./assets/images/animal-blur-bull-162240.jpg" />
+                                        <div class="itemsDesc">
+                                            <p class="itemDesc">Steak</p>
+                                            <span class="itemPrice">250 EGP</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+                        <div class="navCart d-flex w-100">
+                            <div class="carouselOuter w-100" id="carouselOuter">
+
+                                <div class="controllers left" id="translateLeft">
+                                    <button>
+                                        <i class="fas fa-arrow-alt-circle-left"></i>
+                                    </button>
+                                </div>
+
+                                  <!-- <app-navbar-cart></app-navbar-cart>  -->
+                                  
+                                <div class="controllers right" id="translateRight">
+                                    <button>
+                                        <i class="fas fa-arrow-alt-circle-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cartIcon" [routerLink]="['/viewcart']" style="cursor: pointer;">
+                                <a>
+                                    <img src="./assets/images/cart.png" width="100" height="85">
+                                </a>
+                                <span class="cartItemsCount">
+                                    25
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</nav>
+<!--/Navbar-->

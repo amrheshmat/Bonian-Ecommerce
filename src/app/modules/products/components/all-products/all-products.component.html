@@ -1,0 +1,219 @@
+<!--start main products section-->
+<section id="mainProductsSection" style="padding-top: 200px;">
+    <div class="container-fluid">
+        <h2 class="categorySectionName subTitleColor"> {{category}} </h2>
+        <div class="row">
+
+
+            <aside class="smallAndExtraSmall d-block d-md-none w-100">
+                <button class="custom-btn filledButton w-100" type="button" data-toggle="collapse"
+                    data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Sections
+                </button>
+                <div class="collapse" id="collapseExample">
+                    <select class="custom-select">
+                        <option selected>Open this select menu</option>
+                        <option value="1">One</option>
+                        <option value="2">Two</option>
+                        <option value="3">Three</option>
+                    </select>
+                    <div class="category active">
+                        <a class="asideCategory row justify-content-between">
+                            <p class="categoryName">Meet</p>
+                            <p class="categoryCount">10</p>
+                        </a>
+                        <div class="subCategory active form-check asideProduct formFilterProduct w-100">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label w-100" for="defaultCheck1">
+                                Product
+                            </label>
+                            <ul class="dynamicMenu">
+                                <li>
+                                    <label class="form-check-label w-100" for="defaultCheck1">
+                                        Product
+                                    </label>
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                </li>
+                                <li>
+                                    <label class="form-check-label w-100" for="defaultCheck1">
+                                        Product
+                                    </label>
+                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="subCategory active form-check asideProduct formFilterProduct w-100">
+
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label w-100" for="defaultCheck1">
+                                Product
+                            </label>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <a class="asideCategory row justify-content-between">
+                            <p class="categoryName">Meet</p>
+                            <p class="categoryCount">10</p>
+                        </a>
+                        <div class="subCategory form-check asideProduct formFilterProduct w-100">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label w-100" for="defaultCheck1">
+                                Product
+                            </label>
+                        </div>
+                        <div class="subCategory form-check asideProduct formFilterProduct w-100">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label w-100" for="defaultCheck1">
+                                Product
+                            </label>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <a class="asideCategory row justify-content-between">
+                            <p class="categoryName">Meet</p>
+                            <p class="categoryCount">10</p>
+                        </a>
+                        <div class="subCategory form-check asideProduct formFilterProduct w-100">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label w-100" for="defaultCheck1">
+                                Product
+                            </label>
+                        </div>
+                        <div class="subCategory form-check asideProduct formFilterProduct w-100">
+                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label w-100" for="defaultCheck1">
+                                Product
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- <main class="productsList col-md-9 col-lg-10">
+
+                <mat-tab-group (selectedTabChange)="onTabChanged($event)">
+                     
+                    <mat-tab *ngFor="let category of categoryList" [label]="category.CategoryName">
+ 
+                        <div class="card" *ngFor="let item of itemsList">
+                            <a>
+                                <img src="./assets/images/{{item.ImagePath}}" class="card-img-top" alt="...">
+                            </a>
+                            <div class="card-body">
+                                <h3 class="card-title">{{item.ItemName}}</h3>
+                                <p class="card-desc">{{item.DefaultPurchaseDiscount}} G</p>
+                                <p class="price">{{item.UnitPrice}} EGP</p>
+                                <a class="btn btn-success addToCart">ADD TO CART &nbsp;<i
+                                        class="fab fa-opencart"></i></a>
+                            </div>
+                        </div>
+
+                    </mat-tab>
+
+                </mat-tab-group>
+                
+            </main> -->
+
+            <aside class="largeAndMedium d-none d-md-block col-md-3 col-lg-2">
+                <div class="row">
+                    <h2>
+                        Sections
+                    </h2>
+                </div>
+                <div class="largeAndMediumContent">
+                    <div class="row">
+                        <select class="form-control">
+                            <option>Default select</option>
+                            <option>Default select</option>
+                            <option>Default select</option>
+                            <option>Default select</option>
+                        </select>
+                    </div>
+                    <div class="category active">
+                        <a class="asideCategory row justify-content-between">
+                            <p class="categoryName">Fowl</p>
+                            <p class="categoryCount">10</p>
+
+                        </a>
+                        <div class="row subCategory active">
+                            <div class="form-check formFilterProduct w-100">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label w-100" for="defaultCheck1">
+                                    Product
+                                </label>
+                                <ul class="dynamicMenu">
+                                    <li>
+                                        <label class="form-check-label w-100" for="defaultCheck1">
+                                            Product
+                                        </label>
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                    </li>
+                                    <li>
+                                        <label class="form-check-label w-100" for="defaultCheck1">
+                                            Product
+                                        </label>
+                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row subCategory active">
+                            <div class="form-check formFilterProduct w-100">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck13">
+                                <label class="form-check-label w-100" for="defaultCheck1">
+                                    Product
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <a class="asideCategory row justify-content-between">
+                            <p class="categoryName">Meet</p>
+                            <p class="categoryCount">10</p>
+                        </a>
+                        <div class="row subCategory">
+                            <div class="form-check formFilterProduct w-100">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label w-100" for="defaultCheck1">
+                                    Product
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row subCategory">
+                            <div class="form-check formFilterProduct w-100">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck13">
+                                <label class="form-check-label w-100" for="defaultCheck1">
+                                    Product
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <a class="asideCategory row justify-content-between">
+                            <p class="categoryName">Meet</p>
+                            <p class="categoryCount">10</p>
+                        </a>
+                        <div class="row subCategory">
+                            <div class="form-check formFilterProduct w-100">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label w-100" for="defaultCheck1">
+                                    Product
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row subCategory">
+                            <div class="form-check formFilterProduct w-100">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck13">
+                                <label class="form-check-label w-100" for="defaultCheck1">
+                                    Product
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+<!--end main products section-->

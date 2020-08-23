@@ -111,41 +111,6 @@ function removeSpinner() {
 
 
 
-function testimonialsSlider(){
-
-    //testimonials slider
-    let actived = $('.f-slider >  div:first-child');
-    actived.addClass('activ');
-     (function autoSlider() {
-         
-        $('.f-slider .activ').each(function () {
-             if (!$(this).is(':last-child')) {
-                 $(this).delay(3000).fadeOut(1000, function () {
-    
-                    $(this).removeClass('activ').next().addClass('activ').fadeIn(1000);
-    
-                    autoSlider();
-                });
-    
-            } else {
-    
-                $(this).delay(3000).fadeOut(1000, function () {
-    
-                    $(this).removeClass('activ');
-     
-                    $('.f-slider div').eq(0).addClass('activ').fadeIn(1000);
-    
-                    autoSlider();
-    
-                });
-    
-            }
-    
-        });
-    
-    }());
-}
-
 
 function textareCalculation(){
     //textarea calculation
@@ -198,35 +163,7 @@ function owlCarouselTrigger() {
 }
 
 //owl carusol trigger
-function owlCarouselOffersTrigger() {
-    $('.autoplay').slick({
-        rtl: (direction === 'rtl') ? true : false,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        prevArrow: '<i class="fas fa-arrow-circle-left fa-fw"></i>',
-        nextArrow: '<i class="fas fa-arrow-circle-right fa-fw"></i>',
-        responsive: [
-    {
-        breakpoint: 992,
-        settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2,
-            infinite: true,
-        }
-    },
-    {
-        breakpoint: 768,
-        settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-        }
-    }
-        ]
-    });
-    
-}
+
 
 
 //adjust payment method
