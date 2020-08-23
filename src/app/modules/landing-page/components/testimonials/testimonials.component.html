@@ -11,9 +11,9 @@
             <div class="f-slider">
                 <div *ngFor="let i of TestimonialList">
                     <q>{{i.Testimonial}}</q>
-                    <img src="./assets/images/p1.jpg" alt="client review image" />
-                    <h3>Rafael Alekhandro</h3>
-                    <span>UI/UX Designer</span>
+                    <img src="./assets/{{i.ImagePath}}" alt="client review image" />
+                    <h3>{{i.CustomerName}}</h3>
+                    <span>{{i.CustomerJobTitle}}</span>
                 </div> 
             </div>
         </div>

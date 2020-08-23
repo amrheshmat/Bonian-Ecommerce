@@ -9,9 +9,10 @@ import { TestimonialService } from './services/testimonial.service';
 import { BaseService } from 'src/app/shared/services/base.service';  
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { AboutUsService } from './services/about-us.service';
-import { SpecialOffersService } from './services/special-offers.service'; 
-import { LandinPageHeaderComponent } from './components/landin-page-header/landin-page-header.component';
+import { SpecialOffersService } from './services/special-offers.service';  
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './components/header/header.component'; 
+import { HeaderService } from './services/header.service';
 
 @NgModule({
   imports: [  
@@ -22,16 +23,17 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: [
     LandingPageComponent,
+    HeaderComponent,
+    AboutUsComponent,  
     TestimonialsComponent,
     SpecialOffersComponent,
-    AboutUsComponent, 
   ],
   providers: [
     BaseService,
-    TestimonialService,
+    HeaderService,
     AboutUsService,
+    TestimonialService,
     SpecialOffersService,
-    LandinPageHeaderComponent
   ]
 })
 
