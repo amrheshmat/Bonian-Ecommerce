@@ -1,7 +1,6 @@
 export class SpecialOffer{
     Id:number;
-    SpecialOfferLink:string;
-    SpecialOfferText:string;
-    SpecialOfferPercentage:number;
-    SpecialOfferImage:string
+    ImagePath:string;
+    Precentage:number;
+    Category:string; 
   } 

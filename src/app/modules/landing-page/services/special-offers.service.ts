@@ -11,9 +11,10 @@ export class SpecialOffersService {
 
   getAll(): SpecialOffer []{
     return [
-        { Id:2, SpecialOfferLink:"products", SpecialOfferText:"Enjoy Our 25% On Fowl", SpecialOfferPercentage:25, SpecialOfferImage:"apples-buy-customer-95425.jpg"  } ,
-        { Id:2, SpecialOfferLink:"products", SpecialOfferText:"Enjoy Our 20% On Meet", SpecialOfferPercentage:20, SpecialOfferImage:"asian-assorted-background-917371.jpg"  }, 
-        { Id:2, SpecialOfferLink:"products", SpecialOfferText:"Enjoy Our 25% On Seed", SpecialOfferPercentage:30, SpecialOfferImage:"branding-buy-city-264636.jpg"  } 
+      { Id:1,ImagePath: "./assets/images/apples-buy-customer-95425.jpg",Precentage:30 ,Category:"Meet"},
+      { Id:2, ImagePath: "./assets/images/asian-assorted-background-917371.jpg",Precentage:25  ,Category:"Fowl"},
+      { Id:3,ImagePath: "./assets/images/apples-buy-customer-95425.jpg",Precentage:10,Category:"Seed"  }, 
+      { Id:4,ImagePath: "./assets/images/asian-assorted-background-917371.jpg",Precentage:25  ,Category:"Fowl"},
     ]
   }  
 }

@@ -1,73 +1,23 @@
-
-
 <!--start offers-->
 <section id="offers">
     <div class="container">
         <h2 class="sectionTitle">Special Offers</h2>
-        <div class="autoplay">
-            <div class="offer-card">
+
+
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig"
+            (init)="slickInit($event)" (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)"
+            (beforeChange)="beforeChange($event)">
+
+            <div ngxSlickItem *ngFor="let slide of specialOffersList" class="slide">
                 <div class="overlay"></div>
-                <img src="./assets/images/apples-buy-customer-95425.jpg" />
+
+                <img src="{{ slide.ImagePath }}" alt="" width="100%">
                 <div class="offer-card-desc">
-                    <p>Enjoy Our <span class="secondaryColor">25%</span> On Fowl</p>
+                    <p>Enjoy Our <span class="secondaryColor">{{slide.Precentage}} % </span> On {{slide.Category}}</p>
                     <button class="custom-btn filledButton">Get Offer</button>
                 </div>
             </div>
-            <div class="offer-card">
-                <div class="overlay"></div>
-                <img src="./assets/images/asian-assorted-background-917371.jpg" />
-                <div class="offer-card-desc">
-                    <p>Enjoy Our <span class="secondaryColor">20%</span> On Meet</p>
-                    <button class="custom-btn filledButton">Get Offer</button>
-                </div>
-            </div>
-            <div class="offer-card">
-                <div class="overlay"></div>
-                <img src="./assets/images/branding-buy-city-264636.jpg" />
-                <div class="offer-card-desc">
-                    <p>Enjoy Our <span class="secondaryColor">30%</span> On seed</p>
-                    <button class="custom-btn filledButton">Get Offer</button>
-                </div>
-            </div>
-            <div class="offer-card">
-                <div class="overlay"></div>
-                <img src="./assets/images/apples-buy-customer-95425.jpg" />
-                <div class="offer-card-desc">
-                    <p>Enjoy Our <span class="secondaryColor">25%</span> On fowl</p>
-                    <button class="custom-btn filledButton">Get Offer</button>
-                </div>
-            </div>
-            <div class="offer-card">
-                <div class="overlay"></div>
-                <img src="./assets/images/asian-assorted-background-917371.jpg" />
-                <div class="offer-card-desc">
-                    <p>Enjoy Our <span class="secondaryColor">25%</span> On meet</p>
-                    <button class="custom-btn filledButton">Get Offer</button>
-                </div>
-            </div>
-            <div class="offer-card">
-                <div class="overlay"></div>
-                <img src="./assets/images/branding-buy-city-264636.jpg" />
-                <div class="offer-card-desc">
-                    <p>Enjoy Our <span class="secondaryColor">30%</span> On seed</p>
-                    <button class="custom-btn filledButton">Get Offer</button>
-                </div>
-            </div>
-        </div>
+        </ngx-slick-carousel>
     </div>
 </section>
 <!--start offers-->
-<!-- 
-<h2>Special Offers</h2>
-<ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideConfig" (init)="slickInit($event)"
-    (breakpoint)="breakpoint($event)" (afterChange)="afterChange($event)" (beforeChange)="beforeChange($event)">
-    <div ngxSlickItem *ngFor="let slide of slides" class="slide">
-        asdf
-      <img src="./../../../../../assets/images/{{slides}}" alt="" width="100%">
-    </div>
-  </ngx-slick-carousel>
-  
-  <button (click)="addSlide()">Add</button>
-  <button (click)="removeSlide()">Remove</button>
-  <button (click)="slickModal.slickGoTo(2)">slickGoto 2</button>
-  <button (click)="slickModal.unslick()">unslick</button> -->

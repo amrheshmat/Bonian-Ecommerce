@@ -634,35 +634,35 @@ header .divider{
     font-size:3em;
     color:$headLineColor;
 }
-#offers .autoplay{
+#offers .carousel{
     text-align:center;
     position:relative
 }
-#offers .autoplay .offer-card{
+#offers .carousel .slide{
     position:relative;
     overflow:hidden
 }
-#offers .autoplay .offer-card .overlay{
+#offers .carousel .slide .overlay{
     @include coverer;
     @include prefix(transition , all 0.3s ,(webkit,moz,ms,o));
     background-color:rgba(0,0,0,0.5);
     z-index:1
 }
-#offers .autoplay .offer-card:hover .overlay{
+#offers .carousel .slide:hover .overlay{
     background-color:rgba(0,0,0,0.7)
 }
-#offers .autoplay .slick-slide{
+#offers .carousel .slide{
     width:300px;
     margin:0 15px;
 }
-#offers .autoplay .offer-card img{
+#offers .carousel .slide img{
     width:100%;
     @include prefix(transition , all 0.5s ,(webkit,moz,ms,o));
 }
-#offers .autoplay .offer-card:hover img{
+#offers .carousel .slide:hover img{
     @include prefix(transform,scale(1.1,1.1),(webkit,moz,ms,o))
 }
-#offers .autoplay .offer-card .offer-card-desc{
+#offers .carousel .slide .offer-card-desc{
     position:absolute;
     top:30%;
     width:100%;
@@ -670,21 +670,21 @@ header .divider{
     color:$whiteColor;
     z-index:2
 }
-#offers .autoplay .offer-card .offer-card-desc p{
+#offers .carousel .slide .offer-card-desc p{
     font-size:1.5em;
     text-transform:uppercase;
     @extend .font-stack-subTitles;
 
 }
 @include breakpoint(extra-small){
-    #offers .autoplay .offer-card .offer-card-desc p{
+    #offers .carousel .slide .offer-card-desc p{
         font-size:1.2em;
     }
 }
-#offers .autoplay .offer-card .offer-card-desc span{
+#offers .carousel .slide .offer-card-desc span{
     font-weight:bold
 }
-#offers .autoplay .offer-card .offer-card-desc button{
+#offers .carousel .slide .offer-card-desc button{
     padding:5px 25px;
     border-radius:25px;
     @include prefix(transition,all 0.2s ,(webkit,moz,ms,o));
@@ -693,12 +693,12 @@ header .divider{
     font-weight:bold;
     font-size:18px
 }
-#offers .autoplay i{
+#offers .carousel i{
     display:none!important;
     cursor:pointer
 }
 @include breakpoint(medium){ 
-    #offers .autoplay i{
+    #offers .carousel i{
         display:inline!important;
         position:absolute;
         top:45%;
@@ -707,11 +707,11 @@ header .divider{
         color:$secondaryColor;
         font-size:2em
     }
-    #offers .autoplay i.fa-arrow-circle-right{
+    #offers .carousel i.fa-arrow-circle-right{
         left:100%
     }
 }@include breakpoint(large){  
-    #offers .autoplay i.fa-arrow-circle-right{
+    #offers .carousel i.fa-arrow-circle-right{
         left:102%
     }
 }
