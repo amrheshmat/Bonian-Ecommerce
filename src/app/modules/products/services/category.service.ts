@@ -19,7 +19,7 @@ export class CategoryService {
     private urlGetAllLite = "GetAllLite";
     entityName: string = "";
 
-    constructor(public _http: HttpClient) {
+    constructor() {
         this.baseUrl = environment.apiUrl;
     }
     
@@ -33,39 +33,5 @@ export class CategoryService {
           
         ]
     }
-
-    getAllLite(): any {
-        return this._http.get(this.baseUrl + 'api/' + this.entityName + '/' + this.urlGetAllLite);
-        // //     .subscribe((response: Response) => response.json())
-        // //     , catchError(this.errorHandler);
-    }
-
-    getById(id: number): any {
-        return this._http.get(this.baseUrl + "api/" + this.entityName + '/' + this.urlGetById + '/' + id);
-        // .subscribe((response: Response) => response.json())
-        // , catchError(this.errorHandler);
-    }
-
-    save(entity) {
-        return this._http.post(`${this.baseUrl}api/${this.entityName}/${this.urlSave}/`, entity);
-    }
-
-    delete(id) {
-        return this._http.delete(this.baseUrl + "api/" + this.entityName + "/" + this.urlDelete + "/" + id);
-        // .subscribe((response: Response) => response.json())
-        // , catchError(this.errorHandler);
-    }
-
-    deleteFarm(id) {
-        this._http.delete(this.baseUrl + "api/" + this.entityName + "/" + this.urlDelete + "/" + id)
-            .subscribe((response: Response) => {
-                return response;
-            })
-            , catchError(this.errorHandler);
-    }
-
-    errorHandler(error: Response) {
-        console.log(error);
-        return Observable.throw(error);
-    }
+ 
 }

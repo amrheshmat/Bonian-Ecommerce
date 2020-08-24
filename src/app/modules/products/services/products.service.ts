@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Item } from '../models/Products.model';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Item } from '../models/Products.model'; 
 import { environment } from '../../../../environments//environment';
 
 @Injectable({
@@ -18,9 +16,8 @@ export class ProductService {
   entityName: string = "apipublicitem"
   
   ProductsList : Item[];
-   constructor(private _http : HttpClient) {
-      this.baseUrl = environment.apiUrl;
-
+   constructor() {
+      this.baseUrl = environment.apiUrl; 
     }  
     
     getAll(): Item[]{
