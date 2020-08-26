@@ -6,12 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar-cart.component.scss']
 })
 export class NavbarCartComponent implements OnInit {
- 
-  
+
+  cartList = [];
   constructor() { }
 
   ngOnInit(): void {
-    
+
   }
 
 }

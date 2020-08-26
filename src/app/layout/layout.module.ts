@@ -3,7 +3,6 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FullLayoutComponent } from './components/full-layout/full-layout.component';
-import { CommonModule } from '@angular/common';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { ContactUsService } from './services/contact-us.service';
 import { SharedModule } from '../shared/shared.module';
@@ -13,7 +12,6 @@ import { SharedModule } from '../shared/shared.module';
 @NgModule({ 
   imports: [  
     SharedModule,
-    CommonModule,
     LayoutRoutingModule
   ],
   declarations: [

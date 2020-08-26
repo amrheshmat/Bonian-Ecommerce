@@ -10,13 +10,13 @@ import { BaseService } from 'src/app/shared/services/base.service';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { AboutUsService } from './services/about-us.service';
 import { SpecialOffersService } from './services/special-offers.service';  
-import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component'; 
 import { HeaderService } from './services/header.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [  
-    CommonModule,
+    SharedModule,
     LandingPageRoutingModule,
     OwlModule,
     SlickCarouselModule

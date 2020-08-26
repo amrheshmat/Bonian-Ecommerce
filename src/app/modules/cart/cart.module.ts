@@ -6,12 +6,12 @@ import { ViewCartComponent } from './components/view-cart/view-cart.component';
 import { CartService } from './services/cart.service';
 import { NavbarCartComponent } from './components/navbar-cart/navbar-cart.component';
 import { CartRoutingModule } from './cart-routing.module';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    CartRoutingModule
+    CartRoutingModule,
+    SharedModule
   ],
   declarations: [
     CheckOutComponent,

@@ -5,12 +5,12 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { CategoryService } from './services/category.service';
 import { ProductService } from './services/products.service';
 import { ProductsRoutingModule } from './products-routing.module';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [  
-    CommonModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    SharedModule
   ],
   declarations: [
     AllProductsComponent,
