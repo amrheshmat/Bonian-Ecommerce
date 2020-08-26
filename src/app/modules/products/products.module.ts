@@ -6,6 +6,7 @@ import { CategoryService } from './services/category.service';
 import { ProductService } from './services/products.service';
 import { ProductsRoutingModule } from './products-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { SmallFilterAsideComponent } from './components/small-filter-aside/small-fiter-aside.component';
 
 @NgModule({
   imports: [  
@@ -14,7 +15,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   declarations: [
     AllProductsComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    SmallFilterAsideComponent
   ],
   providers: [
     CategoryService,
