@@ -1,5 +1,4 @@
-<!--start main products section-->
-<section id="mainProductsSection" style="padding-top: 200px;">
+<section class="mainProductsSection" id="mainProductsSection" style="padding-top: 200px;">
     <div class="container-fluid">
         <h2 class="categorySectionName subTitleColor"> {{category}} </h2>
         <div class="row">
@@ -9,20 +8,7 @@
                 <mat-tab-group (selectedTabChange)="onTabChanged($event)">
 
                     <mat-tab *ngFor="let category of categoryList" [label]="category.CategoryName">
-
-                        <div class="card" *ngFor="let item of itemsList">
-                            <a>
-                                <img src="./assets/images/{{item.ImagePath}}" class="card-img-top" alt="...">
-                            </a>
-                            <div class="card-body">
-                                <h3 class="card-title">{{item.ItemName}}</h3>
-                                <p class="card-desc">{{item.DefaultPurchaseDiscount}} G</p>
-                                <p class="price">{{item.UnitPrice}} EGP</p>
-                                <a class="btn btn-success addToCart">ADD TO CART &nbsp;<i
-                                        class="fab fa-opencart"></i></a>
-                            </div>
-                        </div>
-
+                        <app-product-card [itemsList]="itemsList"></app-product-card>
                     </mat-tab>
 
                 </mat-tab-group>
@@ -32,4 +18,3 @@
         </div>
     </div>
 </section>
-<!--end main products section-->

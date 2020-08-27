@@ -1,0 +1,11 @@
+<div class="card" *ngFor="let item of itemsList">
+    <a>
+        <img src="./assets/images/{{item.ImagePath}}" class="card-img-top" alt="...">
+    </a>
+    <div class="card-body">
+        <h3 class="card-title">{{item.ItemName}}</h3>
+        <p class="card-desc">{{item.DefaultPurchaseDiscount}} G</p>
+        <p class="price">{{item.UnitPrice}} EGP</p>
+        <a class="btn btn-success addToCart">ADD TO CART &nbsp;<i class="fab fa-opencart"></i></a>
+    </div>
+</div>

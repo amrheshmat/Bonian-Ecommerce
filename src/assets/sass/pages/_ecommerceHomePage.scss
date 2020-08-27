@@ -1,15 +1,15 @@
 ﻿
-#mainProductsSection .categorySectionName{
+.mainProductsSection .categorySectionName{
     margin-bottom:30px;
     font-size:5em;
     text-align:center;
     letter-spacing:2px
 }
-#mainProductsSection select,
-#mainProductsSection select option{
+.mainProductsSection select,
+.mainProductsSection select option{
     @extend .font-stack-navbar;
 }
-#mainProductsSection select option{
+.mainProductsSection select option{
     font-weight:400;
 }
 /*start aside in small screens*/
@@ -19,14 +19,14 @@ aside.smallAndExtraSmall .collapse{
     margin-bottom:20px;
     @include prefix(transition, all 0.3s, (webkit,moz ,ms,o))
 }
-#mainProductsSection aside.smallAndExtraSmall button{
+.mainProductsSection aside.smallAndExtraSmall button{
     font-size:2em
 }
-#mainProductsSection aside.smallAndExtraSmall button:hover{
+.mainProductsSection aside.smallAndExtraSmall button:hover{
     @include colorOpacity($secondaryColor,0.9);
     color:#FFF!important
 }
-#mainProductsSection .asideCategory {
+.mainProductsSection .asideCategory {
     padding:5px 10px;
     border-radius:5px;
     background-color:#CCC;
@@ -34,32 +34,32 @@ aside.smallAndExtraSmall .collapse{
     color:#215529;
     @include prefix(transition, all 0.3s, (webkit,moz ,ms,o))
 }
-#mainProductsSection .asideCategory:hover {
+.mainProductsSection .asideCategory:hover {
     color:#222
 }
-#mainProductsSection .asideCategory .categoryName{
+.mainProductsSection .asideCategory .categoryName{
     @extend .font-stack-navbar ;
     font-weight:bold;
     padding-top:2px
 }
-#mainProductsSection .asideCategory .categoryCount{
+.mainProductsSection .asideCategory .categoryCount{
     background-color:#EEE;
     border-radius:50%;
     padding:3px 5px;
     font-weight:bold;
     color:$secondaryColor
 }
-#mainProductsSection .category.active .asideCategory  {
+.mainProductsSection .category.active .asideCategory  {
     color:$whiteColor;
     background-color:#212121
 }
-#mainProductsSection .category .subCategory{
+.mainProductsSection .category .subCategory{
    display:none
 }
-#mainProductsSection .category .subCategory.active{
+.mainProductsSection .category .subCategory.active{
    display:block
 }
-#mainProductsSection aside.smallAndExtraSmall .asideCategory {
+.mainProductsSection aside.smallAndExtraSmall .asideCategory {
     margin:5px
 }
 /*end aside in small screens*/
@@ -163,7 +163,7 @@ aside.largeAndMedium .largeAndMediumContent .asideCategory {
 .formFilterProduct .form-check-label {
     margin-bottom:5px
 }
-#mainProductsSection .dynamicMenu{
+.mainProductsSection .dynamicMenu{
     padding:0 20px
 }
 /*end aside in large screens*/
