@@ -1,0 +1,9 @@
+<section id="productsListFullWidth">
+    <div class="container-fluid">
+        <h2 class="subTitleColor">Related Products</h2>
+        <span *ngFor="let item of relatedProducts">
+            <app-product-card [item]="item"></app-product-card>
+        </span>
+        <div class="clearfix"></div>
+    </div>
+</section>

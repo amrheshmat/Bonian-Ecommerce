@@ -45,6 +45,24 @@ export class ProductService {
         DiscountForSale:123,MaxDiscount:441 ,ItemPrice:956 ,DemandLimit:14 ,DemandLimitForInventory:15 ,
         ExpirationDate:null ,BrandId:223 ,CategoryId:1 ,SellByUnit:false ,UnitNumber:12 ,UnitPrice:314 ,CurrentAveragePrice:222,
         BarCode:null ,ProductionOutPutMinutes:null ,ValidityDuration:null,ImagePath:"cl-3.jpg"},
+
+        {Id:4,ItemName:"ItemName D",ForSale:null,DefaultPurchaseDiscount:312,
+        ItemTypeId : 1, TaxId:581,ItemCode:123 ,ItemDescription:"desc" , ItemPurchasePrice:174, ItemUnit:"123",
+        DiscountForSale:123,MaxDiscount:441 ,ItemPrice:956 ,DemandLimit:14 ,DemandLimitForInventory:15 ,
+        ExpirationDate:null ,BrandId:223 ,CategoryId:1 ,SellByUnit:false ,UnitNumber:12 ,UnitPrice:314 ,CurrentAveragePrice:222,
+        BarCode:null ,ProductionOutPutMinutes:null ,ValidityDuration:null,ImagePath:"cl-3.jpg"},
+
+        {Id:4,ItemName:"ItemName D",ForSale:null,DefaultPurchaseDiscount:312,
+        ItemTypeId : 1, TaxId:581,ItemCode:123 ,ItemDescription:"desc" , ItemPurchasePrice:174, ItemUnit:"123",
+        DiscountForSale:123,MaxDiscount:441 ,ItemPrice:956 ,DemandLimit:14 ,DemandLimitForInventory:15 ,
+        ExpirationDate:null ,BrandId:223 ,CategoryId:1 ,SellByUnit:false ,UnitNumber:12 ,UnitPrice:314 ,CurrentAveragePrice:222,
+        BarCode:null ,ProductionOutPutMinutes:null ,ValidityDuration:null,ImagePath:"cl-3.jpg"},
+        
+        {Id:4,ItemName:"ItemName D",ForSale:null,DefaultPurchaseDiscount:312,
+        ItemTypeId : 1, TaxId:581,ItemCode:123 ,ItemDescription:"desc" , ItemPurchasePrice:174, ItemUnit:"123",
+        DiscountForSale:123,MaxDiscount:441 ,ItemPrice:956 ,DemandLimit:14 ,DemandLimitForInventory:15 ,
+        ExpirationDate:null ,BrandId:223 ,CategoryId:1 ,SellByUnit:false ,UnitNumber:12 ,UnitPrice:314 ,CurrentAveragePrice:222,
+        BarCode:null ,ProductionOutPutMinutes:null ,ValidityDuration:null,ImagePath:"cl-3.jpg"},
       ]
   }
 }

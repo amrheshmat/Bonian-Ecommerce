@@ -1,0 +1,40 @@
+<nav class="loginNav">
+  <img src="./assets/images/output-onlinepngtools (1).png" />
+</nav>
+<main id="loginForm" style="height:720px">
+  <form #loginForm="ngForm">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+        placeholder="Enter email" required>
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group password">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+      <i class="fas fa-eye-slash"></i>
+    </div>
+    <div class="alert alert-danger" role="alert">
+      Invalid Email Or Password !
+    </div>
+    <a href="#" class="forgotPassword">
+      Forgot Your Password
+    </a>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Remeber Me</label>
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="login(loginForm)"> Log In <i class="fas fa-sign-in-alt"></i></button>
+  </form>
+</main>
+<a class="backToShop" href="ecommerce-homepage.html">
+  <i class="fas fa-arrow-alt-circle-left"></i> Back To Shop
+</a>
+<!--start footer-->
+<footer id="footer">
+  <div class="text-center secondaryColor">
+    COPYRIGHT&copy reserved to boniantech <sup>2019</sup>
+  </div>
+</footer>
+<!--end footaer-->

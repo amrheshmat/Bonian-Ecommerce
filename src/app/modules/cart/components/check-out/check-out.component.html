@@ -1,200 +1,214 @@
+<nav class="checkOutNav">
+    <div class="container">
+        <div class="inner d-flex justify-content-between align-items-center">
+            <div>
+                <a href="#">
+                    <img src="images/output-onlinepngtools (1).png" />
+                </a>
+            </div>
+            <div>
+                <a href="cart-view.html">
+                    <img src="images/cart.png" />
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
 
-    <nav class="checkOutNav">
-        <div class="container">
-            <div class="inner d-flex justify-content-between align-items-center">
-                <div>
-                    <a href="#">
-                        <img src="images/output-onlinepngtools (1).png"/>
-                    </a>
-                </div>
-                <div>
-                    <a href="cart-view.html">
-                        <img src="images/cart.png"/>
-                    </a>
+<!--start cart over view section-->
+<section id="checkOut">
+    <div class="container-fluid">
+        <section class="page-title">
+            <h2 class="text-center">Check Out</h2>
+            <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis quidem.</p>
+        </section>
+        <div class="row">
+            <div class=" col-md-4 col-lg-4">
+                <app-order-information></app-order-information>
+
+            </div>
+            <div class="col-md-8">
+                <div class="checkOutFrom">
+                    <h3>Personal Information</h3>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group col-sm-6">
+                                <label for="exampleInputName1">First Name</label>
+                                <input type="text" class="form-control" id="exampleInputName1"
+                                    placeholder="Enter First Name" required>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="exampleInputName2">Last Name</label>
+                                <input type="text" class="form-control" id="exampleInputName2"
+                                    placeholder="Enter Last Name">
+                            </div>
+
+                            <div class="form-group col-12">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="Enter email" required>
+                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with
+                                    anyone else.</small>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="exampleInputNumber1">Mobile Number</label>
+                                <input type="number" class="form-control" id="exampleInputNumber1"
+                                    placeholder="Enter Your Mobile Number" required>
+                            </div>
+
+                            <div class="form-group col-sm-6">
+                                <label for="exampleInputNumber2">Another Mobile Number</label>
+                                <input type="number" class="form-control" id="exampleInputNumber2"
+                                    placeholder="Enter Another Mobile Number">
+                            </div>
+
+
+                            <div class="form-group col-sm-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelectCountry">Country</label>
+                                    </div>
+                                    <select class="custom-select" id="inputGroupSelectCountry">
+                                        <option selected>Choose...</option>
+                                        <option value="Cairo">Cairo</option>
+                                        <option value="Cairo">Fayoum</option>
+                                        <option value="Giza">Giza</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelectArea">Area</label>
+                                    </div>
+                                    <select class="custom-select" id="inputGroupSelectArea">
+                                        <option selected>Choose...</option>
+                                        <option value="Katameya">Katameya</option>
+                                        <option value="Nasr City">Nasr City</option>
+                                        <option value="Helioplies">Helioplies</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-12">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Street Name</span>
+                                    </div>
+                                    <input type="text" class="form-control"
+                                        aria-label="Dollar amount (with dot and two decimal places)">
+                                </div>
+                            </div>
+                            <div class="form-group col-12 col-sm-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Appartment Number</span>
+                                    </div>
+                                    <input type="text" class="form-control"
+                                        aria-label="Dollar amount (with dot and two decimal places)">
+                                </div>
+                            </div>
+                            <div class="form-group col-12 col-sm-6">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Unit Number</span>
+                                    </div>
+                                    <input type="text" class="form-control"
+                                        aria-label="Dollar amount (with dot and two decimal places)">
+                                </div>
+                            </div>
+                            <div class="form-group col-12">
+                                <label for="exampleFormControlTextarea1">Notes</label>
+                                <textarea class="form-control remainingText" maxlength="1000"
+                                    id="exampleFormControlTextarea1" rows="4"
+                                    placeholder="Kindly Left Your Notes..."></textarea>
+                                <div class="message remainingTextMessage"></div>
+                            </div>
+                        </div>
+
+                        <h3>Payment Method</h3>
+
+                        <div class="custom-control custom-radio creditCard">
+                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label radioLabels" for="customRadio1">Pay With Credit
+                                Card</label>
+                        </div>
+
+                        <div class="creditCardPayments">
+                            <div class="row">
+                                <div class="col-12" style="margin:40px 0">
+                                    <img src="./assets/images/Bitmap11.png" />
+                                    <img src="./assets/images/Bitmap1.png" />
+                                    <img src="./assets/images/Bitmap.png" />
+                                </div>
+                                <div class="form-group col-12">
+                                    <label for="exampleInputCreditCardNumber1">Credit Card Number</label>
+                                    <input type="number" class="form-control" id="exampleInputCreditCardNumber1"
+                                        placeholder="Enter Your Credit Card Number" required>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <p>Expiration Date</p>
+                                    <select class="custom-select">
+                                        <option selected>Select Month</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                    <select class="custom-select">
+                                        <option selected>Select Year</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                        <option value="2027">2027</option>
+                                        <option value="2028">2028</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="exampleInputSecurityCode1">Security Code</label>
+                                    <input type="number" class="form-control" id="exampleInputSecurityCode1"
+                                        placeholder="Enter Your Security Code" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="custom-control custom-radio cashOnDelivery">
+                            <input type="radio" id="customRadio2" name="customRadio2" class="custom-control-input">
+                            <label class="custom-control-label radioLabels" for="customRadio2">Cash On Delivery</label>
+                        </div>
+
+                        <div class="col-auto my-1">
+                            <div class="custom-control custom-checkbox mr-sm-2">
+                                <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                                <label class="custom-control-label" for="customControlAutosizing">I have reed and agree
+                                    to the <a href="#">terms and conditions</a></label>
+                            </div>
+                        </div>
+                        <button type="submit" class="checkOut d-block btn btn-danger">
+                            CHECK OUT <i class="fas fa-door-open"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
-    </nav>
+        <hr />
+    </div>
 
-    <!--start cart over view section-->
-    <section id="checkOut">
-        <div class="container-fluid">
-            <section class="page-title">
-                <h2 class="text-center">Check Out</h2>
-                <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis quidem.</p>
-            </section>
-            <div class="row">
-                <div class=" col-md-4 col-lg-4">
-                    <app-order-information></app-order-information>
-    
-                </div>
-                <div class="col-md-8">
-                    <div class="checkOutFrom">
-                        <h3>Personal Information</h3>
-                        <form>
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="exampleInputName1">First Name</label>
-                                    <input type="text" class="form-control" id="exampleInputName1" placeholder="Enter First Name" required>
-                                </div>
-
-                                <div class="form-group col-sm-6">
-                                    <label for="exampleInputName2">Last Name</label>
-                                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Enter Last Name">
-                                </div>
-
-                                <div class="form-group col-12">
-                                    <label for="exampleInputEmail1">Email address</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
-                                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                                </div>
-
-                                <div class="form-group col-sm-6">
-                                    <label for="exampleInputNumber1">Mobile Number</label>
-                                    <input type="number" class="form-control" id="exampleInputNumber1" placeholder="Enter Your Mobile Number" required>
-                                </div>
-
-                                <div class="form-group col-sm-6">
-                                    <label for="exampleInputNumber2">Another Mobile Number</label>
-                                    <input type="number" class="form-control" id="exampleInputNumber2" placeholder="Enter Another Mobile Number">
-                                </div>
-
-
-                                <div class="form-group col-sm-6">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelectCountry">Country</label>
-                                        </div>
-                                        <select class="custom-select" id="inputGroupSelectCountry">
-                                            <option selected>Choose...</option>
-                                            <option value="Cairo">Cairo</option>
-                                            <option value="Cairo">Fayoum</option>
-                                            <option value="Giza">Giza</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text" for="inputGroupSelectArea">Area</label>
-                                        </div>
-                                        <select class="custom-select" id="inputGroupSelectArea">
-                                            <option selected>Choose...</option>
-                                            <option value="Katameya">Katameya</option>
-                                            <option value="Nasr City">Nasr City</option>
-                                            <option value="Helioplies">Helioplies</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="form-group col-12">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Street Name</span>
-                                        </div>
-                                        <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
-                                    </div>
-                                </div>
-                                <div class="form-group col-12 col-sm-6">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Appartment Number</span>
-                                        </div>
-                                        <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
-                                    </div>
-                                </div>
-                                <div class="form-group col-12 col-sm-6">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Unit Number</span>
-                                        </div>
-                                        <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
-                                    </div>
-                                </div>
-                                <div class="form-group col-12">
-                                    <label for="exampleFormControlTextarea1">Notes</label>
-                                    <textarea class="form-control remainingText" maxlength="1000" id="exampleFormControlTextarea1" rows="4" placeholder="Kindly Left Your Notes..."></textarea>
-                                    <div class="message remainingTextMessage"></div>
-                                </div>
-                            </div>
-
-                            <h3>Payment Method</h3>
-
-                            <div class="custom-control custom-radio creditCard">
-                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
-                                <label class="custom-control-label radioLabels" for="customRadio1">Pay With Credit Card</label>
-                            </div>
-                            
-                            <div class="creditCardPayments">
-                                <div class="row">
-                                    <div class="col-12" style="margin:40px 0">
-                                        <img src="./assets/images/Bitmap11.png" />
-                                        <img src="./assets/images/Bitmap1.png" />
-                                        <img src="./assets/images/Bitmap.png" />
-                                    </div>
-                                    <div class="form-group col-12">
-                                        <label for="exampleInputCreditCardNumber1">Credit Card Number</label>
-                                        <input type="number" class="form-control" id="exampleInputCreditCardNumber1" placeholder="Enter Your Credit Card Number" required>
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <p>Expiration Date</p>
-                                        <select class="custom-select">
-                                            <option selected>Select Month</option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                        </select>
-                                        <select class="custom-select">
-                                            <option selected>Select Year</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2021">2021</option>
-                                            <option value="2022">2022</option>
-                                            <option value="2023">2023</option>
-                                            <option value="2024">2024</option>
-                                            <option value="2025">2025</option>
-                                            <option value="2026">2026</option>
-                                            <option value="2027">2027</option>
-                                            <option value="2028">2028</option>
-                                        </select>
-
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <label for="exampleInputSecurityCode1">Security Code</label>
-                                        <input type="number" class="form-control" id="exampleInputSecurityCode1" placeholder="Enter Your Security Code" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="custom-control custom-radio cashOnDelivery">
-                                <input type="radio" id="customRadio2" name="customRadio2" class="custom-control-input">
-                                <label class="custom-control-label radioLabels" for="customRadio2">Cash On Delivery</label>
-                            </div>
-
-                            <div class="col-auto my-1">
-                                <div class="custom-control custom-checkbox mr-sm-2">
-                                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-                                    <label class="custom-control-label" for="customControlAutosizing">I have reed and agree to the <a href="#">terms and conditions</a></label>
-                                </div>
-                            </div>
-                            <button type="submit" class="checkOut d-block btn btn-danger">
-                                    CHECK OUT <i class="fas fa-door-open"></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <hr />
-        </div>
-
-    </section>
-    <!--end cart over view section-->
+</section>
+<!--end cart over view section-->

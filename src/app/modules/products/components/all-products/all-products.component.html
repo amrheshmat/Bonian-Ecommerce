@@ -8,7 +8,9 @@
                 <mat-tab-group (selectedTabChange)="onTabChanged($event)">
 
                     <mat-tab *ngFor="let category of categoryList" [label]="category.CategoryName">
-                        <app-product-card [itemsList]="itemsList"></app-product-card>
+                        <span *ngFor="let item of itemsList">
+                            <app-product-card [item]="item"></app-product-card>
+                        </span>
                     </mat-tab>
 
                 </mat-tab-group>

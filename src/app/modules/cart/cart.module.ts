@@ -7,6 +7,7 @@ import { CartService } from './services/cart.service';
 import { NavbarCartComponent } from './components/navbar-cart/navbar-cart.component';
 import { CartRoutingModule } from './cart-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CartItemsComponent } from './components/cart-items/cart-items.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   declarations: [
     CheckOutComponent,
     OrderInformationComponent,
-    ViewCartComponent
+    ViewCartComponent,
+    CartItemsComponent
   ],
   providers: [
     CartService

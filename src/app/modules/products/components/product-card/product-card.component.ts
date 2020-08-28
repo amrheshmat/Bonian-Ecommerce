@@ -10,7 +10,7 @@ import { ProductService } from '../../services/products.service';
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-  @Input() itemsList: Item[];
+  @Input() item: Item;
   constructor() { }
 
   ngOnInit(): void {

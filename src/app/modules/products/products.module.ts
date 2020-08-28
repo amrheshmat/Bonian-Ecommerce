@@ -7,7 +7,6 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SmallFilterAsideComponent } from './components/small-filter-aside/small-fiter-aside.component';
 import { LargeFilterAsideComponent } from './components/large-filter-aside/large-filter-aside.component';
-import { ProductCardComponent } from './components/product-card/product-card.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { AllProductsComponent } from './components/all-products/all-products.com
     ProductDetailsComponent,
     SmallFilterAsideComponent,
     LargeFilterAsideComponent,
-    ProductCardComponent
   ],
   providers: [
     CategoryService,

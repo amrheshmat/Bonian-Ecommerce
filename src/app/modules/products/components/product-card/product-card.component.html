@@ -1,5 +1,5 @@
-<div class="card" *ngFor="let item of itemsList">
-    <a>
+<div class="card" >
+    <a  [routerLink]="['/products/product-details',item.Id]">
         <img src="./assets/images/{{item.ImagePath}}" class="card-img-top" alt="...">
     </a>
     <div class="card-body">
