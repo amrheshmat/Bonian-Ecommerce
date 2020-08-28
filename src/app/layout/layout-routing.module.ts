@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '', component: FullLayoutComponent,
     children: [
       {
-        path: '', loadChildren: () => import('../modules/landing-page/landing-page.module').then(m => m.LandingPageModule)
+        path: '', loadChildren: () => import('../modules/home/home.module').then(m => m.HomeModule)
       },
       {
         path: 'products', loadChildren: () => import('../modules/products/products.module').then(m => m.ProductsModule)

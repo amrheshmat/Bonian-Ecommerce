@@ -18,7 +18,7 @@ export class AboutUsComponent implements OnInit {
   }
 
   getAll():void{
-    this.aboutUsModel = this._aboutUsService.getAll();
+    this.aboutUsModel = this._aboutUsService.getAll();//To Do .. If you use an Api,you must use subscribe
   }
 
 }
