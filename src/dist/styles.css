@@ -83,7 +83,12 @@ a.addToCart:hover {
   font-weight: 600;
 }
 
-.font-stack-headers, #aboutus .missionAndVision h3, h1, h2, h3, h4, h5, h6 {
+.font-stack-headers, #aboutus .missionAndVision h3, h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 400;
   line-height: 1.15;
   font-family: "Montserrat", sans-serif;
@@ -120,7 +125,19 @@ body {
   scrollbar-track-color: #cfcfcf;
 }
 
-*, h1, h2, h3, h4, h5, h6, ul, li, p, div, section, article {
+*,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li,
+p,
+div,
+section,
+article {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
@@ -131,7 +148,9 @@ body {
   padding: 0;
 }
 
-a:focus, input:focus, select:focus {
+a:focus,
+input:focus,
+select:focus {
   box-shadow: none !important;
 }
 
@@ -141,7 +160,10 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-input:focus, input:active, textarea:focus, textarea:active {
+input:focus,
+input:active,
+textarea:focus,
+textarea:active {
   outline: 0 !important;
   box-shadow: none !important;
 }
@@ -182,10 +204,14 @@ a {
 .main-nav {
   position: fixed;
   width: 100%;
-  color: #FFF;
+  color: black !important;
   z-index: 999;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: white;
   padding: 15px 0;
+}
+
+.nav-link {
+  color: black !important;
 }
 
 @media (max-width: 576px) {
@@ -226,7 +252,8 @@ a {
 
 @media (max-width: 576px) {
   .main-nav .navbarSmallScreen .navbar-toggler,
-.main-nav .navbarSmallScreen a, .main-nav .sections li a {
+.main-nav .navbarSmallScreen a,
+.main-nav .sections li a {
     padding: 4px 8px;
   }
 
@@ -1094,7 +1121,8 @@ header .divider {
   font-size: 0.8em;
 }
 
-#contactus form input, #contactus form textarea {
+#contactus form input,
+#contactus form textarea {
   background-color: transparent;
   border: 1px solid #DDD;
   color: #f0f0f0;
@@ -1237,7 +1265,8 @@ header .divider {
   animation: sk-rotate 2s infinite linear;
 }
 
-.dot1, .dot2 {
+.dot1,
+.dot2 {
   width: 60%;
   height: 60%;
   display: inline-block;

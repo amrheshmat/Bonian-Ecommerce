@@ -11,7 +11,7 @@ $(document).ready(function () {
     adjustHeaderHeight();
 
     //navbar styles on scroll
-    customizeNavbarOnScroll()
+    // customizeNavbarOnScroll()
 
     //search bar on mobile apperance
     searchBarOnMobile()
@@ -61,7 +61,7 @@ $(document).ready(function () {
     //window scrolling functions
     $(window).scroll(function () {
         devdeviderPosition();
-        customizeNavbarOnScroll()
+        // customizeNavbarOnScroll()
         animateToHeadButton()
     })
 
