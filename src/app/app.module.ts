@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
         tokenGetter: tokenGetter
       }
     }),
+    
   ],
   providers: [
 

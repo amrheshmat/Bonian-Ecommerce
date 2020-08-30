@@ -208,6 +208,7 @@ a {
   z-index: 999;
   background-color: white;
   padding: 15px 0;
+  box-shadow: #999999 0px 23px 12px -20px;
 }
 
 .nav-link {
