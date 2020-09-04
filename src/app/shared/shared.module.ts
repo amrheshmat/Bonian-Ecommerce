@@ -7,12 +7,15 @@ import { ProductCardComponent } from '../modules/products/components/product-car
 import { RouterModule } from '@angular/router';
 import {  HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MvcPartialDirective } from './directives/mvc-partial.directive';
+import { MVCHTMLService } from './services/mvc-html.service';
 
 @NgModule({
   declarations: [
     NavbarCartComponent,
     RelatedProductComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    MvcPartialDirective
   ],
 
   imports: [
@@ -20,7 +23,9 @@ import { FormsModule } from '@angular/forms';
     MaterialModule,
     RouterModule,
     HttpClientModule ,
-    FormsModule
+    FormsModule,
+    
+
   ],
 
   exports: [
@@ -31,11 +36,12 @@ import { FormsModule } from '@angular/forms';
     ProductCardComponent,
     RouterModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MvcPartialDirective
   ],
 
   providers: [
-
+    MVCHTMLService
   ]
 
 })
