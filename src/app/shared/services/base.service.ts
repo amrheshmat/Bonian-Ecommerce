@@ -4,7 +4,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
 import { catchError } from 'rxjs/internal/operators/catchError';
- 
+
 @Injectable(
     { providedIn: 'root' }
 )
@@ -12,6 +12,7 @@ export class BaseService {
     baseUrl: string = "";
     private urlGetAll = "GetAll";
     private urlGetById = "GetById";
+    private urlGetFirst = "GetFirst";
     private urlSave = "Save";
     private urlDelete = "Delete";
     private urlGetAllLite = "GetAllLite";
@@ -20,23 +21,22 @@ export class BaseService {
     constructor(public _http: HttpClient) {
         this.baseUrl = environment.apiUrl;
     }
-    
-    getAll(dataSourceModel): any {
+
+
+    getAll(dataSourceModel?): any {
         return this._http.post(this.baseUrl + 'api/' + this.entityName + '/' + this.urlGetAll, dataSourceModel);
-        // //     .subscribe((response: Response) => response.json())
-        // //     , catchError(this.errorHandler);
+    }
+
+    getFirst(): any {
+        return this._http.get(this.baseUrl + 'api/' + this.entityName + '/' + this.urlGetFirst);
     }
 
     getAllLite(): any {
         return this._http.get(this.baseUrl + 'api/' + this.entityName + '/' + this.urlGetAllLite);
-        // //     .subscribe((response: Response) => response.json())
-        // //     , catchError(this.errorHandler);
     }
 
     getById(id: number): any {
         return this._http.get(this.baseUrl + "api/" + this.entityName + '/' + this.urlGetById + '/' + id);
-        // .subscribe((response: Response) => response.json())
-        // , catchError(this.errorHandler);
     }
 
     save(entity) {
@@ -45,8 +45,6 @@ export class BaseService {
 
     delete(id) {
         return this._http.delete(this.baseUrl + "api/" + this.entityName + "/" + this.urlDelete + "/" + id);
-        // .subscribe((response: Response) => response.json())
-        // , catchError(this.errorHandler);
     }
 
     deleteFarm(id) {

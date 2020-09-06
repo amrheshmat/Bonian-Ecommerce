@@ -3,8 +3,8 @@
     <div class="header-slider">
         <div class="overlay"></div>
         
-        <owl-carousel [options]="mySlideOptions"  [carouselClasses]="['owl-theme', 'sliding']">
-            <div class="item" *ngFor="let image of mySlideImages;let i = index">
+        <owl-carousel [options]="sliderOptions"  [carouselClasses]="['owl-theme', 'sliding']">
+            <div class="item" *ngFor="let image of siderImages;let i = index">
                 <div class="slick-item">
                     <img src="./assets/{{image.ImagePath}}"/>
                 </div>

@@ -1,4 +1,4 @@
-export class ContactUs{
+export class ContactUsData{
     Id:number;
     Address:string;
     SecondAddress:string;

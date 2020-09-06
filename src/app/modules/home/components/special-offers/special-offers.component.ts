@@ -15,45 +15,56 @@ export class SpecialOffersComponent implements OnInit, AfterViewInit {
   constructor(private _specialOffersService: SpecialOffersService) { }
 
   ngOnInit(): void {
-    //this.owlCarouselOffersTrigger();
-    this.getAll(); 
+    // this.getAll();
+    this.specialOffersList = this.getDummyData();
   }
 
-  ngAfterViewInit(): void {
-    
+  ngAfterViewInit() {
+
   }
 
-  getAll(): void {
-    this.specialOffersList = this._specialOffersService.getAll();   
+  getAll() {
+    this._specialOffersService.getAll().subscribe(res => {
+      this.specialOffersList = res;
+    })
   }
- 
-  slideConfig = { 
+
+  getDummyData(): SpecialOffer[] {
+    return [
+      { Id: 1, ImagePath: "./assets/images/apples-buy-customer-95425.jpg", Precentage: 30, Category: "Meet" },
+      { Id: 2, ImagePath: "./assets/images/asian-assorted-background-917371.jpg", Precentage: 25, Category: "Fowl" },
+      { Id: 3, ImagePath: "./assets/images/apples-buy-customer-95425.jpg", Precentage: 10, Category: "Seed" },
+      { Id: 4, ImagePath: "./assets/images/asian-assorted-background-917371.jpg", Precentage: 25, Category: "Fowl" },
+    ]
+  }
+
+  slideConfig = {
     "rtl": ($('html').css('direction') === 'rtl') ? true : false,
-    "slidesToShow": 3, 
-    "slidesToScroll": 1 ,
-    "autoplay":true,
-    "arrows":true,
-    "infinite":true,
-    "responsive":[
+    "slidesToShow": 3,
+    "slidesToScroll": 1,
+    "autoplay": true,
+    "arrows": true,
+    "infinite": true,
+    "responsive": [
       {
-          breakpoint: 992,
-          settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2,
-              infinite: true,
-          }
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+        }
       },
       {
-          breakpoint: 768,
-          settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-          }
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
       }
-          ]
+    ]
   };
- 
- 
+
+
 
   slickInit(e) {
     console.log('slick initialized');
@@ -71,5 +82,5 @@ export class SpecialOffersComponent implements OnInit, AfterViewInit {
     console.log('beforeChange');
   }
 
-   
+
 }
