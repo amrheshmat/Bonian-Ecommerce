@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // apiUrl:"https://localhost/boniantech.erp.presentation//api/",
-  apiUrl: "http://localhost:65121"
+  apiUrl: "http://localhost:65121/"
 };
 
 /*
