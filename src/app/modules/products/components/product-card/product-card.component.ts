@@ -3,6 +3,7 @@ import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category.service';
 import { Item } from '../../models/Products.model';
 import { ProductService } from '../../services/products.service';
+import { MVCHTMLService } from 'src/app/shared/services/mvc-html.service';
 
 @Component({
   selector: 'app-product-card',
@@ -11,11 +12,18 @@ import { ProductService } from '../../services/products.service';
 })
 export class ProductCardComponent implements OnInit {
   @Input() item: Item;
-  constructor() { }
+  constructor(private mVCHTMLService: MVCHTMLService) { }
 
   ngOnInit(): void {
-
+    // this.getView();
   }
 
+
+  getView() {
+    this.mVCHTMLService.getView().subscribe(res => {
+      console.log(res);
+      document.getElementById('view').innerHTML = res;
+    })
+  }
 
 }

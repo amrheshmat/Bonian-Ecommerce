@@ -1,6 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 
-import * as $ from 'jquery' ;
+import * as $ from 'jquery';
 import { HeaderService } from '../../services/header.service';
 import { Header } from '../../models/header.model';
 
@@ -9,29 +9,41 @@ import { Header } from '../../models/header.model';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit ,AfterViewInit{
-  mySlideImages:Header[];
-  mySlideOptions:any;
-  
+export class HeaderComponent implements OnInit, AfterViewInit {
+  siderImages: Header[];
+  sliderOptions: any;
+
   constructor(private _headerService: HeaderService) { }
 
   ngOnInit(): void {
-    this.getList();
+    // this.getAll();
+    this.siderImages = this.getDummyData();
     
-    this.mySlideOptions={
-      items:1,
+    this.sliderOptions = {
+      items: 1,
       rtl: ($('html').css('direction') === 'rtl') ? true : false,
-      margin: 10, 
-      autoplay:true,
+      margin: 10,
+      autoplay: true,
       dots: false
-    } 
-  }
-  ngAfterViewInit():void{
-    let windowHeight = $(window).height();
-    $('.slick-item').height(windowHeight); 
+    }
   }
 
-  getList(){
-    this.mySlideImages = this._headerService.getAll();
+  ngAfterViewInit(): void {
+    let windowHeight = $(window).height();
+    $('.slick-item').height(windowHeight);
+  }
+
+  private getAll() {
+    this._headerService.getAll().subscribe(res => {
+      this.siderImages = res;
+    })
+  }
+
+  getDummyData(): Header[] {
+    return [
+      { Id: 1, ImagePath: "images/slider1.jpg" },
+      { Id: 2, ImagePath: "images/slider2.jpg" },
+      { Id: 3, ImagePath: "images/slider3.jpg" }
+    ]
   }
 }
