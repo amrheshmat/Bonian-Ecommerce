@@ -21,7 +21,6 @@ export class AllProductsComponent implements OnInit {
     this.getCategories();
     debugger;
     this.getItems();
-    this.category = this.categoryList[0].CategoryName;
   }
 
   onTabChanged(event) {
@@ -30,6 +29,8 @@ export class AllProductsComponent implements OnInit {
   getCategories(): void {
     this._categoryService.getAll().subscribe(data=>{
       this.categoryList = data;
+      this.category = this.categoryList[0].CategoryName;
+
     }) 
   }
   getItems(): void {
