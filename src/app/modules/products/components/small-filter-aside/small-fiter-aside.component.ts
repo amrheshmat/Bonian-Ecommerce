@@ -29,7 +29,7 @@ export class SmallFilterAsideComponent {
 
   private getAllCategories() {
     this._categoryService.getAll().subscribe(res => { 
-      this.categories = res; 
+      this.categories = res.InventoryCategoryList;  
       this.dataSource.data = this.categories;
 
     });

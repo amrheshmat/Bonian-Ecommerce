@@ -33,7 +33,7 @@ export class LargeFilterAsideComponent implements OnInit {
 
   private getAllCategories() {
     this._categoryService.getAll().subscribe(res => { 
-      this.categories = res; 
+      this.categories = res.InventoryCategoryList;  
       this.dataSource.data = this.categories;
 
     });

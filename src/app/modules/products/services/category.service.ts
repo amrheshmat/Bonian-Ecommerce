@@ -12,7 +12,7 @@ import { CategoryFilter } from '../models/category-filter.model';
 export class CategoryService extends BaseService {
 
   controllerName: string = "apiinventory";
-  urlGetAll = "getallcategorieslight"
+  urlGetAll = "getallcategories"
   urlGetAllItemsByCategoryId = "getallitemsbycategoryid";
 
   // ?categoryid = 145 & start=-1 & end=0 & searchvalue=& orderby=& dir=

@@ -4,17 +4,29 @@
     <app-small-filter-aside (onCategorySelected)="onCategorySelected($event)"></app-small-filter-aside>
     <div class="row">
       <main class="productsList col-md-8 col-lg-9">
+        <!-- <mat-tab-group (selectedTabChange)="onTabChanged($event)"> 
+          <mat-tab *ngFor="let category of categoryList" [label]="category.CategoryName">
+            <span *ngFor="let item of itemsList">	                        
+               
+                <app-product-card [item]="item">
+
+                </app-product-card>	                            
+                
+            </span>	     
+        </mat-tab>	    
+        </mat-tab-group> -->
+
         <span *ngFor="let item of itemsList">
           <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
             (scrolled)="onScroll()" [scrollWindow]="true">
             <app-product-card [item]="item"></app-product-card>
           </div>
-        </span>
+        </span> 
       </main>
       <div class=" d-none d-md-block col-md-4 col-lg-3">
         <app-large-filter-aside (onCategorySelected)="onCategorySelected($event)"></app-large-filter-aside>
       </div>
     </div>
-  </div>
+  </div> 
 
 </section>
