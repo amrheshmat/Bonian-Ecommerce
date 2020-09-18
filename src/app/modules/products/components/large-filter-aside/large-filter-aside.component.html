@@ -1,19 +1,19 @@
 <aside class="largeAndMedium">
-    <div class="row">
-        <h2>
-            Sections
-        </h2>
-    </div>
-    <div class="largeAndMediumContent">
-        <div class="row">
+  <div class="row">
+    <h2>
+      Sections
+    </h2>
+  </div>
+  <div class="largeAndMediumContent">
+    <!-- <div class="row">
             <select class="form-control">
                 <option>Default select</option>
                 <option>Default select</option>
                 <option>Default select</option>
                 <option>Default select</option>
             </select>
-        </div>
-        <div class="category active">
+        </div> -->
+    <!-- <div class="category active">
             <a class="asideCategory row justify-content-between">
                 <p class="categoryName">Fowl</p>
                 <p class="categoryCount">10</p>
@@ -49,8 +49,8 @@
                     </label>
                 </div>
             </div>
-        </div>
-        <div class="category">
+        </div> -->
+    <!-- <div class="category">
             <a class="asideCategory row justify-content-between">
                 <p class="categoryName">Meet</p>
                 <p class="categoryCount">10</p>
@@ -71,29 +71,31 @@
                     </label>
                 </div>
             </div>
-        </div>
-        <div class="category">
-            <a class="asideCategory row justify-content-between">
-                <p class="categoryName">Meet</p>
-                <p class="categoryCount">10</p>
-            </a>
-            <div class="row subCategory">
-                <div class="form-check formFilterProduct w-100">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                    <label class="form-check-label w-100" for="defaultCheck1">
-                        Product
-                    </label>
-                </div>
-            </div>
-            <div class="row subCategory">
-                <div class="form-check formFilterProduct w-100">
-                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck13">
-                    <label class="form-check-label w-100" for="defaultCheck1">
-                        Product
-                    </label>
-                </div>
-            </div>
-        </div>
+        </div> -->
 
+
+    <div *ngFor="let category of categories" class="category">
+      <a class="asideCategory row justify-content-between" (click)="selectCategory(category.Id)">
+        <p class="categoryName">{{category.CategoryName}}</p>
+        <p class="categoryCount">{{category.CategoryItemsCount}}</p>
+      </a>
+      <div class="row subCategory">
+        <div class="form-check formFilterProduct w-100">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+          <label class="form-check-label w-100" for="defaultCheck1">
+            Product
+          </label>
+        </div>
+      </div>
+      <div class="row subCategory">
+        <div class="form-check formFilterProduct w-100">
+          <input class="form-check-input" type="checkbox" value="" id="defaultCheck13">
+          <label class="form-check-label w-100" for="defaultCheck1">
+            Product
+          </label>
+        </div>
+      </div>
     </div>
+
+  </div>
 </aside>

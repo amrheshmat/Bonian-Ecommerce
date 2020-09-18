@@ -10,13 +10,13 @@ import { catchError } from 'rxjs/internal/operators/catchError';
 )
 export class BaseService {
     baseUrl: string = "";
-    private urlGetAll = "GetAll";
-    private urlGetById = "GetById";
-    private urlGetFirst = "GetFirst";
-    private urlSave = "Save";
-    private urlDelete = "Delete";
-    private urlGetAllLite = "GetAllLite";
-    entityName: string = "";
+    urlGetAll = "GetAll";
+    urlGetById = "GetById";
+    urlGetFirst = "GetFirst";
+    urlSave = "Save";
+    urlDelete = "Delete";
+    urlGetAllLite = "GetAllLite";
+    controllerName: string = "";
 
     constructor(public _http: HttpClient) {
         this.baseUrl = environment.apiUrl;
@@ -24,31 +24,34 @@ export class BaseService {
 
 
     getAll(dataSourceModel?): any {
-        return this._http.post(this.baseUrl + 'api/' + this.entityName + '/' + this.urlGetAll, dataSourceModel);
+        if (dataSourceModel)
+            return this._http.post(this.baseUrl + 'api/' + this.controllerName + '/' + this.urlGetAll, dataSourceModel);
+        else
+            return this._http.get(this.baseUrl + 'api/' + this.controllerName + '/' + this.urlGetAll);
     }
 
     getFirst(): any {
-        return this._http.get(this.baseUrl + 'api/' + this.entityName + '/' + this.urlGetFirst);
+        return this._http.get(this.baseUrl + 'api/' + this.controllerName + '/' + this.urlGetFirst);
     }
 
     getAllLite(): any {
-        return this._http.get(this.baseUrl + 'api/' + this.entityName + '/' + this.urlGetAllLite);
+        return this._http.get(this.baseUrl + 'api/' + this.controllerName + '/' + this.urlGetAllLite);
     }
 
     getById(id: number): any {
-        return this._http.get(this.baseUrl + "api/" + this.entityName + '/' + this.urlGetById + '/' + id);
+        return this._http.get(this.baseUrl + "api/" + this.controllerName + '/' + this.urlGetById + '/' + id);
     }
 
     save(entity) {
-        return this._http.post(`${this.baseUrl}api/${this.entityName}/${this.urlSave}/`, entity);
+        return this._http.post(`${this.baseUrl}api/${this.controllerName}/${this.urlSave}/`, entity);
     }
 
     delete(id) {
-        return this._http.delete(this.baseUrl + "api/" + this.entityName + "/" + this.urlDelete + "/" + id);
+        return this._http.delete(this.baseUrl + "api/" + this.controllerName + "/" + this.urlDelete + "/" + id);
     }
 
     deleteFarm(id) {
-        this._http.delete(this.baseUrl + "api/" + this.entityName + "/" + this.urlDelete + "/" + id)
+        this._http.delete(this.baseUrl + "api/" + this.controllerName + "/" + this.urlDelete + "/" + id)
             .subscribe((response: Response) => {
                 return response;
             })

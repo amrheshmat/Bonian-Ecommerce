@@ -9,7 +9,6 @@ import { MVCHTMLService } from './shared/services/mvc-html.service';
 export class AppComponent {
   title = 'E-Commerce';
   constructor(private mVCHTMLService: MVCHTMLService) {
-    this.getView();
   }
 
   getView() {
