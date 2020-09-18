@@ -1,3 +1,4 @@
+import { EventEmitter, Output } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category.service';
@@ -10,6 +11,8 @@ import { CategoryService } from '../../services/category.service';
 export class SmallFilterAsideComponent implements OnInit {
 
   categories: Array<Category> = new Array<Category>();
+  @Output() onCategorySelected: EventEmitter<number> = new EventEmitter<number>();
+
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
@@ -22,4 +25,9 @@ export class SmallFilterAsideComponent implements OnInit {
     });
 
   }
+
+  public selectCategory(categoryId: number) {
+    this.onCategorySelected.emit(categoryId);
+  }
+
 }
