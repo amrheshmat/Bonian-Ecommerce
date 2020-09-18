@@ -33,7 +33,7 @@ export class AllProductsComponent implements OnInit {
     this.itemsList = this._itemService.getAll();
   }
 
-  onCategorySelected(categoryId) {
+  onCategorySelected(categoryId:number) {
     //Get Products by CatgegoryId
   }
 }

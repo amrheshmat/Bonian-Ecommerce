@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <h2 class="categorySectionName subTitleColor"> {{category}} </h2>
         <div class="row">
-            <app-small-filter-aside></app-small-filter-aside>
+            <app-small-filter-aside (onCategorySelected)="onCategorySelected($event)"></app-small-filter-aside>
             <main class="productsList col-md-9 col-lg-10">
 
                 <mat-tab-group (selectedTabChange)="onTabChanged($event)">
