@@ -10,27 +10,33 @@ import { ProductService } from '../../services/products.service';
   styleUrls: ['./all-products.component.scss']
 })
 export class AllProductsComponent implements OnInit {
-   
+
 
   categoryList: Category[];
   itemsList: Item[]
-  constructor(private _categoryService: CategoryService,private _itemService : ProductService) { }
-  category:string;
-  
+  constructor(private _categoryService: CategoryService, private _itemService: ProductService) { }
+  category: string;
+
   ngOnInit(): void {
     this.getCategories();
-    this.getItems(); 
+    debugger;
+    this.getItems();
     this.category = this.categoryList[0].CategoryName;
   }
 
-  onTabChanged(event){
+  onTabChanged(event) {
     this.category = event.tab.textLabel;
   }
-  getCategories():void{  
-    this.categoryList = this._categoryService.getAll();
-   }
-  getItems():void{
-    this.itemsList = this._itemService.getAll(); 
+  getCategories(): void {
+    this._categoryService.getAll().subscribe(data=>{
+      this.categoryList = data;
+    }) 
+  }
+  getItems(): void {
+    this.itemsList = this._itemService.getAll();
   }
 
+  onCategorySelected(categoryId:number) {
+    //Get Products by CatgegoryId
+  }
 }

@@ -2,6 +2,9 @@ import { NestedTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 
+import { EventEmitter, Output } from '@angular/core'; 
+import { Category } from '../../models/category.model';
+import { CategoryService } from '../../services/category.service';
 
 interface FoodNode {
   name: string;
@@ -46,16 +49,10 @@ export class SmallFilterAsideComponent {
   treeControl = new NestedTreeControl<FoodNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<FoodNode>();
 
-  constructor() {
+  constructor(private categoryService: CategoryService) {
     this.dataSource.data = TREE_DATA;
   }
 
   hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
-  ngOnInit(): void {
-     
-  }
-  selectedCategory(selectedCategory){
-    console.log(selectedCategory)
-  }
-
+   
 }

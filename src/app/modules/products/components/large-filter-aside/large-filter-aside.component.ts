@@ -1,10 +1,13 @@
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
+import { EventEmitter } from '@angular/core'; 
+import { Category } from '../../models/category.model';
+import { CategoryService } from '../../services/category.service';
 
 interface FoodNode {
   name: string;
@@ -51,15 +54,26 @@ export class LargeFilterAsideComponent implements OnInit {
   treeControl = new NestedTreeControl<FoodNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<FoodNode>();
 
-  constructor() {
+  categories: Array<Category> = new Array<Category>();
+  @Output() onCategorySelected: EventEmitter<number> = new EventEmitter<number>();
+  constructor(private categoryService: CategoryService) {
     this.dataSource.data = TREE_DATA;
-  }
+
+   }
 
   hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
-  ngOnInit(): void {
-     
+  ngOnInit(): void {  
+    this.getAllCategories();
   }
-  selectedCategory(selectedCategory){
-    console.log(selectedCategory)
+
+  private getAllCategories() {
+    this.categoryService.getAll().subscribe(res => {
+      this.categories = res;
+    });
   }
+
+  public selectCategory(categoryId: number) {
+    this.onCategorySelected.emit(categoryId);
+  }
+
 }

@@ -7,6 +7,6 @@ import { BaseService } from '../../../shared/services/base.service';
 })
 export class TestimonialService extends BaseService {
 
-  entityName="Testimonial";
+  controllerName="Testimonial";
 
 }

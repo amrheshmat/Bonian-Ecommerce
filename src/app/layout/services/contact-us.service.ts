@@ -4,6 +4,6 @@ import { BaseService } from '../../shared/services/base.service';
 
 @Injectable()
 export class ContactUsService extends BaseService {
-  entityName = "ContactUs";
+  controllerName = "ContactUs";
 
 }

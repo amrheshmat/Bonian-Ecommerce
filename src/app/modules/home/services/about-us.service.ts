@@ -6,7 +6,7 @@ import { BaseService } from '../../../shared/services/base.service';
 @Injectable()
 export class AboutUsService extends BaseService {
 
-  entityName = "AboutUs";
+  controllerName = "AboutUs";
 
  
 }
