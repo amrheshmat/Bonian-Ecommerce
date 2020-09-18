@@ -1,27 +1,20 @@
 <section class="mainProductsSection" id="mainProductsSection" style="padding-top: 200px;">
   <div class="container-fluid">
     <h2 class="categorySectionName subTitleColor"> {{category}} </h2>
+    <app-small-filter-aside (onCategorySelected)="onCategorySelected($event)"></app-small-filter-aside>
     <div class="row">
-      <app-small-filter-aside (onCategorySelected)="onCategorySelected($event)"></app-small-filter-aside>
-      <main class="productsList col-md-9 col-lg-10">
-
-        <!-- <mat-tab-group (selectedTabChange)="onTabChanged($event)">
-
-                    <mat-tab *ngFor="let category of categoryList" [label]="category.CategoryName"> -->
+      <main class="productsList col-md-8 col-lg-9">
         <span *ngFor="let item of itemsList">
           <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
             (scrolled)="onScroll()" [scrollWindow]="true">
             <app-product-card [item]="item"></app-product-card>
           </div>
         </span>
-        <!-- </mat-tab>
-
-                </mat-tab-group> -->
-
       </main>
-      <div class=" d-none d-md-block col-md-3 col-lg-2">
+      <div class=" d-none d-md-block col-md-4 col-lg-3">
         <app-large-filter-aside (onCategorySelected)="onCategorySelected($event)"></app-large-filter-aside>
       </div>
     </div>
   </div>
+
 </section>

@@ -3,6 +3,7 @@ export class Category{
     Id : number;
     CategoryName :string;
     ParentCategoryId : number; 
+    ChildCategoryList: Category[];
 
     // IsActive :boolean=true;
     // CreationTime :Date=null;

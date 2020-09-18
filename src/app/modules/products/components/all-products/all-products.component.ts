@@ -19,14 +19,15 @@ export class AllProductsComponent implements OnInit {
   category: string;
 
   ngOnInit(): void {
+   
   }
 
   onTabChanged(event) {
     this.category = event.tab.textLabel;
   }
 
+  
   getItems(): void {
-
     this._categoryService.getAllItemsByCategoryId(this.categoryFilter).subscribe(res => {
       this.itemsList = res.ItemList;
       this.totalCount = res.TotalCount;
