@@ -1,84 +1,37 @@
 
-            <aside class="smallAndExtraSmall d-block d-md-none w-100">
-                <button class="custom-btn filledButton w-100" type="button" data-toggle="collapse"
-                    data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Sections
-                </button>
-                <div class="collapse" id="collapseExample">
-                    <select class="custom-select">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                    <div class="category active">
-                        <a class="asideCategory row justify-content-between">
-                            <p class="categoryName">Meet</p>
-                            <p class="categoryCount">10</p>
-                        </a>
-                        <div class="subCategory active form-check asideProduct formFilterProduct w-100">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label w-100" for="defaultCheck1">
-                                Product
-                            </label>
-                            <ul class="dynamicMenu">
-                                <li>
-                                    <label class="form-check-label w-100" for="defaultCheck1">
-                                        Product
-                                    </label>
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                </li>
-                                <li>
-                                    <label class="form-check-label w-100" for="defaultCheck1">
-                                        Product
-                                    </label>
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="subCategory active form-check asideProduct formFilterProduct w-100">
-
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label w-100" for="defaultCheck1">
-                                Product
-                            </label>
-                        </div>
+    <aside class="smallAndExtraSmall d-block d-md-none w-100">
+        <button class="custom-btn filledButton w-100" type="button" data-toggle="collapse"
+            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Filter
+        </button>
+        <div class="collapse" id="collapseExample">
+            <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+                <!-- This is the tree node template for leaf nodes -->
+                <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+                  <li class="mat-tree-node" (click)="selectedCategory(node.name)">
+                    <!-- use a disabled button to provide padding for tree leaf -->
+                    <button mat-icon-button disabled></button>
+                    {{node.name}}
+                  </li>
+                </mat-tree-node>
+                <!-- This is the tree node template for expandable nodes -->
+                <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+                  <li>
+                    <div class="mat-tree-node">
+                      <button mat-icon-button matTreeNodeToggle
+                              [attr.aria-label]="'Toggle ' + node.name" (click)="selectedCategory(node.name)">
+                        <mat-icon class="mat-icon-rtl-mirror">
+                          {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                        </mat-icon>
+                      </button>
+                      {{node.name}}
                     </div>
-                    <div class="category">
-                        <a class="asideCategory row justify-content-between">
-                            <p class="categoryName">Meet</p>
-                            <p class="categoryCount">10</p>
-                        </a>
-                        <div class="subCategory form-check asideProduct formFilterProduct w-100">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label w-100" for="defaultCheck1">
-                                Product
-                            </label>
-                        </div>
-                        <div class="subCategory form-check asideProduct formFilterProduct w-100">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label w-100" for="defaultCheck1">
-                                Product
-                            </label>
-                        </div>
-                    </div>
-                    <div class="category">
-                        <a class="asideCategory row justify-content-between">
-                            <p class="categoryName">Meet</p>
-                            <p class="categoryCount">10</p>
-                        </a>
-                        <div class="subCategory form-check asideProduct formFilterProduct w-100">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label w-100" for="defaultCheck1">
-                                Product
-                            </label>
-                        </div>
-                        <div class="subCategory form-check asideProduct formFilterProduct w-100">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label w-100" for="defaultCheck1">
-                                Product
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </aside>
+                    <ul [class.example-tree-invisible]="!treeControl.isExpanded(node)">
+                      <ng-container matTreeNodeOutlet></ng-container>
+                    </ul>
+                  </li>
+                </mat-nested-tree-node>
+              </mat-tree>
+           
+        </div>
+    </aside>

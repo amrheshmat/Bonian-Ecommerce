@@ -83,7 +83,10 @@ main.productsList .card {
 }
 @media (max-width:500px){
     main.productsList .card {
-        width: calc(96% / 2)
+        width: calc(96% / 1)
+    }
+    .mainProductsSection .categorySectionName{
+        font-size: 30px; 
     }
 }
 @media (min-width:501px){
@@ -131,7 +134,7 @@ main.productsList .card .card-body p.price{
 aside.largeAndMedium{
     border:1px solid #EEE;
     border-top-left-radius:8px;
-    background-color:#EEE
+    //background-color:#EEE
 }
 aside.largeAndMedium h2{
     margin-bottom:20px;

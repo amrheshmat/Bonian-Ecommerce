@@ -156,7 +156,7 @@ a {
 .main-nav .loginAndLang li a,
 .main-nav .navbar-toggler {
   @extend .font-stack-navbar;
-  color: $whiteColor;
+  color: $footerColor;
   cursor: pointer
 }
 
