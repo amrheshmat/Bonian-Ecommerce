@@ -9,6 +9,7 @@ import {  HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MvcPartialDirective } from './directives/mvc-partial.directive';
 import { MVCHTMLService } from './services/mvc-html.service';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { MVCHTMLService } from './services/mvc-html.service';
     RouterModule,
     HttpClientModule ,
     FormsModule,
-    
+    InfiniteScrollModule
 
   ],
 
@@ -37,7 +38,8 @@ import { MVCHTMLService } from './services/mvc-html.service';
     RouterModule,
     HttpClientModule,
     FormsModule,
-    MvcPartialDirective
+    MvcPartialDirective,
+    InfiniteScrollModule
   ],
 
   providers: [
