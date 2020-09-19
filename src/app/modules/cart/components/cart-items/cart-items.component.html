@@ -1,16 +1,15 @@
 <div class="cartItems">
-    <div class="cartItem d-flex">
+    <div *ngFor="let item of items" class="cartItem d-flex">
         <div class="cartItemImage d-inline-block">
-            <img src="./assets/images/cl-5.jpg" class="d-none d-sm-block">
+            <img src="./assets/images/default-item.png" class="d-none d-sm-block">
         </div>
         <div class="cartItemDescription d-flex w-100">
             <div class="productData">
                 <div class="productName">
-                    <h2><a href="#" class="productLink">Steak</a></h2>
-                    <p>400 (gm)</p>
+                    <h2><a href="#" class="productLink">{{item.ItemName}}</a></h2>
                 </div>
                 <div class="productPrice">
-                    <span class="amount">75.00 EGP</span>
+                    <span class="amount">{{item.ItemPrice}} EGP</span>
                 </div>
 
                 <span class="productRemove">
@@ -18,32 +17,7 @@
                 </span>
             </div>
             <div class="quantityTotal">
-                <p class="totalQuantity">4 Items</p>
-                <p class="totalPrice">206 EGP</p>
-            </div>
-        </div>
-    </div>
-    <div class="cartItem d-flex">
-        <div class="cartItemImage d-inline-block">
-            <img src="./assets/images/cl-2.jpg" class="d-none d-sm-block">
-        </div>
-        <div class="cartItemDescription d-flex w-100">
-            <div class="productData">
-                <div class="productName">
-                    <h2><a href="#" class="productLink">Fowl</a></h2>
-                    <p>400 (gm)</p>
-                </div>
-                <div class="productPrice">
-                    <span class="amount">75.00 EGP</span>
-                </div>
-
-                <span class="productRemove">
-                    <a href="#" class="removeProduct">remove</a>
-                </span>
-            </div>
-            <div class="quantityTotal">
-                <p class="totalQuantity">3 Items</p>
-                <p class="totalPrice">625 EGP</p>
+                <p class="totalQuantity">{{item.Quantity}}</p>
             </div>
         </div>
     </div>

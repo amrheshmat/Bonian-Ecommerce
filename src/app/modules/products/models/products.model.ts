@@ -27,6 +27,7 @@ export class Item {
   ProductionOutPutMinutes: number;
   ValidityDuration: number;
   ImagePath: string;
+  Quantity: number;
   // IsActive :boolean;
   // CreationTime : Date;
   // CreatedBy:number;

@@ -5,15 +5,15 @@
     <div class="orederReview">
         <p class="lastOrderInfo d-flex justify-content-between">
             <span class="values">Total Price:</span>
-            <span class="total">253.00 EGP</span>
+            <span class="total">{{cartSummary.totalPrice}} EGP</span>
         </p>
         <p class="lastOrderInfo d-flex justify-content-between">
             <span class="values">Branch:</span>
-            <span class="total">Nasr City</span>
+            <span class="total">{{cartSummary.branchName}}</span>
         </p>
         <p class="lastOrderInfo d-flex justify-content-between">
             <span class="values">Total Discount:</span>
-            <span class="total">16%</span>
+            <span class="total">{{cartSummary.totalDiscount}} %</span>
         </p>
         <div class="cartCallToActions text-center">
             <a [routerLink]="['/cart/check-out']" class="checkOut d-block btn btn-danger">

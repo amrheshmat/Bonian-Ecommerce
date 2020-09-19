@@ -22,7 +22,7 @@
         <h6>{{product.ItemName}}</h6>
         <p class="description">{{product.ItemDescription}}</p>
         <p class="price">{{product.ItemPrice}} EGP</p>
-        <a href="#" class="btn btn-success addToCart">ADD TO CART &nbsp;<i class="fab fa-opencart"></i></a>
+        <a (click)="addToCart(product)" class="btn btn-success addToCart">ADD TO CART &nbsp;<i class="fab fa-opencart"></i></a>
 
       </div>
 

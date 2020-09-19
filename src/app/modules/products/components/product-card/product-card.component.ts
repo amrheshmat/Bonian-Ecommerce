@@ -5,6 +5,7 @@ import { Item } from '../../models/Products.model';
 import { ProductService } from '../../services/products.service';
 import { MVCHTMLService } from 'src/app/shared/services/mvc-html.service';
 import { Router } from '@angular/router';
+import { CartService } from '../../../../modules/cart/services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -15,10 +16,14 @@ export class ProductCardComponent implements OnInit {
   @Input() item: Item;
   @Output() selectedProduct: EventEmitter<Item> = new EventEmitter<Item>();
 
-  constructor(private mVCHTMLService: MVCHTMLService, private router: Router) { }
+  constructor(private mVCHTMLService: MVCHTMLService, private router: Router, private cartService: CartService) { }
 
   ngOnInit(): void {
     // this.getView();
+  }
+
+  public addToCart(product: Item) {
+    this.cartService.addToCart(product);
   }
 
   getView() {
