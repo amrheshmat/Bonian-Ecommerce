@@ -1,7 +1,9 @@
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ɵConsole } from '@angular/core';
 import { Item } from '../../models/products.model';
 import { ProductService } from '../../services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CategoryService } from '../../services/category.service';
+import { CategoryFilter } from '../../models/category-filter.model';
 
 @Component({
   selector: 'app-related-product',
@@ -10,31 +12,37 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RelatedProductComponent implements OnInit {
 
-  private ParamterId: number;
-  product: Item;
-  public List: any = [];
   public relatedProducts: Item[];
-  constructor(private _ProductService: ProductService, private route: ActivatedRoute, private router: Router) { }
+  @Input() categoryId: number;
+  categoryFilter: CategoryFilter = new CategoryFilter();
+  totalCount: number;
+  @Output() selectedProduct: EventEmitter<Item> = new EventEmitter<Item>();
 
-  selectedProduct(product) {
-    this.router.navigate(['/products', product.Id]);
-    // this.ngOnInit();
-  }
+  constructor(private categoryService: CategoryService) { }
+
   ngOnInit(): void {
-    this.getRelatedProducts();
-    this.ParamterId = parseInt(this.route.snapshot.paramMap.get("id"));
+    this.categoryFilter.CategorId = this.categoryId;
+    this.categoryFilter.Start = 0;
+    this.categoryFilter.End = this.categoryFilter.PageSize;
+    this.getItems();
+  }
 
-    this.List.forEach(i => {
-      if (i.Id == this.ParamterId) {
-        this.product = i;
-      }
+  getItems(): void {
+    this.categoryService.getAllItemsByCategoryId(this.categoryFilter).subscribe(res => {
+      this.relatedProducts = res.ItemList;
+      this.totalCount = res.TotalCount;
     });
-
-
   }
 
-  getRelatedProducts(): void {
-    this.relatedProducts = this._ProductService.getAll();
+  onScroll() {
+    if (this.categoryFilter.End < this.totalCount) {
+      this.categoryFilter.Start = 1;
+      this.categoryFilter.End = this.categoryFilter.End + this.categoryFilter.PageSize;
+      this.getItems();
+    }
   }
 
+  public selectProduct(product: Item) {
+    this.selectedProduct.emit(product);
+  }
 }

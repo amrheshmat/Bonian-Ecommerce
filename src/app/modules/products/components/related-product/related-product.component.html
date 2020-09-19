@@ -1,9 +1,12 @@
 <section id="productsListFullWidth">
-    <div class="container-fluid">
-        <h2 class="subTitleColor">Related Products</h2>
-        <span *ngFor="let item of relatedProducts">
-            <app-product-card [item]="item"></app-product-card>
-        </span>
-        <div class="clearfix"></div>
-    </div>
+  <div class="container-fluid">
+    <h2 class="subTitleColor">Related Products</h2>
+    <span *ngFor="let item of relatedProducts">
+      <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+        (scrolled)="onScroll()" [scrollWindow]="true">
+        <app-product-card (selectedProduct)="selectProduct($event)" [item]="item"></app-product-card>
+      </div>
+    </span>
+    <div class="clearfix"></div>
+  </div>
 </section>

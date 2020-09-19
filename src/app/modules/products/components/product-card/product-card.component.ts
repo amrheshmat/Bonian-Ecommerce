@@ -1,9 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category.service';
 import { Item } from '../../models/Products.model';
 import { ProductService } from '../../services/products.service';
 import { MVCHTMLService } from 'src/app/shared/services/mvc-html.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -12,7 +13,9 @@ import { MVCHTMLService } from 'src/app/shared/services/mvc-html.service';
 })
 export class ProductCardComponent implements OnInit {
   @Input() item: Item;
-  constructor(private mVCHTMLService: MVCHTMLService) { }
+  @Output() selectedProduct: EventEmitter<Item> = new EventEmitter<Item>();
+
+  constructor(private mVCHTMLService: MVCHTMLService, private router: Router) { }
 
   ngOnInit(): void {
     // this.getView();
@@ -26,4 +29,13 @@ export class ProductCardComponent implements OnInit {
     })
   }
 
+  public selectProduct(product: Item) {
+    let url = this.router.url;
+    if (url.includes("product-details")) {
+      this.selectedProduct.emit(product);//To Display Item from related products
+    }
+    else {
+      this.router.navigate(['/products/product-details', { id: product.Id }]);
+    }
+  }
 }

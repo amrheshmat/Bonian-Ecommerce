@@ -10,24 +10,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  private ParamterId: number;
-  product: Item;
-  public List: any = [];
-  public ProductsList: Item[];
-  constructor(private _ProductService: ProductService, private route: ActivatedRoute, private router: Router) { }
-
-  selectedProduct(product) {
-    this.router.navigate(['/products', product.Id]);
-    this.ngOnInit();
-  }
+  product: Item = new Item();
+  constructor(private _productService: ProductService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.ParamterId = parseInt(this.route.snapshot.paramMap.get("id"));
-    this.List.forEach(i => {
-      if (i.Id == this.ParamterId) {
-        this.product = i;
-      }
+    let productId = parseInt(this.route.snapshot.paramMap.get("id"));
+    this.getProductById(productId);
+  }
+
+  private getProductById(id: number) {
+    this._productService.getById(id).subscribe(res => {
+      this.product = res;
     });
   }
-  
+
+  public onSelectProduct(event: Item) {
+    this.product = event;
+  }
 }
