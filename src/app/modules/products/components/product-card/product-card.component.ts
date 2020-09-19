@@ -21,10 +21,8 @@ export class ProductCardComponent implements OnInit {
     // this.getView();
   }
 
-
   getView() {
     this.mVCHTMLService.getView().subscribe(res => {
-      console.log(res);
       document.getElementById('view').innerHTML = res;
     })
   }
@@ -33,9 +31,10 @@ export class ProductCardComponent implements OnInit {
     let url = this.router.url;
     if (url.includes("product-details")) {
       this.selectedProduct.emit(product);//To Display Item from related products
+      window.scroll(0, 0);//Scroll to top
     }
     else {
-      this.router.navigate(['/products/product-details', { id: product.Id }]);
+      this.router.navigate(['/products/product-details/' + product.Id]);
     }
   }
 }
