@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Item } from '../../../../modules/products/models/products.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-navbar-cart',
@@ -7,11 +9,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarCartComponent implements OnInit {
 
-  cartList = [];
-  constructor() { }
+  items: Array<Item>;
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
-
+    this.updateNavbarCart();
+    this.cartService.isCartChanged.subscribe(res => {
+      if (res) {
+        this.updateNavbarCart();
+      }
+    });
   }
 
+  private updateNavbarCart() {
+    let cart = this.cartService.getCartFromLocalStorage();
+    if (cart) {
+      this.items = cart.items;
+    }
+  }
+
+  public increaseQuantity(item: Item) {
+    item.Quantity++;
+    this.cartService.updateItemInCart(item);
+  }
+
+  public decreaseQuantity(item: Item) {
+    if (item.Quantity > 1) {
+      item.Quantity--;
+      this.cartService.updateItemInCart(item);
+    }
+  }
+
+  public removeItem(item: Item) {
+    this.cartService.removeFromCart(item);
+  }
 }

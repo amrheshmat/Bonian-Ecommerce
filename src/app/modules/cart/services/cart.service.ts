@@ -19,6 +19,12 @@ export class CartService {
   }
 
 
+  public updateItemInCart(product: Item) {
+    let cart: Cart = this.getCartFromLocalStorage();
+    cart.items.find(x => x.Id == product.Id).Quantity = product.Quantity;//If this product is selected 
+    this.updateCartInLocalStorage(cart);
+  }
+
   public addToCart(product: Item) {
     let cart: Cart = this.getCartFromLocalStorage();
     if (cart == null) {
@@ -61,16 +67,19 @@ export class CartService {
   }
 
   public getCartSammry(): CartSummary {
-    let items = this.getCartFromLocalStorage().items;
+    let cart = this.getCartFromLocalStorage();
     let cartSummary = new CartSummary();
-    cartSummary.totalPrice = 0;
-    cartSummary.totalQuantity = 0;
-    cartSummary.totalDiscount = 15;
-    cartSummary.branchName = "Badr City";
+    if (cart) {
+      var items = cart.items
+      cartSummary.totalPrice = 0;
+      cartSummary.totalQuantity = 0;
+      cartSummary.totalDiscount = 15;
+      cartSummary.branchName = "Badr City";
 
-    for (let item of items) {
-      cartSummary.totalPrice += (item.ItemPrice * item.Quantity);
-      cartSummary.totalQuantity += item.Quantity;
+      for (let item of items) {
+        cartSummary.totalPrice += (item.ItemPrice * item.Quantity);
+        cartSummary.totalQuantity += item.Quantity;
+      }
     }
     return cartSummary;
   }

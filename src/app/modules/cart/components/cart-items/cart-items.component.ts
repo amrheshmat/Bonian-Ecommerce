@@ -14,6 +14,11 @@ export class CartItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = this.cartSevice.getCartFromLocalStorage().items;
+    this.cartSevice.isCartChanged.subscribe(res => {
+      if (res) {
+        this.items = this.cartSevice.getCartFromLocalStorage().items;
+      }
+    });
   }
 
   public removeItem(item: Item) {
