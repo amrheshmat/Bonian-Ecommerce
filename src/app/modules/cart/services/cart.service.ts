@@ -36,6 +36,12 @@ export class CartService {
     this.updateCartInLocalStorage(cart);
   }
 
+  public removeFromCart(product: Item) {
+    let cart: Cart = this.getCartFromLocalStorage();
+    cart.items = cart.items.filter(x => x.Id != product.Id);
+    this.updateCartInLocalStorage(cart);
+  }
+
   public addCartToLocalStorage(cart: Cart) {
     localStorage.setItem("cart", JSON.stringify(cart))
   }

@@ -1,24 +1,24 @@
 <div class="cartItems">
-    <div *ngFor="let item of items" class="cartItem d-flex">
-        <div class="cartItemImage d-inline-block">
-            <img src="./assets/images/default-item.png" class="d-none d-sm-block">
-        </div>
-        <div class="cartItemDescription d-flex w-100">
-            <div class="productData">
-                <div class="productName">
-                    <h2><a href="#" class="productLink">{{item.ItemName}}</a></h2>
-                </div>
-                <div class="productPrice">
-                    <span class="amount">{{item.ItemPrice}} EGP</span>
-                </div>
-
-                <span class="productRemove">
-                    <a href="#" class="removeProduct">remove</a>
-                </span>
-            </div>
-            <div class="quantityTotal">
-                <p class="totalQuantity">{{item.Quantity}}</p>
-            </div>
-        </div>
+  <div *ngFor="let item of items" class="cartItem d-flex">
+    <div class="cartItemImage d-inline-block">
+      <img src="./assets/images/default-item.png" class="d-none d-sm-block">
     </div>
+    <div class="cartItemDescription d-flex w-100">
+      <div class="productData">
+        <div class="productName">
+          <h2><a href="#" class="productLink">{{item.ItemName}}</a></h2>
+        </div>
+        <div class="productPrice">
+          <span class="amount">{{item.ItemPrice}} EGP</span>
+        </div>
+
+        <span class="productRemove">
+          <a (click)="removeItem(item)" class="removeProduct">remove</a>
+        </span>
+      </div>
+      <div class="quantityTotal">
+        <p class="totalQuantity">{{item.Quantity}}</p>
+      </div>
+    </div>
+  </div>
 </div>

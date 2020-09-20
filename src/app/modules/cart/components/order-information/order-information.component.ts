@@ -13,6 +13,10 @@ export class OrderInformationComponent implements OnInit {
 
   ngOnInit(): void {
     this.cartSummary = this.cartService.getCartSammry();
+    this.cartService.isCartChanged.subscribe(res => {
+      if (res)
+        this.cartSummary = this.cartService.getCartSammry();
+    });
   }
 
 }

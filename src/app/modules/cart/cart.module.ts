@@ -20,7 +20,6 @@ import { CategoryService } from '../products/services/category.service';
     CartItemsComponent
   ],
   providers: [
-    CartService,
     CategoryService
   ]
 })

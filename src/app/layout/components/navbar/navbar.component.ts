@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Cart } from 'src/app/modules/cart/models/cart.model';
+import { CartSummary } from 'src/app/modules/cart/models/cart-summary.model';
 import { CartService } from '../../../modules/cart/services/cart.service';
 
 @Component({
@@ -23,14 +23,10 @@ export class NavbarComponent implements OnInit {
   }
 
   public updateCartItemsCount() {
-    let cart: Cart = this.cartService.getCartFromLocalStorage();
-    this.cartItemsCount = 0;
-    if (cart) {
-      for (let item of cart.items) {
-        this.cartItemsCount += item.Quantity;
-      }
-    }
+    let cartSummary: CartSummary = this.cartService.getCartSammry();
+    this.cartItemsCount = cartSummary.totalQuantity;
   }
+
   public scroll() {
     var element = document.getElementById('aboutus');
     element.scrollIntoView({ behavior: "smooth" });
