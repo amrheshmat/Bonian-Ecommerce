@@ -5,4 +5,5 @@ export class Profile {
     Phone: string;
     Mobile: string;
     Address: string;
+    Email: string;
 }
