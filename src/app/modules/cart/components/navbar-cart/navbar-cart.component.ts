@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Item } from '../../../../modules/products/models/products.model';
 import { CartService } from '../../services/cart.service';
 
@@ -10,7 +11,7 @@ import { CartService } from '../../services/cart.service';
 export class NavbarCartComponent implements OnInit {
 
   items: Array<Item>;
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
     this.updateNavbarCart();
@@ -43,4 +44,15 @@ export class NavbarCartComponent implements OnInit {
   public removeItem(item: Item) {
     this.cartService.removeFromCart(item);
   }
+
+  // public selectProduct(product: Item) {
+  //   let url = this.router.url;
+  //   if (url.includes("product-details")) {
+  //     this.selectedProduct.emit(product);//To Display Item from related products
+  //     window.scroll(0, 0);//Scroll to top
+  //   }
+  //   else {
+  //     this.router.navigate(['/products/product-details/' + product.Id]);
+  //   }
+  // }
 }
