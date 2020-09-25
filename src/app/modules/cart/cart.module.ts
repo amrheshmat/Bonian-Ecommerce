@@ -7,6 +7,7 @@ import { CartRoutingModule } from './cart-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CartItemsComponent } from './components/cart-items/cart-items.component';
 import { CategoryService } from '../products/services/category.service';
+import { SalesOrderService } from './services/sales-order.service';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { CategoryService } from '../products/services/category.service';
     CartItemsComponent
   ],
   providers: [
-    CategoryService
+    CategoryService,
+    SalesOrderService
   ]
 })
 
