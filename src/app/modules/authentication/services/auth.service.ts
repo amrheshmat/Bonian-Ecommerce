@@ -4,11 +4,15 @@ import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { LoginModel } from '../models/login.model';
-import { JwtHelperService } from '@auth0/angular-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt'; 
 
 @Injectable({ providedIn: 'root' })
-export class AuthService {
-  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
+export class AuthService {    
+  baseUrl: string = "";
+
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) {
+    this.baseUrl = environment.apiUrl;
+   }
 
   isUserAuthenticated() {
     let token: string = localStorage.getItem("jwt");
@@ -19,21 +23,24 @@ export class AuthService {
       return false;
     }
   }
-
+  
   login(model: any) {
-    return this.http.post("http://localhost:54095/Api/Account/Login", model, {
+    const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json', 
       })
-    });
+    }
+      return this.http.post(this.baseUrl + "apiAccount/Login",model, httpOptions);
   }
 
   register(model: any) {
-    return this.http.post("http://localhost:54095/api/Account/register", model, {
+    const httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json"
+        'Content-Type':  'application/json', 
       })
-    });
+    }
+      return this.http.post(this.baseUrl + "apiAccount/Registration",model, httpOptions);
+    
   }
 
   logOut() {

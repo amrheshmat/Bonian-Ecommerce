@@ -3,7 +3,6 @@
 function adjustHeaderHeight() {
     let windowHeight = $(window).height();
     $('header').height(windowHeight);
-    $('#loginForm').height(windowHeight - 24 );
     $('.slick-item').height(windowHeight)
 }
 

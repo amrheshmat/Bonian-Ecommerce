@@ -17,10 +17,10 @@ export class AllProductsComponent implements OnInit {
   totalCount: number = 0;
   constructor(private _categoryService: CategoryService, private _itemService: ProductService) { }
   category: string;
-  // categoryList:Category[];
+   categoryList:Category[];
   
   ngOnInit(): void { 
-    // this.getCategories(); 
+     this.getCategories(); 
   }
 
   onTabChanged(event) {
@@ -28,14 +28,14 @@ export class AllProductsComponent implements OnInit {
   }
 
   
-  // getCategories():void{
-  //   this._categoryService.getAll().subscribe(data=>{
-  //     console.log(data)
-  //     this.categoryList = data.InventoryCategoryList;
-  //     this.category = this.categoryList[0].CategoryName;
-  //     this.categoryFilter.CategorId = this.categoryList[0].Id;
-  //   }) 
-  // }
+  getCategories():void{
+    this._categoryService.getAll().subscribe(data=>{
+      console.log(data)
+      this.categoryList = data.InventoryCategoryList;
+      this.category = this.categoryList[0].CategoryName;
+      this.categoryFilter.CategorId = this.categoryList[0].Id;
+    }) 
+  }
   getItems(): void {
     this._categoryService.getAllItemsByCategoryId(this.categoryFilter).subscribe(res => {
       this.itemsList = res.ItemList;
