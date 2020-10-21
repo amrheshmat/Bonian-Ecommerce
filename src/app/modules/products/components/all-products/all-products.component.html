@@ -8,14 +8,22 @@
 
 
         <mat-tab-group (selectedTabChange)="onTabChanged($event)"> 
-          <mat-tab *ngFor="let category of categoryList" [label]="category.CategoryName">
+          <mat-tab label="All">
             <span *ngFor="let item of itemsList">
-              <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
-                (scrolled)="onScroll()" [scrollWindow]="true">
+              <div class="search-results">
                 <app-product-card [item]="item"></app-product-card>
               </div>
             </span>  
          </mat-tab>	    
+
+         <mat-tab *ngFor="let category of categoryList" [label]="category.CategoryName">
+          <span *ngFor="let item of itemsList">
+            <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+              (scrolled)="onScroll()" [scrollWindow]="true">
+              <app-product-card [item]="item"></app-product-card>
+            </div>
+          </span>  
+       </mat-tab>	    
         </mat-tab-group>
       
 

@@ -18,13 +18,16 @@ export class AllProductsComponent implements OnInit {
   constructor(private _categoryService: CategoryService, private _itemService: ProductService) { }
   category: string;
    categoryList:Category[];
+   selectedCategory:any;
   
   ngOnInit(): void { 
      this.getCategories(); 
   }
 
-  onTabChanged(event) {
-    this.category = event.tab.textLabel;
+  onTabChanged(event) { 
+    this.category = event.tab.textLabel; 
+    this.selectedCategory = this.categoryList[event.index - 1].Id;
+    this.onCategorySelected(this.selectedCategory);
   }
 
   
