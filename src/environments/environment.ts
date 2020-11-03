@@ -4,11 +4,9 @@
 
 export const environment = {
   production: false,
-  // apiUrl:"https://localhost/boniantech.erp.presentation//api/",
-  mvcUrl: "http://localhost:65121/",
-  apiUrl: "https://test.boniantech.com/erp/"
-  // apiUrl: "https://DESKTOP-01SKPFK/boniantech.erp.presentation/api/"
-
+   //apiUrl:"https://localhost/boniantech.erp.presentation/",
+  // apiUrl: "http://localhost:65121/"
+   apiUrl: "https://test.boniantech.com/erp/"
 };
 
 /*

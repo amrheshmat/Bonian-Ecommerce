@@ -5,13 +5,14 @@
     //margin:50px 0
 }
 .page-title h2{
-    font-size:4em;
+    font-size:3em;
     color:$subTitleColor;
-    margin-bottom:20px;
+    margin-bottom:20px; 
 }
 .page-title p{
     @extend .font-stack-subTitles;
-    color:$headLineColor 
+    color:$headLineColor ;
+    font-size: 12px;
 }
 .cartOrderReview{
     border:1px solid #DDD;
@@ -27,14 +28,21 @@
     }
 }
 .cartOrderReview .lastOrderInfo{
-    font-size:1.5em;
+    font-size:1.1em;
     margin:15px 0
 }
 @include breakpoint(extra-small){
+     
+    .cartOrderReview .orederReview{
+        padding:5px 20px;
+    }
     .cartOrderReview .lastOrderInfo{
-        font-size:1.2em;
+        font-size:1em;
         margin:5px 0
     }
+    .cartOrderReview h3{
+        font-size: 1.2em;
+    } 
 }
 .cartOrderReview .lastOrderInfo .values{
     font-weight:bold;
@@ -66,18 +74,22 @@
 }
 .cartOrderReview .cartCallToActions .checkOut,
 .cartOrderReview .cartCallToActions .buyLately{
-    font-size:1.7em
-}
-@include breakpoint(extra-small){
-    .cartOrderReview .cartCallToActions .buyLately{
-        font-size:1.3em
-    }
+    font-size:1.5em
 }
 .cartOrderReview .cartCallToActions .signIn{
     color:$greyBlueColor;
     font-size:1.5em;
     font-weight:bold;
     margin:10px 0
+}
+@include breakpoint(extra-small){
+    .cartOrderReview .cartCallToActions .checkOut,
+    .cartOrderReview .cartCallToActions .buyLately{
+        font-size:1em
+    }
+    .cartOrderReview .cartCallToActions .signIn{ 
+        font-size:1em; 
+    }
 }
 #cartOverView .cartItems .cartItem{
     padding:15px;
@@ -89,8 +101,8 @@
     margin-top:0
 }
 #cartOverView .cartItems .cartItem .cartItemImage img{
-    width:150px;
-    height:150px;
+    width:100px;
+    height:100px;
     object-fit:cover;
     object-position:50% 50%
 }
@@ -103,21 +115,26 @@
 }
 #cartOverView .cartItems .cartItem .cartItemDescription .productName h2 a.productLink{
     color:$subTitleColor;
-    font-size:1.4em
+    font-size:0.7em;
+    font-weight: bold;
 }
 #cartOverView .cartItems .cartItem .cartItemDescription .productPrice .amount{
     font-size:1.2em
 }
 #cartOverView .cartItems .cartItem .cartItemDescription .productRemove .removeProduct{
-    color:#dc3545
+    color:#dc3545;
+    font-size: 12px;
+    font-weight: bold; 
+    text-transform: capitalize;
+    cursor: pointer;
 }
 #cartOverView .cartItems .cartItem .cartItemDescription .quantityTotal .totalQuantity{
-    font-size:1.4em;
+    font-size:1.2em;
     font-weight:bold;
     font-family:raleway
 }
 #cartOverView .cartItems .cartItem .cartItemDescription .quantityTotal .totalPrice{
-    font-size:1.4em;
+    font-size:1.2em;
     color:$greenColor;
     font-weight:bold
 }

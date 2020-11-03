@@ -17,25 +17,28 @@ export class AllProductsComponent implements OnInit {
   totalCount: number = 0;
   constructor(private _categoryService: CategoryService, private _itemService: ProductService) { }
   category: string;
-  // categoryList:Category[];
+   categoryList:Category[];
+   selectedCategory:any;
   
   ngOnInit(): void { 
-    // this.getCategories(); 
+     this.getCategories(); 
   }
 
-  onTabChanged(event) {
-    this.category = event.tab.textLabel;
+  onTabChanged(event) { 
+    this.category = event.tab.textLabel; 
+    this.selectedCategory = this.categoryList[event.index - 1].Id;
+    this.onCategorySelected(this.selectedCategory);
   }
 
   
-  // getCategories():void{
-  //   this._categoryService.getAll().subscribe(data=>{
-  //     console.log(data)
-  //     this.categoryList = data.InventoryCategoryList;
-  //     this.category = this.categoryList[0].CategoryName;
-  //     this.categoryFilter.CategorId = this.categoryList[0].Id;
-  //   }) 
-  // }
+  getCategories():void{
+    this._categoryService.getAll().subscribe(data=>{
+      console.log(data)
+      this.categoryList = data.InventoryCategoryList;
+      this.category = this.categoryList[0].CategoryName;
+      this.categoryFilter.CategorId = this.categoryList[0].Id;
+    }) 
+  }
   getItems(): void {
     this._categoryService.getAllItemsByCategoryId(this.categoryFilter).subscribe(res => {
       this.itemsList = res.ItemList;

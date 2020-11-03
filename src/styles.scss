@@ -189,8 +189,8 @@ a {
 
 @include breakpoint(extra-small) {
   .main-nav .navbarSmallScreen .logoSmallScreens {
-    width: 70px;
-    height: 60px
+    width: 50px;
+    height: 44px
   }
 }
 
@@ -452,7 +452,7 @@ a {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
   padding: 3px 0;
   display: none;
 
@@ -462,33 +462,39 @@ a {
   display: flex;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  padding: 3px;
 }
 
 .navCart .sliderBody .item .cartItemsControl .plus {
   color: $greenColor;
-  font-size: 20px
+  font-size: 18px
 }
 
 .navCart .sliderBody .item .cartItemsControl .minus {
   color: #dc3545;
-  font-size: 20px
-}
-
+  font-size: 18px
+} 
 .navCart .item .cartItemsRemove {
   position: absolute;
   top: 0;
   left: 0;
   padding: 0 3px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.3);
   display: none;
   width: 100%;
-  text-align: center;
+  text-align: center; 
+
 }
 
 .navCart .item:hover .cartItemsRemove {
   display: block;
   border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-right-radius: 5px;  
+}
+
+.navCart .item .cartItemsRemove i {
+  color: #eee;
+  transition: all 0.2s;
 }
 
 .navCart .item .cartItemsRemove i:hover {
@@ -1126,7 +1132,8 @@ header .divider {
 //start footer
 #footer {
   background-color: #181A1E;
-  border-top: 1px dotted #555
+  border-top: 1px dotted #555; 
+
 }
 
 //end footer

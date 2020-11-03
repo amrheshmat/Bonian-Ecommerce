@@ -1,11 +1,7 @@
 ﻿nav.loginNav{
     text-align:center;
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
     background-color:rgba(#DDD,0.5);
-    padding:15px 0;
+    margin-bottom:15px;
     border-bottom:1px solid #CCC;
 }
 nav.loginNav img{
@@ -16,6 +12,7 @@ main#loginForm{
     display:flex;
     justify-content:center;
     align-items:center;
+    margin: 100px 0;
 }
 @media (max-width:376px){
     main#loginForm{

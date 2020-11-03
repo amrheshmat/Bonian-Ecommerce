@@ -26,12 +26,15 @@ export class AuthService {
   }
 
   register(model: any) {
-    return this.httpHelperService._http.post("http://localhost:54095/api/Account/register", model, {
+    return this.httpHelperService._http.post("http://localhost:54095/api/Account/register", model, 
+    {
       headers: new HttpHeaders({
-        "Content-Type": "application/json"
+        'Content-Type':  'application/json', 
       })
     });
+
   }
+
 
   logOut() {
     localStorage.removeItem("jwt");

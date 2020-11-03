@@ -15,7 +15,7 @@ export class RegisterComponent {
 
   }
 
-  register(form: NgForm) {
+  register(form: NgForm) { 
     let userData = JSON.stringify(form.value);
     this.authService.register(userData).subscribe(response => {
       let token = (<any>response).token;
