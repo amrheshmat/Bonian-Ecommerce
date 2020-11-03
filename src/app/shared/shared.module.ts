@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { MvcPartialDirective } from './directives/mvc-partial.directive';
 import { MVCHTMLService } from './services/mvc-html.service';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { HttpHelperService } from './services/http-helper.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   ],
 
   providers: [
-    MVCHTMLService
+    MVCHTMLService,
+    HttpHelperService
   ]
 
 })

@@ -5,10 +5,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { LoginModel } from '../models/login.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { HttpHelperService } from '../../../shared/services/http-helper.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private http: HttpClient, private jwtHelper: JwtHelperService) { }
+  constructor(private jwtHelper: JwtHelperService, private httpHelperService: HttpHelperService) { }
 
   isUserAuthenticated() {
     let token: string = localStorage.getItem("jwt");
@@ -20,16 +21,12 @@ export class AuthService {
     }
   }
 
-  login(model: any) {
-    return this.http.post("http://localhost:54095/Api/Account/Login", model, {
-      headers: new HttpHeaders({
-        "Content-Type": "application/json"
-      })
-    });
+  login(model: LoginModel) {
+    return this.httpHelperService._http.get(`${this.httpHelperService.baseUrl}Api/ApiAccount/login?username=${model.username}&password=${model.password}`);
   }
 
   register(model: any) {
-    return this.http.post("http://localhost:54095/api/Account/register", model, {
+    return this.httpHelperService._http.post("http://localhost:54095/api/Account/register", model, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       })
