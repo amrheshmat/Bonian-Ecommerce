@@ -10,13 +10,16 @@ import { FormsModule } from '@angular/forms';
 import { MvcPartialDirective } from './directives/mvc-partial.directive';
 import { MVCHTMLService } from './services/mvc-html.service';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { TranslatorService } from './services/translator.service';
+import { TranslatePipe } from './pipes/translate.pipe';
 
 @NgModule({
   declarations: [
     NavbarCartComponent,
     RelatedProductComponent,
     ProductCardComponent,
-    MvcPartialDirective
+    MvcPartialDirective,
+    TranslatePipe
   ],
 
   imports: [
@@ -43,7 +46,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   ],
 
   providers: [
-    MVCHTMLService
+    MVCHTMLService,
+    TranslatorService
   ]
 
 })
