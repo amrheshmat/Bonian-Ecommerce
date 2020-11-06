@@ -2,6 +2,9 @@
 export class Profile {
     Id: number;
     ProfileName: string;
+    FirstName: string;
+    LastName: string;
+
     NormalizeName :string;
     
     ProfileTypeId :number;

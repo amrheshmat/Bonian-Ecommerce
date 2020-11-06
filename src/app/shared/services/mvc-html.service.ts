@@ -8,7 +8,7 @@ export class MVCHTMLService {
     baseUrl: string = "";
 
     constructor(public _http: HttpClient) {
-        this.baseUrl = environment.apiUrl;
+        // this.baseUrl = environment.mvcUrl;
     }
 
     getView(): any {

@@ -12,6 +12,7 @@ import { MVCHTMLService } from './services/mvc-html.service';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TranslatorService } from './services/translator.service';
 import { TranslatePipe } from './pipes/translate.pipe';
+import { HttpHelperService } from './services/http-helper.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { TranslatePipe } from './pipes/translate.pipe';
 
   providers: [
     MVCHTMLService,
-    TranslatorService
+    TranslatorService,
+    HttpHelperService
   ]
 
 })
