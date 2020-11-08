@@ -25,7 +25,21 @@ export class ProductDetailsComponent implements OnInit {
   private getProductById(id: number) {
     this.productService.getById(id).subscribe(res => {
       this.product = res;
+      this.getItemTypeById(this.product.ItemTypeId);
+      this.getAllItemTypes();
     });
+  }
+
+  private getAllItemTypes() {
+    this.productService.getAllItemTypes().subscribe(res => {
+      console.log(res);
+    })
+  }
+
+  private getItemTypeById(itemTypeId) {
+    this.productService.getItemTypeById(itemTypeId).subscribe(res => {
+      console.log(res);
+    })
   }
 
   public onSelectProduct(event: Item) {
