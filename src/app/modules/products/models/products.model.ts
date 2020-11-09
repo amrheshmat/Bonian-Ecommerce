@@ -1,3 +1,4 @@
+import { ItemTypeAttribute } from './ItemTypeAttribute.model';
 
 export class Item {
   Id: number;
@@ -28,6 +29,7 @@ export class Item {
   ValidityDuration: number;
   ImagePath: string;
   Quantity: number;
+  ItemAttributeList: ItemTypeAttribute[];
   // IsActive :boolean;
   // CreationTime : Date;
   // CreatedBy:number;

@@ -6,6 +6,8 @@ import { ProductService } from '../../services/products.service';
 import { MVCHTMLService } from 'src/app/shared/services/mvc-html.service';
 import { Router } from '@angular/router';
 import { CartService } from '../../../../modules/cart/services/cart.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductModalComponent } from '../product-modal/product-modal.component';
 
 @Component({
   selector: 'app-product-card',
@@ -16,7 +18,10 @@ export class ProductCardComponent implements OnInit {
   @Input() item: Item;
   @Output() selectedProduct: EventEmitter<Item> = new EventEmitter<Item>();
 
-  constructor(private mVCHTMLService: MVCHTMLService, private router: Router, private cartService: CartService) { }
+  constructor(private mVCHTMLService: MVCHTMLService,
+    private router: Router,
+    private cartService: CartService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     // this.getView();
@@ -41,5 +46,18 @@ export class ProductCardComponent implements OnInit {
     else {
       this.router.navigate(['/products/product-details/' + product.Id]);
     }
+  }
+
+  openDialog(product: Item): void {
+    const dialogRef = this.dialog.open(ProductModalComponent, {
+      width: '300px',
+      height: '400px',
+      data: { productId: product.Id }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
   }
 }
