@@ -16,9 +16,7 @@ export class ProductService extends BaseService {
   }
 
   getItemTypeById(itemTypeId: number): any {
-    return this._http.get(`${this.baseUrl}api/${this.controllerName}/${this.urlGetitemtypebyid}/${itemTypeId}`);
+    return this._http.get(`${this.baseUrl}api/${this.controllerName}/${this.urlGetitemtypebyid}?id=${itemTypeId}`);
   }
 
-  //   https://test.boniantech.com/erp/api/apiinventory/GetAllItemTypes
-  //  https://test.boniantech.com/erp/api/apiinventory/getitemtypebyid
 }
