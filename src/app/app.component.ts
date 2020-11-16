@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { Translator } from './shared/models/translator.model';
-import { MVCHTMLService } from './shared/services/mvc-html.service';
+import { Component } from '@angular/core'; 
+import { MVCHTMLService } from './shared/services/mvc-html.service'; 
 import { TranslatorService } from './shared/services/translator.service';
 
 @Component({
@@ -10,28 +9,38 @@ import { TranslatorService } from './shared/services/translator.service';
 })
 export class AppComponent {
   title = 'E-Commerce';
-  constructor(private mVCHTMLService: MVCHTMLService,private translatorService :TranslatorService) {
+  constructor(private mVCHTMLService: MVCHTMLService, private translatorService:TranslatorService) {
   }
-  list: Translator;
+  list: any;
+  arabicList:any;
+  englishList:any;
+
   ngOnInit(){ 
     this.getTranslator();
-  }
-  
-  getTranslator(){
-    this.translatorService.getList().subscribe(data => {
-      this.list = data;
-      this.list.ar = data[1];
-      this.list.en =  data[2]
-      console.log(this.list.ar)
-      console.log(this.list.en)
-    }) 
   } 
-  
+  convert(){
+    this.arabicList.forEach(element => { 
+      element = Object.assign({}, element); 
+      console.log(element)
+    })
+  }
+
+
+
+
   getView() {
-    this.mVCHTMLService.getView().subscribe(res => {
-      console.log(res);
+    this.mVCHTMLService.getView().subscribe(res => { 
       document.getElementById('view').innerHTML = res;
     })
   }
+  getTranslator(){
+    this.translatorService.getList().subscribe(data => {
+      this.list = data;
+      this.arabicList = data[1];
+      this.englishList =  data[2];
+      this.convert()
+    }) 
+  } 
+  
 
 }

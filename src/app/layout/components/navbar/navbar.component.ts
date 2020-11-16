@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CartSummary } from 'src/app/modules/cart/models/cart-summary.model';
 import { CartService } from '../../../modules/cart/services/cart.service';
 
@@ -11,8 +12,15 @@ import { CartService } from '../../../modules/cart/services/cart.service';
 export class NavbarComponent implements OnInit {
 
   cartItemsCount: number;
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, public translate: TranslateService) { 
+    translate.addLangs(['en', 'nl']);
+    translate.setDefaultLang('en');
+  }
 
+  switchLang(lang: string) {
+    this.translate.use(lang);
+  }
+  
   ngOnInit(): void {
     this.updateCartItemsCount();
     this.cartService.isCartChanged.subscribe(res => {
