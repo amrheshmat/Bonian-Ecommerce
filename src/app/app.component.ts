@@ -18,12 +18,7 @@ export class AppComponent {
   ngOnInit(){ 
     this.getTranslator();
   } 
-  convert(){
-    this.arabicList.forEach(element => { 
-      element = Object.assign({}, element); 
-      console.log(element)
-    })
-  }
+  
 
 
 
@@ -33,13 +28,12 @@ export class AppComponent {
       document.getElementById('view').innerHTML = res;
     })
   }
+
+
   getTranslator(){
-    this.translatorService.getList().subscribe(data => {
-      this.list = data;
-      this.arabicList = data[1];
-      this.englishList =  data[2];
-      this.convert()
-    }) 
+    this.translatorService.generateTranslation().subscribe(res => { 
+      console.log("translation added")
+    })
   } 
   
 

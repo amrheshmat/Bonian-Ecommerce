@@ -2,10 +2,12 @@ import { BaseService } from './base.service';
  
 
 export class TranslatorService extends BaseService {
-    controllerName = "ApiPublicTranslator";
-    urlGetList = "GetTranslator";
+    controllerName = "ApiTranslatorGenerator";
+    urlGetList = "GenerateTranslationFiles";
   
-  getList(): any {
+  generateTranslation(): any {
+    debugger;
+    console.log(`${this.baseUrl}api/${this.controllerName}/${this.urlGetList}`)
     return this._http.get(`${this.baseUrl}api/${this.controllerName}/${this.urlGetList}`);
   }
  
