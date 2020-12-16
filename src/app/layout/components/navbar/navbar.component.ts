@@ -13,8 +13,8 @@ export class NavbarComponent implements OnInit {
 
   cartItemsCount: number;
   constructor(private cartService: CartService, public translate: TranslateService) { 
-    translate.addLangs(['en', 'nl']);
-    translate.setDefaultLang('en');
+    translate.addLangs(['Arabic', 'English']);
+    translate.setDefaultLang('Arabic');
   }
 
   switchLang(lang: string) {
