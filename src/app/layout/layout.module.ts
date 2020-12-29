@@ -6,13 +6,16 @@ import { FullLayoutComponent } from './components/full-layout/full-layout.compon
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { ContactUsService } from './services/contact-us.service';
 import { SharedModule } from '../shared/shared.module';
- 
+import { ProductService } from '../modules/products/services/products.service';
+import { AuthModule } from '../modules/authentication/auth.module';
 
 
-@NgModule({ 
-  imports: [  
+
+@NgModule({
+  imports: [
     SharedModule,
-    LayoutRoutingModule
+    LayoutRoutingModule,
+    AuthModule
   ],
   declarations: [
     FooterComponent,
@@ -21,10 +24,11 @@ import { SharedModule } from '../shared/shared.module';
     ContactUsComponent
   ],
   providers: [
-    ContactUsService
+    ContactUsService,
+    ProductService
   ],
   bootstrap: [
-    
+
   ]
 })
 export class LayoutModule { }

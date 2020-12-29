@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { CartSummary } from 'src/app/modules/cart/models/cart-summary.model';
+import { ProfileComponent } from '../../../modules/authentication/components/profile/profile.component';
 import { CartService } from '../../../modules/cart/services/cart.service';
+import { ProductModalComponent } from '../../../modules/products/components/product-modal/product-modal.component';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +14,8 @@ import { CartService } from '../../../modules/cart/services/cart.service';
 export class NavbarComponent implements OnInit {
 
   cartItemsCount: number;
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.updateCartItemsCount();
@@ -19,6 +23,20 @@ export class NavbarComponent implements OnInit {
       if (res) {
         this.updateCartItemsCount();
       }
+    });
+  }
+
+  
+
+  //Open Profile Dialog
+  openProfileDialog(): void {
+    const dialogRef = this.dialog.open(ProfileComponent, {
+      width: '400px',
+      height: '500px',
+      data: {  }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
     });
   }
 

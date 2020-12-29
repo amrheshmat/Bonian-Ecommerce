@@ -22,22 +22,25 @@ export class AuthService {
   }
 
   login(model: LoginModel) {
-    return this.httpHelperService._http.get(`${this.httpHelperService.baseUrl}Api/ApiAccount/login?username=${model.username}&password=${model.password}`);
+    model.username = 'admin';
+    model.password = '4444';
+    return this.httpHelperService._http.post(`http://test.BonianTech.com/ECommerce/api/ApiECommerceAccount/LoginReturnToken`, model);
+  }
+
+  getUserById(userId: number): any {
+    return this.httpHelperService._http.get(`http://test.BonianTech.com/ECommerce/api/ApiECommerceAccount/LoginReturnToken?id=${userId}`);
   }
 
   register(model: any) {
-    return this.httpHelperService._http.post("http://localhost:54095/api/Account/register", model, 
-    {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json', 
-      })
-    });
-
+    return this.httpHelperService._http.post("http://localhost:54095/api/Account/register", model,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        })
+      });
   }
-
 
   logOut() {
     localStorage.removeItem("jwt");
   }
-
 }
