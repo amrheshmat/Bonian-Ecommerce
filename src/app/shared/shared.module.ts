@@ -5,22 +5,23 @@ import { CommonModule } from '@angular/common';
 import { RelatedProductComponent } from '../modules/products/components/related-product/related-product.component';
 import { ProductCardComponent } from '../modules/products/components/product-card/product-card.component';
 import { RouterModule } from '@angular/router';
-import {  HttpClientModule } from '@angular/common/http';
+import {  HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MvcPartialDirective } from './directives/mvc-partial.directive';
 import { MVCHTMLService } from './services/mvc-html.service';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll'; 
 import { TranslatorService } from './services/translator.service';
-import { TranslatePipe } from './pipes/translate.pipe';
+
 import { HttpHelperService } from './services/http-helper.service';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 @NgModule({
   declarations: [
     NavbarCartComponent,
     RelatedProductComponent,
     ProductCardComponent,
-    MvcPartialDirective,
-    TranslatePipe
+    MvcPartialDirective, 
   ],
 
   imports: [
@@ -29,7 +30,15 @@ import { HttpHelperService } from './services/http-helper.service';
     RouterModule,
     HttpClientModule ,
     FormsModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
+    
 
   ],
 
@@ -43,14 +52,20 @@ import { HttpHelperService } from './services/http-helper.service';
     HttpClientModule,
     FormsModule,
     MvcPartialDirective,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    TranslateModule,
   ],
 
   providers: [
-    MVCHTMLService,
+    MVCHTMLService, 
     TranslatorService,
     HttpHelperService
   ]
 
 })
 export class SharedModule { }
+
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
