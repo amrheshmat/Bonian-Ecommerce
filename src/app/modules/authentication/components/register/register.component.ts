@@ -15,13 +15,13 @@ export class RegisterComponent {
 
   }
 
-  register(form: NgForm) { 
-    let userData = JSON.stringify(form.value);
-    this.authService.register(userData).subscribe(response => {
-      let token = (<any>response).token;
-      localStorage.setItem("jwt", token);
-      this.router.navigate(["/layout/dashboard"]);
-    }, err => {
-    });
+  register(form: NgForm) {
+    // let userData = JSON.stringify(form.value);
+    // this.authService.register(userData).subscribe(response => {
+    //   let token = (<any>response).token;
+    //   localStorage.setItem("jwt", token);
+    //   this.router.navigate(["/layout/dashboard"]);
+    // }, err => {
+    // });
   }
 }

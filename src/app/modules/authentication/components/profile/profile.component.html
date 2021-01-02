@@ -4,20 +4,17 @@
     <img class="avatar"
       src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTF_erFD1SeUnxEpvFjzBCCDxLvf-wlh9ZuPMqi02qGnyyBtPWdE-3KoH3s"
       alt="Ash" />
-    <div class="username">Mahmoud Ali</div>
+    <div class="username">{{userProfileModel.UserName}}</div>
     <div class="bio">
-      Cairo - Badr City
+      {{userProfileModel.Address}}
     </div>
     <div class="description">
-      Customer Notes
+      {{userProfileModel.Mobile}}
+    </div>
+    <div class="description">
+      {{userProfileModel.Email}}
     </div>
     <ul class="data">
-      <!-- <li>
-        <span class="entypo-heart"> 127</span>
-      </li>
-      <li>
-        <span class="entypo-eye"> 853</span>
-      </li> -->
       <li>
         <span class="entypo-heart"> Order Number: 150</span>
       </li>
@@ -30,6 +27,3 @@
     </h1>
   </footer>
 </div>
-<!-- <div mat-dialog-actions>
-  <button mat-button (click)="close()">Close</button>
-</div> -->

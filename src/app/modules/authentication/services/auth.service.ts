@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../environments/environment';
 import { LoginModel } from '../models/login.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpHelperService } from '../../../shared/services/http-helper.service';
+import { UserProfileModel } from '../models/user-profile.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  constructor(private jwtHelper: JwtHelperService, private httpHelperService: HttpHelperService) { }
+  controllerName: string = 'ApiECommerceAccount';
+  constructor(private jwtHelper: JwtHelperService, private httpHelperService: HttpHelperService) {
+
+  }
 
   isUserAuthenticated() {
     let token: string = localStorage.getItem("jwt");
@@ -22,25 +26,31 @@ export class AuthService {
   }
 
   login(model: LoginModel) {
-    model.username = 'admin';
-    model.password = '4444';
-    return this.httpHelperService._http.post(`http://test.BonianTech.com/ECommerce/api/ApiECommerceAccount/LoginReturnToken`, model);
+    return this.httpHelperService._http.post(`${this.httpHelperService.baseUrl}${this.controllerName}/LoginReturnToken`, model);
   }
 
   getUserById(userId: number): any {
-    return this.httpHelperService._http.get(`http://test.BonianTech.com/ECommerce/api/ApiECommerceAccount/LoginReturnToken?id=${userId}`);
+    return this.httpHelperService._http.get(`${this.httpHelperService.baseUrl}${this.controllerName}/GetUserProfileByUserId?id=${userId}`);
   }
 
-  register(model: any) {
-    return this.httpHelperService._http.post("http://localhost:54095/api/Account/register", model,
-      {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-        })
-      });
+  register(model: UserProfileModel) {
+    return this.httpHelperService._http.post(`${this.httpHelperService.baseUrl}${this.controllerName}/Registration`, model);
+  }
+
+  getRegistrationLookUp(): any {
+    return this.httpHelperService._http.get(`${this.httpHelperService.baseUrl}${this.controllerName}/GetRegistrationLookUp`);
   }
 
   logOut() {
     localStorage.removeItem("jwt");
   }
+
+  setUserProfileInLocalStorage(userProfileModel: UserProfileModel) {
+    localStorage.setItem('userProfile', JSON.stringify(userProfileModel));
+  }
+
+  getUserProfileFromLocalStorage(): UserProfileModel {
+    return JSON.parse(localStorage.getItem('userProfile'));
+  }
+
 }

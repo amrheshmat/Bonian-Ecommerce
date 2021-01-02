@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { Customer } from '../../../cart/models/customer.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { UserProfileModel } from '../../models/user-profile.model';
 
 @Component({
   selector: 'app-profile',
@@ -12,22 +13,24 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export class ProfileComponent {
 
-  customerModel: Customer = new Customer();
+  userProfileModel: UserProfileModel = new UserProfileModel();
   constructor(private router: Router,
     private authService: AuthService,
     public dialogRef: MatDialogRef<ProfileComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
+    this.getUserById();
   }
+
 
   close(): void {
     this.dialogRef.close();
   }
 
   getUserById() {
-    let userId = 1;//Get User From Local Storage
-    this.authService.getUserById(userId).subscribe(response => {
-      this.customerModel = response;
+    let user = this.authService.getUserProfileFromLocalStorage();//Get User From Local Storage
+    this.authService.getUserById(user.UserId).subscribe(response => {
+      this.userProfileModel = response;
     }, err => {
     });
   }
