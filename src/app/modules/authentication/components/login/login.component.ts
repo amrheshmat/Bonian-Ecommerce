@@ -24,6 +24,7 @@ export class LoginComponent {
     this.authService.login(this.loginModel).subscribe(response => {
       let token = (<any>response).Token;
       localStorage.setItem("jwt", token);
+      this.authService.setUserProfileInLocalStorage(response.UserModel)
       this.invalidLogin = false;
       this.router.navigate(["/"]);
     }, err => {

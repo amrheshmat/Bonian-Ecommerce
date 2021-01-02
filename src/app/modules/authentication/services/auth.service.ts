@@ -25,7 +25,7 @@ export class AuthService {
     }
   }
 
-  login(model: LoginModel) {
+  login(model: LoginModel): any {
     return this.httpHelperService._http.post(`${this.httpHelperService.baseUrl}${this.controllerName}/LoginReturnToken`, model);
   }
 
