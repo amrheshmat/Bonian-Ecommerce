@@ -7,7 +7,7 @@ export const environment = {
   //apiUrl:"https://localhost/boniantech.erp.presentation/", 
   // apiUrl: "http://localhost:65121/"
   //apiUrl: "https://localhost/boniantech.ECommerce.presentation/"
-  apiUrl: "http://Test.boniantech.com/ecommerce/api/"
+  apiUrl: "http://Test.boniantech.com/ecommerce/"
   // apiUrl: "http://localhost/boniantech.ECommerce.presentation/"
   // apiUrl: "https://test.boniantech.com/erp/"
 

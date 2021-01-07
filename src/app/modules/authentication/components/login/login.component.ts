@@ -22,11 +22,16 @@ export class LoginComponent {
   login(form: NgForm) {
     // let credentials = JSON.stringify(form.value);
     this.authService.login(this.loginModel).subscribe(response => {
-      let token = (<any>response).Token;
-      localStorage.setItem("jwt", token);
-      this.authService.setUserProfileInLocalStorage(response.UserModel)
-      this.invalidLogin = false;
-      this.router.navigate(["/"]);
+      if (response.Success) {
+        let token = (<any>response).Token;
+        localStorage.setItem("jwt", token);
+        this.authService.setUserProfileInLocalStorage(response.UserModel)
+        this.invalidLogin = false;
+        this.router.navigate(["/"]);
+      }
+      else {
+        this.invalidLogin = true;
+      }
     }, err => {
       this.invalidLogin = true;
     });

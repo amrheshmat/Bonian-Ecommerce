@@ -26,19 +26,19 @@ export class AuthService {
   }
 
   login(model: LoginModel): any {
-    return this.httpHelperService._http.post(`${this.httpHelperService.baseUrl}${this.controllerName}/LoginReturnToken`, model);
+    return this.httpHelperService._http.post(`${this.httpHelperService.baseUrl}api/${this.controllerName}/LoginReturnToken`, model);
   }
 
   getUserById(userId: number): any {
-    return this.httpHelperService._http.get(`${this.httpHelperService.baseUrl}${this.controllerName}/GetUserProfileByUserId?id=${userId}`);
+    return this.httpHelperService._http.get(`${this.httpHelperService.baseUrl}api/${this.controllerName}/GetUserProfileByUserId?id=${userId}`);
   }
 
   register(model: UserProfileModel) {
-    return this.httpHelperService._http.post(`${this.httpHelperService.baseUrl}${this.controllerName}/Registration`, model);
+    return this.httpHelperService._http.post(`${this.httpHelperService.baseUrl}api/${this.controllerName}/Registration`, model);
   }
 
   getRegistrationLookUp(): any {
-    return this.httpHelperService._http.get(`${this.httpHelperService.baseUrl}${this.controllerName}/GetRegistrationLookUp`);
+    return this.httpHelperService._http.get(`${this.httpHelperService.baseUrl}api/${this.controllerName}/GetRegistrationLookUp`);
   }
 
   logOut() {
