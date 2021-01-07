@@ -21,9 +21,17 @@
     </ul>
   </div>
   <footer>
+    <br>
     <h1>
       <a [routerLink]="['/products']" (click)="close()">
-        <span class="entypo-dribbble"></span> Continue Shopping </a>
+        <span class="entypo-dribbble"></span> Continue Shopping
+      </a>
+
     </h1>
+    <h3>
+      <a (click)="logOut()">
+        <span style="margin-left: 30%;cursor:pointer"></span> Logout
+      </a>
+    </h3>
   </footer>
 </div>

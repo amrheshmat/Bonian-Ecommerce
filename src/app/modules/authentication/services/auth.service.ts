@@ -41,8 +41,8 @@ export class AuthService {
     return this.httpHelperService._http.get(`${this.httpHelperService.baseUrl}api/${this.controllerName}/GetRegistrationLookUp`);
   }
 
-  logOut() {
-    localStorage.removeItem("jwt");
+  clearLocalStorage() {
+    localStorage.clear();
   }
 
   setUserProfileInLocalStorage(userProfileModel: UserProfileModel) {

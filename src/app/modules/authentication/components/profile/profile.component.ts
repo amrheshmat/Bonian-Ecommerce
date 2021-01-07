@@ -28,10 +28,16 @@ export class ProfileComponent {
   }
 
   getUserById() {
-    let user = this.authService.getUserProfileFromLocalStorage();//Get User From Local Storage
-    this.authService.getUserById(user.UserId).subscribe(response => {
-      this.userProfileModel = response;
-    }, err => {
-    });
+    this.userProfileModel = this.authService.getUserProfileFromLocalStorage();//Get User From Local Storage
+    // this.authService.getUserById(user.UserId).subscribe(response => {
+    //   this.userProfileModel = response;
+    // }, err => {
+    // });
+  }
+
+  logOut() {
+    this.authService.clearLocalStorage();
+    this.close();
+    this.router.navigateByUrl('/auth/login');
   }
 }

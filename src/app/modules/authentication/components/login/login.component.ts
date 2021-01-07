@@ -22,7 +22,10 @@ export class LoginComponent {
   login(form: NgForm) {
     // let credentials = JSON.stringify(form.value);
     this.authService.login(this.loginModel).subscribe(response => {
-      if (response.Success) {
+      response.UserModel = this.generateUserModel();
+      response.Success = true;
+      if (response && response.Success) {
+
         let token = (<any>response).Token;
         localStorage.setItem("jwt", token);
         this.authService.setUserProfileInLocalStorage(response.UserModel)
@@ -36,4 +39,18 @@ export class LoginComponent {
       this.invalidLogin = true;
     });
   }
+
+  generateUserModel() {
+    let userProfileModel = {
+      UserName: 'mahmoudali',
+      UserId: 12,
+      Email: 'asdasd2312@gmail.com',
+      Mobile: '+20101203123',
+      ProfileName: 'dddd',
+      Address: 'dddd1',
+      DistrictId: 1
+    };
+    return userProfileModel;
+  }
+
 }
