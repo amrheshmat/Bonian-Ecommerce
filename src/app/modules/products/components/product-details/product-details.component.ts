@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { toTypeScript } from '@angular/compiler';
 import { CartService } from 'src/app/modules/cart/services/cart.service';
 import { Cart } from 'src/app/modules/cart/models/cart.model';
+import { HttpHelperService } from '../../../../shared/services/http-helper.service';
 
 @Component({
   selector: 'app-product-details',
@@ -15,7 +16,11 @@ import { Cart } from 'src/app/modules/cart/models/cart.model';
 export class ProductDetailsComponent implements OnInit {
 
   product: Item = new Item();
-  constructor(private productService: ProductService, private route: ActivatedRoute, private router: Router, private cartService: CartService) { }
+  constructor(private productService: ProductService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private cartService: CartService,
+    public httpHelperService: HttpHelperService) { }
 
   ngOnInit(): void {
     let productId = parseInt(this.route.snapshot.paramMap.get("id"));

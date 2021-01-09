@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { CartService } from '../../../../modules/cart/services/cart.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
+import { HttpHelperService } from '../../../../shared/services/http-helper.service';
 
 @Component({
   selector: 'app-product-card',
@@ -21,6 +22,7 @@ export class ProductCardComponent implements OnInit {
   constructor(private mVCHTMLService: MVCHTMLService,
     private router: Router,
     private cartService: CartService,
+    public httpHelperService:HttpHelperService,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {

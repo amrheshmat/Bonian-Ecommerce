@@ -23,11 +23,11 @@ export class LoginComponent {
 
   login(form: NgForm) {
     // let credentials = JSON.stringify(form.value);
+    this.loginModel.email = '';
     this.authService.login(this.loginModel).subscribe(response => {
-      response.UserModel = this.generateUserModel();
-      response.Success = false;
+      // response.UserModel = this.generateUserModel();
+      // response.Success = false;
       if (response && response.Success) {
-
         let token = (<any>response).Token;
         localStorage.setItem("jwt", token);
         this.authService.setUserProfileInLocalStorage(response.UserModel)
