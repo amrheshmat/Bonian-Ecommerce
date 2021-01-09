@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { AlertService } from '../../../shared/services/alert.service';
 import { Item } from '../../products/models/products.model';
 import { CartSummary } from '../models/cart-summary.model';
 import { Cart } from '../models/cart.model';
@@ -12,7 +13,7 @@ export class CartService {
 
   public isCartChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private alertService: AlertService) { }
 
   getList() {
 
@@ -40,6 +41,7 @@ export class CartService {
       cart.items.push(product);
     }
     this.updateCartInLocalStorage(cart);
+    this.alertService.showSuccess("You have added item successfully", "Success")
   }
 
   public removeFromCart(product: Item) {

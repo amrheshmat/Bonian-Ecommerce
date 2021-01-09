@@ -5,7 +5,7 @@ import { SalesOrder } from '../models/sales-order.model';
 @Injectable()
 export class SalesOrderService extends BaseService {
 
-  controllerName = "ApiSalesOrder";
+  controllerName = "ApiECommerceSalesOrder";
 
   createCustomer(salesOrder: SalesOrder) {
     return this._http.post(`${this.baseUrl}Api/${this.controllerName}/AddCustomer`, salesOrder);

@@ -5,32 +5,35 @@ import { CommonModule } from '@angular/common';
 import { RelatedProductComponent } from '../modules/products/components/related-product/related-product.component';
 import { ProductCardComponent } from '../modules/products/components/product-card/product-card.component';
 import { RouterModule } from '@angular/router';
-import {  HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MvcPartialDirective } from './directives/mvc-partial.directive';
 import { MVCHTMLService } from './services/mvc-html.service';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll'; 
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TranslatorService } from './services/translator.service';
 
 import { HttpHelperService } from './services/http-helper.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ToastrModule } from 'ngx-toastr';
+import { AlertService } from './services/alert.service';
 
 @NgModule({
   declarations: [
     NavbarCartComponent,
     RelatedProductComponent,
     ProductCardComponent,
-    MvcPartialDirective, 
+    MvcPartialDirective,
   ],
 
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule,
-    HttpClientModule ,
+    HttpClientModule,
     FormsModule,
     InfiniteScrollModule,
+    ToastrModule.forRoot(), // ToastrModule added
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -38,7 +41,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
         deps: [HttpClient]
       }
     })
-    
+
 
   ],
 
@@ -54,12 +57,14 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     MvcPartialDirective,
     InfiniteScrollModule,
     TranslateModule,
+    ToastrModule
   ],
 
   providers: [
-    MVCHTMLService, 
+    MVCHTMLService,
     TranslatorService,
-    HttpHelperService
+    HttpHelperService,
+    AlertService
   ]
 
 })

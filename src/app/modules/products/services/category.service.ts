@@ -11,7 +11,7 @@ import { CategoryFilter } from '../models/category-filter.model';
 @Injectable()
 export class CategoryService extends BaseService {
 
-  controllerName: string = "apiinventory";
+  controllerName: string = "ApiECommerceInventory";
   urlGetAll = "getallcategories"
   urlGetAllItemsByCategoryId = "getallitemsbycategoryid";
 

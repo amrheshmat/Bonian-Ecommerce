@@ -6,16 +6,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from '../../services/auth.service';
 import { LoginModel } from '../../models/login.model';
+import { AlertService } from '../../../../shared/services/alert.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
-  invalidLogin: boolean = false;//For showing or error message in case invalid username or password
   clicked = false;
   loginModel: LoginModel = new LoginModel();
-  constructor(private router: Router, private authService: AuthService) {
+  constructor(private router: Router,
+    private authService: AuthService,
+    private alertService: AlertService) {
 
   }
 
@@ -23,20 +25,20 @@ export class LoginComponent {
     // let credentials = JSON.stringify(form.value);
     this.authService.login(this.loginModel).subscribe(response => {
       response.UserModel = this.generateUserModel();
-      response.Success = true;
+      response.Success = false;
       if (response && response.Success) {
 
         let token = (<any>response).Token;
         localStorage.setItem("jwt", token);
         this.authService.setUserProfileInLocalStorage(response.UserModel)
-        this.invalidLogin = false;
         this.router.navigate(["/"]);
+        this.alertService.showSuccess("Login Successfully", "Success")
       }
       else {
-        this.invalidLogin = true;
+        this.alertService.showError("Invalid Email Or Password !", "Error")
       }
     }, err => {
-      this.invalidLogin = true;
+      this.alertService.showError("Invalid Email Or Password !", "Error")
     });
   }
 

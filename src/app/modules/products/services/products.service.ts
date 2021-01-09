@@ -3,7 +3,7 @@ import { BaseService } from '../../../shared/services/base.service';
 
 @Injectable()
 export class ProductService extends BaseService {
-  controllerName = "apiinventory";
+  controllerName = "ApiECommerceInventory";
   urlGetById = "getitembyid";
   urlGetAllItemTypes = "GetAllItemTypes";
   urlGetitemtypebyid = "getitemtypebyid";
