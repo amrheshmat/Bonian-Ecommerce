@@ -1,5 +1,5 @@
 export class UserProfileModel {
-    UserName: string;
+    Username: string;
     Password: string;
     UserId: number;
     Email: string;

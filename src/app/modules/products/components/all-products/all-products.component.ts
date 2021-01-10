@@ -17,30 +17,43 @@ export class AllProductsComponent implements OnInit {
   totalCount: number = 0;
   constructor(private _categoryService: CategoryService, private _itemService: ProductService) { }
   category: string;
-   categoryList:Category[];
-   selectedCategory:any;
-  
-  ngOnInit(): void { 
-     this.getCategories(); 
+  categoryList: Category[];
+  selectedCategory: any;
+
+  ngOnInit(): void {
+    this.getCategories();
+    this.getAllItems();
   }
 
-  onTabChanged(event) { 
-    this.category = event.tab.textLabel; 
-    this.selectedCategory = this.categoryList[event.index - 1].Id;
-    this.onCategorySelected(this.selectedCategory);
+  onTabChanged(event) {
+    this.category = event.tab.textLabel;
+    if (this.category == 'All') {
+      this.getAllItems();
+    }
+    else {
+      this.selectedCategory = this.categoryList[event.index - 1].Id;
+      this.onCategorySelected(this.selectedCategory);
+    }
+
   }
 
-  
-  getCategories():void{
-    this._categoryService.getAll().subscribe(data=>{
-      console.log(data)
+
+  getCategories(): void {
+    this._categoryService.getAll().subscribe(data => {
       this.categoryList = data.InventoryCategoryList;
-      this.category = this.categoryList[0].CategoryName;
-      this.categoryFilter.CategorId = this.categoryList[0].Id;
-    }) 
+    })
   }
-  getItems(): void {
+  getAllItemsByCategoryId(): void {
     this._categoryService.getAllItemsByCategoryId(this.categoryFilter).subscribe(res => {
+      this.itemsList = res.ItemList;
+      this.totalCount = res.TotalCount;
+    });
+  }
+
+  getAllItems(): void {
+    this.categoryFilter.Start = 0;
+    this.categoryFilter.End = this.categoryFilter.PageSize;
+    this._categoryService.getAllItems(this.categoryFilter).subscribe(res => {
       this.itemsList = res.ItemList;
       this.totalCount = res.TotalCount;
     });
@@ -50,7 +63,7 @@ export class AllProductsComponent implements OnInit {
     this.categoryFilter.CategorId = categoryId;
     this.categoryFilter.Start = 0;
     this.categoryFilter.End = this.categoryFilter.PageSize;
-    this.getItems();
+    this.getAllItemsByCategoryId();
 
   }
 
@@ -58,7 +71,12 @@ export class AllProductsComponent implements OnInit {
     if (this.categoryFilter.End < this.totalCount) {
       this.categoryFilter.Start = 1;
       this.categoryFilter.End = this.categoryFilter.End + this.categoryFilter.PageSize;
-      this.getItems();
+      if (this.categoryFilter.CategorId) {
+        this.getAllItemsByCategoryId();
+      }
+      else {
+        this.getAllItems();
+      }
     }
 
   }
