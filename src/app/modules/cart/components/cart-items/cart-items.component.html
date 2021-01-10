@@ -1,7 +1,7 @@
 <div class="cartItems"> 
   <div *ngFor="let item of items" class="cartItem d-flex">
     <div class="cartItemImage d-inline-block">
-      <img src="./assets/images/default-item.png" class="d-none d-sm-block">
+      <img src="{{httpHelperService.imageUrl}}?referenceId={{item.Id}}&referenceTypeId=22" class="d-none d-sm-block">
     </div>
     <div class="cartItemDescription d-flex w-100">
       <div class="productData">

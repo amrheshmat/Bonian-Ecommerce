@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpHelperService } from 'src/app/shared/services/http-helper.service';
 import { Item } from '../../../../modules/products/models/products.model';
 import { CartService } from '../../services/cart.service';
 
@@ -10,8 +11,9 @@ import { CartService } from '../../services/cart.service';
 })
 export class NavbarCartComponent implements OnInit {
 
+  
   items: Array<Item>;
-  constructor(private cartService: CartService, private router: Router) { }
+  constructor(private cartService: CartService, private router: Router, public httpHelperService:HttpHelperService ) { }
 
   ngOnInit(): void {
     this.updateNavbarCart();

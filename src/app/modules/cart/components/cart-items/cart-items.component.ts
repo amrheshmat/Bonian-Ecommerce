@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from 'src/app/modules/products/models/products.model';
+import { HttpHelperService } from 'src/app/shared/services/http-helper.service';
 import { CartService } from '../../services/cart.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { CartService } from '../../services/cart.service';
 export class CartItemsComponent implements OnInit {
 
   items: Array<Item>;
-  constructor(private cartSevice: CartService) { }
+  constructor(private cartSevice: CartService, public httpHelperService:HttpHelperService) { }
 
   ngOnInit(): void {
     this.items = this.cartSevice.getCartFromLocalStorage().items;

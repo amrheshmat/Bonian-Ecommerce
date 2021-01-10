@@ -1,9 +1,7 @@
 <div mat-dialog-content>
-  <h1 class="title-pen"> User Profile <span></span></h1>
+  <h1 class="text-center"> User Profile </h1>
   <div class="user-profile">
-    <img class="avatar"
-      src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTF_erFD1SeUnxEpvFjzBCCDxLvf-wlh9ZuPMqi02qGnyyBtPWdE-3KoH3s"
-      alt="Ash" />
+    <img class="avatar" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTF_erFD1SeUnxEpvFjzBCCDxLvf-wlh9ZuPMqi02qGnyyBtPWdE-3KoH3s" alt="Ash" />
     <div class="username">{{userProfileModel.UserName}}</div>
     <div class="bio">
       {{userProfileModel.Address}}
@@ -20,18 +18,12 @@
       </li>
     </ul>
   </div>
-  <footer>
-    <br>
-    <h1>
-      <a [routerLink]="['/products']" (click)="close()">
-        <span class="entypo-dribbble"></span> Continue Shopping
-      </a>
-
-    </h1>
-    <h3>
-      <a (click)="logOut()">
-        <span style="margin-left: 30%;cursor:pointer"></span> Logout
-      </a>
-    </h3>
+  <footer style="padding:15px 0"> 
+    <button mat-raised-button color="primary" style="margin:10px auto;" class="d-block" [routerLink]="['/products']" (click)="close()"> 
+        Continue Shopping 
+    </button>
+    <button  mat-raised-button style="margin:10px auto;" class="d-block" (click)="logOut()"> 
+        Logout 
+    </button>
   </footer>
 </div>

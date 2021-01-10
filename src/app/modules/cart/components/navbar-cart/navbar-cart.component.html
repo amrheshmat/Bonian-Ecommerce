@@ -1,7 +1,7 @@
 <div class="sliderBody" id="sliderBody">
 
   <div class="item" *ngFor="let item of items; let i = index">
-    <img src="./assets/images/default-item.png" />
+    <img src="{{httpHelperService.imageUrl}}?referenceId={{item.Id}}&referenceTypeId=22"  matTooltip="{{item.ItemName}}"/>
     <span class="itemsCount">
       {{item.Quantity}}
     </span>
