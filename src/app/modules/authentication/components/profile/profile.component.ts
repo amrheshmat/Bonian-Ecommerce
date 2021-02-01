@@ -29,10 +29,6 @@ export class ProfileComponent {
 
   getUserById() {
     this.userProfileModel = this.authService.getUserProfileFromLocalStorage();//Get User From Local Storage
-    // this.authService.getUserById(user.UserId).subscribe(response => {
-    //   this.userProfileModel = response;
-    // }, err => {
-    // });
   }
 
   logOut() {

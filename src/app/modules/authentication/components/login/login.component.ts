@@ -28,8 +28,8 @@ export class LoginComponent {
       // response.UserModel = this.generateUserModel();
       // response.Success = false;
       if (response && response.Success) {
-        let token = (<any>response).Token;
-        localStorage.setItem("jwt", token);
+        let token = (<any>response).Data.Token;
+        localStorage.setItem("jwt", token); 
         this.authService.setUserProfileInLocalStorage(response.UserModel)
         this.router.navigate(["/"]);
         this.alertService.showSuccess("Login Successfully", "Success")
