@@ -14,5 +14,8 @@ export class SalesOrderService extends BaseService {
   createSalesOrder(salesOrder: SalesOrder) {
     return this._http.post(`${this.baseUrl}Api/${this.controllerName}/AddSalesOrder`, salesOrder);
   }
+  getListByProfileId(userId: number) {
+    return this._http.get(`${this.baseUrl}api/${this.controllerName}/GetListByProfileId?profileId=${userId}`);
 
+  }
 }

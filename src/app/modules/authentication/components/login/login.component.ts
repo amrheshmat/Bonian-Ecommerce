@@ -25,9 +25,9 @@ export class LoginComponent {
     // let credentials = JSON.stringify(form.value);
     this.loginModel.email = '';
     this.authService.login(this.loginModel).subscribe(response => {
-      // response.UserModel = this.generateUserModel();
+     console.log(response.UserModel);
       // response.Success = false;
-      if (response && response.Success) {
+    if (response && response.Success) {
         let token = (<any>response).Data.Token;
         localStorage.setItem("jwt", token); 
         this.authService.setUserProfileInLocalStorage(response.UserModel)
@@ -36,9 +36,11 @@ export class LoginComponent {
       }
       else {
         this.alertService.showError("Invalid Email Or Password !", "Error")
+        //this.alertService.showInfo(response.UserModel,"");
       }
     }, err => {
-      this.alertService.showError("Invalid Email Or Password !", "Error")
+     // this.alertService.showError("Invalid Email Or Password !", "Error")
+      this.alertService.showError(err.message, "Error")
     });
   }
 

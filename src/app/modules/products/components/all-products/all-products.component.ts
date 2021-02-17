@@ -11,7 +11,7 @@ import { CategoryFilter } from '../../models/category-filter.model';
   styleUrls: ['./all-products.component.scss']
 })
 export class AllProductsComponent implements OnInit {
-
+  
   itemsList: Item[];
   categoryFilter: CategoryFilter = new CategoryFilter();
   totalCount: number = 0;
@@ -81,3 +81,4 @@ export class AllProductsComponent implements OnInit {
 
   }
 }
+

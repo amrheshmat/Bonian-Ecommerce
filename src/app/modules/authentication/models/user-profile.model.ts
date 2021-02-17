@@ -7,4 +7,6 @@ export class UserProfileModel {
     ProfileName: string;
     Address: string;
     DistrictId: number;
+    UserID:number;
+    ProfileID:number;
 }

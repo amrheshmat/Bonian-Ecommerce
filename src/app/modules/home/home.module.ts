@@ -13,6 +13,8 @@ import { HeaderService } from './services/header.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { HomeComponent } from './components/home/home.component';
 import { HomeRoutingModule } from './home-routing.module';
+import { SalesOrder } from '../cart/models/sales-order.model';
+import { SalesOrderService } from '../cart/services/sales-order.service';
 
 @NgModule({
   imports: [
@@ -34,6 +36,7 @@ import { HomeRoutingModule } from './home-routing.module';
     AboutUsService,
     TestimonialService,
     SpecialOffersService,
+    SalesOrderService,
   ]
 })
 

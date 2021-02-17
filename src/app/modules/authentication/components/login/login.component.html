@@ -1,5 +1,5 @@
 <nav class="loginNav">
-  <img src="./assets/images/output-onlinepngtools (1).png" />
+  <img src="../assets/images/output-onlinepngtools (1).png" />
 </nav>
 <main id="loginForm">
   <form #loginForm="ngForm">
@@ -15,7 +15,9 @@
         [ngModelOptions]="{standalone: true}" id="password" placeholder="Password" required>
       <i class="fas fa-eye-slash"></i>
     </div>
-  
+    <a [routerLink]="['/auth/register']" >
+      register
+    </a>
     <a href="#" class="forgotPassword">
       Forgot Your Password
     </a>

@@ -24,7 +24,7 @@ export class CategoryService extends BaseService {
   }
 
   getAllItems(categoryFilter: CategoryFilter): any {
-    return this._http.get(`${this.baseUrl}api/${this.controllerName}/${this.urlGetAllItems}?start=${categoryFilter.Start}&end=${categoryFilter.End}&searchvalue=&orderby=&dir=`);
+    return this._http.get(`${this.baseUrl}api/${this.controllerName}/${this.urlGetAllItems}?start=${categoryFilter.Start}&end=${categoryFilter.End}&searchvalue=${categoryFilter.SearchValue}&orderby=&dir=`);
   }
 
 }

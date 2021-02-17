@@ -6,7 +6,7 @@
         <owl-carousel [options]="sliderOptions"  [carouselClasses]="['owl-theme', 'sliding']">
             <div class="item" *ngFor="let image of siderImages;let i = index">
                 <div class="slick-item">
-                    <img src="./assets/{{image.ImagePath}}"/>
+                    <img style="background-size: contain;" src="./assets/{{image.ImagePath}}"/>
                 </div>
             </div>
         </owl-carousel> 

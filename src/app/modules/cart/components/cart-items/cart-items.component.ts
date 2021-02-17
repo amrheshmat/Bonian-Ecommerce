@@ -15,6 +15,7 @@ export class CartItemsComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = this.cartSevice.getCartFromLocalStorage().items;
+    console.log(this.items);
     this.cartSevice.isCartChanged.subscribe(res => {
       if (res) {
         this.items = this.cartSevice.getCartFromLocalStorage().items;
@@ -25,5 +26,16 @@ export class CartItemsComponent implements OnInit {
   public removeItem(item: Item) {
     this.cartSevice.removeFromCart(item);
     this.items = this.cartSevice.getCartFromLocalStorage().items;
+  }
+  public increaseQuantity(item: Item) {
+    item.Quantity++;
+    this.cartSevice.updateItemInCart(item);
+  }
+
+  public decreaseQuantity(item: Item) {
+    if (item.Quantity > 1) {
+      item.Quantity--;
+      this.cartSevice.updateItemInCart(item);
+    }
   }
 }

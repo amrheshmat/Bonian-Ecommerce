@@ -229,11 +229,11 @@
       <div class="col-md-8">
         <div class="checkOutFrom">
           <h3>Personal Information</h3>
-          <form>
+          <form >
             <div class="form-row">
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-6" >
                 <label for="exampleInputName1">Full Name</label>
-                <input type="text" [(ngModel)]="userProfileModel.ProfileName" class="form-control"
+                <input type="text" [(ngModel)]="userProfileModel.ProfileName" class="form-control" 
                   #ProfileName="ngModel" id="ProfileName" name="ProfileName" required>
               </div>
               <div class="form-group col-sm-6">
@@ -306,7 +306,7 @@
                   </div>
                   <select class="custom-select" id="inputGroupSelectArea" [(ngModel)]="userProfileModel.DistrictId">
                     <option selected>Choose...</option>
-                    <option *ngFor="let item of districtList" value="item.Id">
+                    <option *ngFor="let item of districtList" value="item.DistrictId">
                       {{item.DistrictName}}
                     </option>
                   </select>
@@ -326,12 +326,15 @@
             <div class="col-auto my-1">
               <div class="custom-control custom-checkbox mr-sm-2">
                 <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
-                <label class="custom-control-label" for="customControlAutosizing">I have reed and agree
+                <label class="custom-control-label" for="customControlAutosizing">I have read and agree
                   to the <a href="#">terms and conditions</a></label>
               </div>
             </div>
             <button type="submit" (click)="checkOut()" class="checkOut d-block btn btn-danger">
               CHECK OUT <i class="fas fa-door-open"></i>
+            </button>
+            <button type="submit"  (click)="purchaseLater()" class="checkOut d-block btn btn-success" style="margin-left: 10%;">
+              Purchase Later <i class="fas fa-archive"></i>
             </button>
           </form>
         </div>

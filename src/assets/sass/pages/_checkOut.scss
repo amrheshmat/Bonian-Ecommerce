@@ -53,10 +53,11 @@
     height:2rem
 }
 #checkOut button[type*='submit']{
-    width:50%;
-    padding:10px 0;
-     @extend .font-stack-subTitles;
-     font-size:1.7em
+    width: 25%;
+    padding: 10px 0;
+    font-size: 1.7em;
+    display: inline;
+    display: inline !important;
 }
 @include breakpoint(extra-small){
     #checkOut button[type*='submit']{

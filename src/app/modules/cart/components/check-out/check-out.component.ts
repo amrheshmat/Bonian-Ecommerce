@@ -6,6 +6,7 @@ import { SalesOrderDetails } from '../../models/sales-order-details.model';
 import { SalesOrder } from '../../models/sales-order.model';
 import { CartService } from '../../services/cart.service';
 import { SalesOrderService } from '../../services/sales-order.service';
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-check-out',
@@ -14,24 +15,27 @@ import { SalesOrderService } from '../../services/sales-order.service';
 })
 export class CheckOutComponent implements OnInit {
 
-  userProfileModel: UserProfileModel = new UserProfileModel();
+  public userProfileModel: UserProfileModel;
+  //userProfileModel: UserProfileModel = new UserProfileModel();
   countryList: any = [];
   areaList: any = [];
   cityList: any = [];
   districtList: any = [];
-
   constructor(private authService: AuthService,
-    private cartService: CartService,
+    private cartService: CartService,private router: Router,
     private salesOrderService: SalesOrderService) { }
 
   ngOnInit(): void {
+    this.getUserName();
     this.getRegistrationLookUp();//Country => Area => City => District
+   console.log(this.userProfileModel);
   }
 
   getRegistrationLookUp() {
     this.authService.getRegistrationLookUp().subscribe(res => {
       this.prepareLoockups(res);
     });
+    console.log(this.authService.getRegistrationLookUp());
   }
 
   prepareLoockups(res) {
@@ -42,10 +46,27 @@ export class CheckOutComponent implements OnInit {
   }
 
   public checkOut() {
-    let salesOrder = this.prepareSalesOrderEntity();
-    this.createSalesOrder(salesOrder);
+      let salesOrder = this.prepareSalesOrderEntity();
+      var userProfile = this.authService.getUserProfileFromLocalStorage();
+      salesOrder.ProfileId = userProfile.ProfileID;
+
+      this.createSalesOrder(salesOrder);
+      this.router.navigate(['/payments'])
+   
   }
 
+  public purchaseLater() {
+    if(this.userProfileModel.Username){
+      let salesOrder = this.prepareSalesOrderEntity();
+      this.createSalesOrder(salesOrder);
+      this.router.navigate(['/orders'])
+    }else{
+      let salesOrder = this.prepareSalesOrderEntity();
+      this.createSalesOrder(salesOrder);
+      this.router.navigate(['/auth/login'])
+    }
+    
+  }
   private prepareSalesOrderEntity(): SalesOrder {//Prepare this entity to pass it to Back end
     var salesOrder: SalesOrder = new SalesOrder();
     salesOrder.salesOrderDetailsList = this.getCartItems();
@@ -58,7 +79,7 @@ export class CheckOutComponent implements OnInit {
     })
   }
 
-  private createSalesOrder(salesOrder: SalesOrder) {
+  private createSalesOrder(salesOrder: SalesOrder) { 
     this.salesOrderService.createSalesOrder(salesOrder).subscribe(res => {
       console.log(res);
     })
@@ -77,6 +98,9 @@ export class CheckOutComponent implements OnInit {
       }
     }
     return salesOrderDetailsList;
+  }
+  private getUserName() {
+    this.userProfileModel = this.authService.getUserProfileFromLocalStorage();
   }
 
 }
