@@ -9,6 +9,10 @@ import { SmallFilterAsideComponent } from './components/small-filter-aside/small
 import { LargeFilterAsideComponent } from './components/large-filter-aside/large-filter-aside.component';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { ProductModalComponent } from './components/product-modal/product-modal.component';
+import { CartInformationComponent } from './components/cart-information/cart-information.component';
+import { ViewCartComponent } from './components/view-cart/view-cart.component';
+import { CartItemsComponent } from './components/cart-items/cart-items.component';
+import { OrderInformationComponent } from './components/order-information/order-information.component';
 
 @NgModule({
   imports: [
@@ -20,7 +24,11 @@ import { ProductModalComponent } from './components/product-modal/product-modal.
     ProductDetailsComponent,
     SmallFilterAsideComponent,
     LargeFilterAsideComponent,
-    ProductModalComponent
+    ProductModalComponent,
+    CartInformationComponent,
+    ViewCartComponent,
+    CartItemsComponent,
+    OrderInformationComponent
   ],
   providers: [
     CategoryService,

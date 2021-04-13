@@ -1,0 +1,88 @@
+
+
+<section  id="personalInfo">
+    <div class="row">
+    <div class="col-lg-4 col-md-4" style="margin-bottom: 180px; top: 167px;">
+       <div *ngFor="let address of delievryInfo">
+            <div *ngIf="address.IsDefault ==true" class="col-lg-6 col-md-6 offset-md-2 alert alert-info" role="alert">
+                <div class="row">
+                    <span class="col-lg-9">{{address.Address}}</span> 
+                    <span class="col-lg-1" ><i class="fas fa-thumbtack"></i></span>
+                    <span class="col-lg-1" style="cursor: pointer;" (click)="deleteAddress(address.Id)"><i class="fas fa-trash-alt" ></i></span>
+                </div>
+            </div>
+           
+        </div>
+        <div *ngFor="let address of delievryInfo">
+            <div *ngIf="address.IsDefault ==false" class="col-lg-6 col-md-6 offset-md-2 alert alert-primary" role="alert">
+                <div class="row">
+                    <span class="col-lg-10">{{address.Address}}</span> 
+                    <span class="col-lg-2" style="cursor: pointer;" (click)="deleteAddress(address.Id)"><i class="fas fa-trash-alt" ></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-4" style="margin-bottom: 180px; top: 167px;">
+        <h1 style="margin-bottom: 10px;font-weight: bold; font-family: 'Font Awesome 5 Brands'">Contact Information</h1>
+        <div style=" padding: 6px 16px 30px 14px;background-color: #f7f7f7;border-radius: 3px;">
+                <div  class="col-lg-10" style="margin-bottom: 10px;">
+                    <form #personalInfo="ngForm" (ngSubmit)="saveEditContactInfo()">
+                        <label>Country : </label>
+                        <select  class="custom-select" id="inputGroupSelectCountry">
+                            <option selected>Choose ...</option>
+                            <option *ngFor="let item of countryList" value="item.Id">
+                              {{item.CountryName}}
+                            </option>
+                          </select>
+                          <label>Area: </label>
+                          <select class="custom-select" id="inputGroupSelectArea">
+                            <option selected>Choose...</option>
+                            <option *ngFor="let item of areaList" value="item.Id">
+                              {{item.AreaName}}
+                            </option>
+                          </select>
+                          <label>City: </label>
+                          <select class="custom-select" id="inputGroupSelectArea">
+                            <option selected>Choose...</option>
+                            <option *ngFor="let item of cityList" value="item.Id">
+                              {{item.CityName}}
+                            </option>
+                          </select>
+                          <label>District : </label>
+                          <select class="custom-select" id="District" [(ngModel)]="contactInformation.DistrictId" [ngModelOptions]="{standalone: true}" required>
+                            <option selected>Choose...</option>
+                            <option *ngFor="let item of districtList" value="{{item.Id}}">
+                              {{item.DistrictName}}
+                            </option>
+                          </select>
+                        <label>Address : </label>
+                        <input class="form-control" type="text" [(ngModel)]="contactInformation.Address" [ngModelOptions]="{standalone: true}" id="Address">
+                        <br>
+                        <label> Phone : </label>
+                        <input class="form-control" type="text"  [(ngModel)]="contactInformation.Phone" [ngModelOptions]="{standalone: true}" id="Mobile">
+                
+                        <button type="submit"   class="btn btn-primary"  value="save" style="margin-top: 15px;">Save</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3" style="margin-bottom: 180px; top: 167px;">
+        <h1 style="margin-bottom: 10px;font-weight: bold; font-family:'Font Awesome 5 Brands'">Default Address </h1>
+        <div style=" padding: 6px 16px 30px 14px;background-color: #f7f7f7;border-radius: 3px;">
+            <div  class="col-lg-10 editContact" style="margin-bottom: 10px;">
+                <form #personalInfo="ngForm"  (ngSubmit)="updateDefaultAddress()">
+                    <label for="exampleInputNumber1">Address</label><br>
+                    <mat-form-field  style="width: 102%;" [(ngModel)]="contactInformation.IsDefault" appearance="fill">
+                    <mat-select class="form-control" [(value)]="selected" id="Address" >
+                        <mat-option  *ngFor="let address of delievryInfo"  [(value)]="address.Id">{{address.Address}}</mat-option>
+                    </mat-select>
+                    </mat-form-field>
+                    <br>
+                    <button type="submit"   class="btn btn-primary"  value="save" style="margin-top: 15px;">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+

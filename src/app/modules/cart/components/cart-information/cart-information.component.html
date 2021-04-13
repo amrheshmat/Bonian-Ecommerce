@@ -1,0 +1,42 @@
+<div class="cartOrderReview">
+    
+    <h3 class="w-100">Cart Information <i class="fas fa-leaf fa-fw secondaryColor"></i> </h3>
+  
+    <div class="orederReview">
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Total Price:</span>
+            <span class="total">{{cartSummary.totalPrice}} EGP</span>
+        </p>
+        <!--<p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Branch:</span>
+            <span class="total">{{cartSummary.branchName}}</span>
+        </p>-->
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Tax:</span>
+            <span class="total">{{tax}} %</span>
+        </p>
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Discount:</span>
+            <span class="total">{{discount}} %</span>
+        </p>
+      <!--  <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Coupon Code:</span>
+            <input  [(ngModel)]="discountCoupon.CouponCode" [ngModelOptions]="{standalone: true}" id="CouponCode" type="password" class="form-control" style=" width: 20%; padding: 2px 1px; height: 30px; ">
+            <button (click)="checkCouponCode()"  style=" border: none;color: #fff;font-size: 23px;margin-right: 300px; background-color: #39a6d0; border-radius: 5px;  width: 35px;height: 38px;cursor: pointer;margin-top: -3px;" data-toggle="tooltip" data-placement="top" title="Confirm Coupon">
+                 <i class="fas fa-check-circle" ></i>
+            </button>
+        </p>-->
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Total Net Price:</span>
+            <span class="total">{{cartSummary.totalPrice + (cartSummary.totalPrice * (tax/ 100)) - (cartSummary.totalPrice * (discount / 100))}}</span>
+      </p>
+        <div class="cartCallToActions text-center">
+            <a (click) ="goToCheckOut()" class="checkOut d-block btn btn-danger">
+                    CHECK OUT <i class="fas fa-door-open"></i>
+            </a>
+            <!--<a [routerLink]="['/auth']" class="signIn d-block">
+                Sign In
+            </a>-->
+        </div>
+    </div>    
+</div>

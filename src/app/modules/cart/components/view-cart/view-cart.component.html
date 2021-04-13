@@ -1,15 +1,22 @@
 <section id="cartOverView" style="padding-top:200px;">
     <div class="container-fluid">
         <section class="page-title">
-            <h2>View Cart</h2>
-            <p>You can find all items you select here.</p>
+            <h2 style="font-family:fantasy">View Cart</h2>
         </section>
         <div class="row">
             <div class="col-md-8 col-lg-8">
+                <div class="row">
+                    <span class="col-lg-2" style="font-size: 18px;font-weight: bold;font-family: sans-serif;color: #39a6d0;">Image</span>
+                    <span class="col-lg-2" style="font-size: 18px;font-weight: bold;font-family: sans-serif;color: #39a6d0;">Name</span>
+                    <span class="col-lg-2" style="font-size: 18px;font-weight: bold;font-family: sans-serif;color: #39a6d0;">Price</span>
+                    <span class="col-lg-2" style="font-size: 18px;font-weight: bold;font-family: sans-serif;color: #39a6d0;">Quantity</span>
+                    <span class="col-lg-2" style="font-size: 18px;font-weight: bold;font-family: sans-serif;color: #39a6d0;">Total</span>
+                    <span class="col-lg-2" style="font-size: 18px;font-weight: bold;font-family: sans-serif;color: #39a6d0;">...</span>
+                </div>
                 <app-cart-items></app-cart-items>
             </div>
             <div class=" col-md-4 col-lg-4">
-                <app-order-information></app-order-information>
+                <app-cart-information></app-cart-information>
             </div>
         </div>
         <hr />

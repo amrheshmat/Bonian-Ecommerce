@@ -1,3 +1,4 @@
+
 import { Customer } from './customer.model';
 import { SalesOrderDetails } from './sales-order-details.model';
 
@@ -27,6 +28,7 @@ export class SalesOrder {
     CasherId: number;
 
     //#region model
-    salesOrderDetailsList: Array<SalesOrderDetails> = [];
+    salesOrderDetails: Array<SalesOrderDetails> = [];
+    
     //#endregion
 }

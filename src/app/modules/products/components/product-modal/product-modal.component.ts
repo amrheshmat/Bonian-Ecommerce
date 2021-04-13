@@ -7,6 +7,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ItemTypeAttribute } from '../../models/ItemTypeAttribute.model';
 import { ItemTypeAttributeItem } from '../../models/ItemTypeAttributeItem.model';
 import { DocumentAttributeType } from '../../../../shared/enums/document-attribute-type';
+import { randomBytes } from 'crypto';
+import { SalesOrderService } from 'src/app/modules/cart/services/sales-order.service';
+import { OrdersComponent } from 'src/app/modules/order/components/orders.component';
+import { UserProfileModel } from 'src/app/modules/authentication/models/user-profile.model';
+import { AuthService } from 'src/app/modules/authentication/services/auth.service';
+import { SalesOrder } from 'src/app/modules/cart/models/sales-order.model';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-product-modal',
@@ -15,14 +22,22 @@ import { DocumentAttributeType } from '../../../../shared/enums/document-attribu
 })
 
 export class ProductModalComponent implements OnInit {
-
+  public orderDetailsAttributeValue ;
   product: Item;
+  public Message;
+  public orderDetails ;
+  public orderId;
+  public price;
+  public orderDetailsId ;
+  public orderStatus;
+  salesOrder : any = [];
+  public loading = false;
+  getMyOrders:any;
+  userProfileModel: UserProfileModel;
   attributes: any = {};
   documentAttributeType = DocumentAttributeType;
-
-  constructor(private productService: ProductService,
+  constructor(private _location: Location,private router: Router,private salesOrderService:SalesOrderService,private productService: ProductService,private authService:AuthService,
     private route: ActivatedRoute,
-    private router: Router,
     private cartService: CartService,
     public dialogRef: MatDialogRef<ProductModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
@@ -33,22 +48,35 @@ export class ProductModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getProductById(this.data.productId);
+    this.userProfileModel = this.authService.getUserProfileFromLocalStorage();
+    if(this.data){
+      this.Message = this.data.message;
+      this.orderDetailsId = this.data.orderDetailsId;
+      this.orderId = this.data.orderId;
+      this.price = this.data.price;
+      if(this.data.productId){
+        this.getProductById(this.data.productId);
+      }
+      
+    }
+
+    this.route.paramMap.subscribe(params => { 
+      this.getOrdersByProfileId(null,null);
+   });
+      
   }
 
   private getProductById(id: number) {
     this.productService.getById(id).subscribe(res => {
       this.product = res;
-      // this.product.ItemAttributeList = this.moqDynamicAttributes();
       this.getItemTypeById(this.product.ItemTypeId);
     });
   }
 
   private getItemTypeById(itemTypeId: number) {
-    itemTypeId = 1014;//To-Do >>>for testing ...
+    itemTypeId = this.product.ItemTypeId;
     this.productService.getItemTypeById(itemTypeId).subscribe(res => {
       this.product.ItemAttributeList = res.ItemType.ItemTypeAttributeList;
-      // this.product.ItemAttributeList = this.moqDynamicAttributes();
     });
   }
 
@@ -57,87 +85,75 @@ export class ProductModalComponent implements OnInit {
   }
 
   public addToCart(product: Item) {
-    console.log(this.attributes)
+    this.product.ItemAttributeValue = this.attributes;
+    this.product.generatedId = Math.ceil( Math.random() * 100);
     this.cartService.addToCart(product);
     this.close();
   }
+ getOrdersByProfileId(salesStatus,tableNumber){
+    this.loading = true;
+    if(this.userProfileModel.ProfileTypeId == 10){
+      this.salesOrderService.getOrderByProfileId(salesStatus,tableNumber,0,10).subscribe(response => {
+        this.getMyOrders = response;
+        this.loading = false;
+        });
+    }else{
+      this.salesOrderService.getAllOrders(salesStatus,tableNumber,0,10).subscribe(res=>{
+        this.getMyOrders = res;
+        this.loading = false;
+      });
+    }
+  
+ }
+  CancelOrder(orderId,orderStatus,salesStatus,tableNumber){
+    this.salesOrderService.getOrderById(salesStatus,tableNumber,orderId).subscribe(res=>{
+      let keys = Object.keys(res);
+        let values = Object.values(res);
+         let len = keys.length;
+           for (let i = 0; i < len; i++){
+             if(values[i].SaleStatus == 6){ 
+              this.salesOrderService.updateOrderStatus(orderId,orderStatus).subscribe(response => {
+                this.getOrdersByProfileId(null,null);
+              });
+             }
 
-  // private moqDynamicAttributes() {
-  //   let itemAttributeList: ItemTypeAttribute[] = [];
-  //   let normaltext = {
-  //     Id: 1,
-  //     ItemTypeAttributeName: "Notes",
-  //     ItemTypeAttributeType: 1,
-  //     ItemTypeId: 1,
-  //     IsActive: true,
-  //     IsRequired: true,
-  //     IsSearchable: false,
-  //     ItemTypeAttributeItemList: null
-  //   };
-  //   itemAttributeList.push(normaltext);
-
-  //   let dropDownList = {
-  //     Id: 1,
-  //     ItemTypeAttributeName: "Size",
-  //     ItemTypeAttributeType: 5,
-  //     ItemTypeId: 1,
-  //     IsActive: true,
-  //     IsRequired: true,
-  //     IsSearchable: false,
-  //     ItemTypeAttributeItemList: this.moqDropDownList()
-  //   };
-  //   itemAttributeList.push(dropDownList);
-  //   return itemAttributeList;
-  // }
-
-  // private moqDropDownList() {
-  //   let itemTypeAttributeItems: ItemTypeAttributeItem[] = [];
-  //   var item1 = {
-  //     Id: 1,
-  //     ItemTypeAttributeItemName: "S",
-  //     ItemTypeAttributeId: 1,
-  //     ToolTip: "S",
-  //     IsActive: true
-  //   };
-  //   itemTypeAttributeItems.push(item1);
-
-
-  //   var item2 = {
-  //     Id: 2,
-  //     ItemTypeAttributeItemName: "M",
-  //     ItemTypeAttributeId: 1,
-  //     ToolTip: "M",
-  //     IsActive: true
-  //   };
-  //   itemTypeAttributeItems.push(item2);
-
-  //   var item3 = {
-  //     Id: 3,
-  //     ItemTypeAttributeItemName: "L",
-  //     ItemTypeAttributeId: 1,
-  //     ToolTip: "L",
-  //     IsActive: true
-  //   };
-  //   itemTypeAttributeItems.push(item3);
-
-  //   var item4 = {
-  //     Id: 4,
-  //     ItemTypeAttributeItemName: "XL",
-  //     ItemTypeAttributeId: 1,
-  //     ToolTip: "XL",
-  //     IsActive: true
-  //   };
-  //   itemTypeAttributeItems.push(item4);
-
-  //   var item5 = {
-  //     Id: 5,
-  //     ItemTypeAttributeItemName: "XXL",
-  //     ItemTypeAttributeId: 1,
-  //     ToolTip: "XXL",
-  //     IsActive: true
-  //   };
-  //   itemTypeAttributeItems.push(item5);
-
-  //   return itemTypeAttributeItems;
-  // }
+          }
+    });
+    
+   }
+  
+   DeleteOrderDetails(){
+    this.salesOrderService.getOrderDetails(this.orderId).subscribe(response => {
+      this.orderDetails = response;
+      this.salesOrderService.deleteOderDetails(this.orderId,this.orderDetailsId,this.price).subscribe(response => {
+        if(this.orderDetails.length <= 1){
+          this.salesOrderService.deleteOderByOrderId(this.orderId).subscribe(response => {});
+          this._location.back();
+        }else{
+          this.router.navigate(['/order/order-details/'+this.orderId + '/'+this.data.orderStatus+'/'+this.price]);
+          this.ngOnInit();
+        }
+      });
+     
+    });
+   }
+   
+   confirmAction(){
+   
+    if(this.data){
+      if(this.data.actionMethod == "Cancel"){
+        this.CancelOrder(this.data.orderId,this.data.orderStatus,null,null);
+        this.close();
+      }
+      if(this.data.actionMethod == "Delete"){
+        this.DeleteOrderDetails();
+        this.close();
+      }
+    }
+   }
+   cancelAction(){
+    this.close();
+   }
+   
+  
 }

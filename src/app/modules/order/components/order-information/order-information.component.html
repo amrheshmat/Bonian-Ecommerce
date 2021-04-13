@@ -1,0 +1,24 @@
+<div class="cartOrderReview">
+    
+    <h3 class="w-100">Order Information <i class="fas fa-leaf fa-fw secondaryColor"></i> </h3>
+  
+    <div class="orederReview">
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values"> Price:</span>
+            <span class="total">{{cartSummary.totalPrice}} EGP</span>
+        </p>
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Tax:</span>
+            <span class="total">15 %</span>
+        </p>
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Total Net Price:</span>
+            <span class="total">{{cartSummary.totalPrice + (cartSummary.totalPrice * (15 / 100))}}</span>
+        </p>
+        
+        <p class="lastOrderInfo d-flex justify-content-between" *ngIf="userProfileModel.ProfileTypeId == 10">
+            <span class="values">Username </span>
+            <span class="total">{{userProfileModel.Username}}</span>
+        </p>
+    </div>    
+</div>

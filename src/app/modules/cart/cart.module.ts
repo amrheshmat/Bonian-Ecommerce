@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CartItemsComponent } from './components/cart-items/cart-items.component';
 import { CategoryService } from '../products/services/category.service';
 import { SalesOrderService } from './services/sales-order.service';
+import { CartInformationComponent } from './components/cart-information/cart-information.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { SalesOrderService } from './services/sales-order.service';
   declarations: [
     CheckOutComponent,
     OrderInformationComponent,
+    CartInformationComponent,
     ViewCartComponent,
     CartItemsComponent
   ],

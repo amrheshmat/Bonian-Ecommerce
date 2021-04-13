@@ -1,10 +1,10 @@
 <nav class="loginNav">
-  <img src="../assets/images/output-onlinepngtools (1).png" />
+  <img src="assets/images/output-onlinepngtools (1).png" />
 </nav>
 <main id="loginForm">
   <form #loginForm="ngForm">
     <div class="form-group">
-      <label for="username">Email address</label>
+      <label for="username">User Name</label>
       <input type="text" [(ngModel)]="loginModel.username" #username="ngModel" class="form-control" id="username"
         [ngModelOptions]="{standalone: true}" aria-describedby="emailHelp" placeholder="Enter email" required>
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
@@ -15,8 +15,8 @@
         [ngModelOptions]="{standalone: true}" id="password" placeholder="Password" required>
       <i class="fas fa-eye-slash"></i>
     </div>
-    <a [routerLink]="['/auth/register']" >
-      register
+    <a [routerLink]="['/auth/register']" style="margin-left: 600px; position: absolute;font-size: 20px;font-weight: bold; font-family: 'Font Awesome 5 Brands';">
+      Sign in
     </a>
     <a href="#" class="forgotPassword">
       Forgot Your Password
@@ -26,7 +26,7 @@
       <label class="form-check-label" for="exampleCheck1">Remeber Me</label>
     </div>
 
-    <button type="submit" class="btn btn-success" (click)="login(loginForm)"> Log In <i
+    <button type="submit" class="btn btn-primary" (click)="login(loginForm)"> Log In <i
         class="fas fa-sign-in-alt"></i></button>
   </form>
 </main>

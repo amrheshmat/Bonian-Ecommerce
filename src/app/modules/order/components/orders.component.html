@@ -1,0 +1,85 @@
+
+
+<section id="cartOverView" style="padding-top:200px;" >
+    <div class="container">
+        <div class="my-container">
+            <ng-template #customLoadingTemplate>
+                <div class="custom-class">
+                </div>
+            </ng-template>
+         
+           <ngx-loading [show]="loading" [config]="{ primaryColour:'#39a6d0' ,secondaryColour: '#39a6d0',tertiaryColour:'#39a6d0',backdropBackgroundColour:'rgba(57, 168, 208, 0.3)', backdropBorderRadius: '3px' ,fullScreenBackdrop:true }" [template]="customLoadingTemplate"></ngx-loading>
+       
+          </div>
+        <div class="row myOrders orderHeader" style="color: #0978a2;background-color: #e0e5e6; width: 75%;border: 1px solid#d5e4e9; border-radius: 5px;  margin-bottom: 6px;">
+            <div class="col-lg-1" style="border-right: 1px solid #c7dee6;">
+                code<br>
+                <input class="form-control" type="text" style="height: 33px;margin-bottom: 5px;" (keyup)="filter($event.target.value,0)">
+            </div>
+            <div class="col-lg-3 " style="border-right: 1px solid #c7dee6;">
+                CreationTime<br>
+                <input class="form-control" type="date" style="height: 33px;margin-bottom: 5px;" (keyup)="filter($event.target.value,1)">
+            </div>
+            <div class="col-lg-2" style="border-right: 1px solid #c7dee6;">
+                Net Price<br>
+               <input class="form-control" type="text" style="height: 33px;margin-bottom: 5px;" (keyup)="filter($event.target.value,3)">
+            </div>
+            <div class="col-lg-2" style="border-right: 1px solid #c7dee6;">
+                SaleStatus<br>
+                <select class="form-control" style="height: 33px;margin-bottom: 5px;" (change)="filter($event.target.value,4)">
+                    <option></option>
+                    <option [value]="6">Recieved</option>
+                    <option [value]="5">Under Prepare</option>
+                    <option [value]="9">Prepared</option>
+                    <option [value]="7">Delieverd</option>
+                    <option [value]="8">Cashed</option>
+                    <option  [value]="2">Canceled</option>
+                </select>
+            </div>
+            <div class="col-lg-2 col-md-2" style="padding: 20px;padding-left: 56px;">
+                ...
+            </div>
+        </div>
+    <div *ngIf="getMyOrders">
+       <div *ngFor="let order of getMyOrders.SalesOrderList" >
+      
+            <div  [style.background-color]="order.SaleStatus == 7 ? 'rgb(168 220 241)': order.SaleStatus == 2 ? '#ffe5e5': null"  class="row myOrders" style=" width: 75%; margin-bottom: 10px; border: 1px solid#cadde4;; padding: 21px 0px 11px;border-radius: 10px;"  >
+          
+                <div class="col-lg-1" style="border-right: 1px solid #d5e4e9;">
+                    {{order.Id}}
+                </div>
+                <div class="col-lg-3 " style="border-right: 1px solid #d5e4e9;">
+                    {{order.CreationTime}}
+                </div>
+                <div class="col-lg-2 " style="border-right: 1px solid #d5e4e9;">
+                    {{order.Total  + (order.Total  * (tax/ 100)) - (order.Total  * (discount / 100))}}
+                </div>
+                <div class="col-lg-2 " style="border-right: 1px solid #d5e4e9;">
+                    <select [disabled] ="havePermssion == false || (order.SaleStatus  == 2  || order.SaleStatus ==8 ) ? true :  false "  class="form-control"  [ngModel]="order.SaleStatus" (ngModelChange)="orderStatusUpdate($event,order.Id)">
+                        <option [value]="6">Recieved</option>
+                        <option [value]="5">Under Prepare</option>
+                        <option [value]="9">Prepared</option>
+                        <option [value]="7">Delieverd</option>
+                        <option [value]="8">Cashed</option>
+                        <option *ngIf="order.SaleStatus == 2" [value]="2">Canceled</option>
+                    </select>
+                </div>
+                <div class="col-lg-2 col-md-2" >
+                    <span class="btn" style="background-color:#39a6d0;border-color:#39a6d0;color: #fff; margin-right: 10px;" (click)="getOrderId(order.Id,order.SaleStatus,order.Total)"><i class="fas fa-plus-circle"></i></span>
+                    <span class="btn" style="background-color:#39a6d0;border-color:#39a6d0;color: #fff;"  [class.disabledCancel] ="order.SaleStatus != 6  ? true : false "  (click)="CancelOrder(order.Id,2)"><i class="fas fa-ban"></i></span>
+                </div>
+            </div>
+        </div>
+        </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item"><a class="page-link" (click)="previouspagination()">Previous</a></li>
+              <li class="page-item" *ngFor="let image of pagination;let i = index"><a class="page-link"  (click)="paginationChange(i+1)" >{{i+1}}</a></li>
+              <li class="page-item"><a class="page-link" (click)="nextpagination()">Next</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+</section>
+
+  

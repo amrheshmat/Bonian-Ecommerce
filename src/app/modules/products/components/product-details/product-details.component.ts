@@ -6,6 +6,7 @@ import { toTypeScript } from '@angular/compiler';
 import { CartService } from 'src/app/modules/cart/services/cart.service';
 import { Cart } from 'src/app/modules/cart/models/cart.model';
 import { HttpHelperService } from '../../../../shared/services/http-helper.service';
+import { DocumentAttributeType } from 'src/app/shared/enums/document-attribute-type';
 
 @Component({
   selector: 'app-product-details',
@@ -16,6 +17,8 @@ import { HttpHelperService } from '../../../../shared/services/http-helper.servi
 export class ProductDetailsComponent implements OnInit {
 
   product: Item = new Item();
+  attributes: any = {};
+  documentAttributeType = DocumentAttributeType;
   constructor(private productService: ProductService,
     private route: ActivatedRoute,
     private router: Router,
@@ -24,7 +27,7 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     let productId = parseInt(this.route.snapshot.paramMap.get("id"));
-    this.getProductById(productId);
+    var t = this.getProductById(productId);
   }
 
   private getProductById(id: number) {
@@ -37,13 +40,13 @@ export class ProductDetailsComponent implements OnInit {
 
   private getAllItemTypes() {
     this.productService.getAllItemTypes().subscribe(res => {
-      console.log(res);
+      return res;
     })
   }
 
   private getItemTypeById(itemTypeId) {
     this.productService.getItemTypeById(itemTypeId).subscribe(res => {
-      console.log(res);
+      return res;
     })
   }
 
@@ -52,6 +55,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   public addToCart(product: Item) {
+    this.product.ItemAttributeValue = this.attributes;
     this.cartService.addToCart(product);
   }
 

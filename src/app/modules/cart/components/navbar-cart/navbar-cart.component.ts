@@ -22,6 +22,7 @@ export class NavbarCartComponent implements OnInit {
         this.updateNavbarCart();
       }
     });
+    
   }
 
   private updateNavbarCart() {

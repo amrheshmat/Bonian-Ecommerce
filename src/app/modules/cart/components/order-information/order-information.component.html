@@ -7,21 +7,33 @@
             <span class="values">Total Price:</span>
             <span class="total">{{cartSummary.totalPrice}} EGP</span>
         </p>
-        <p class="lastOrderInfo d-flex justify-content-between">
+        <!--<p class="lastOrderInfo d-flex justify-content-between">
             <span class="values">Branch:</span>
             <span class="total">{{cartSummary.branchName}}</span>
+        </p>-->
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Tax:</span>
+            <span class="total">{{tax}} %</span>
         </p>
         <p class="lastOrderInfo d-flex justify-content-between">
-            <span class="values">Total Discount:</span>
-            <span class="total">{{cartSummary.totalDiscount}} %</span>
+            <span class="values">Discount:</span>
+            <span class="total">{{discount}} %</span>
+        </p>
+        <!--<p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Coupon Amount:</span>
+            <span class="total">{{couponAmount}}</span>
+        </p>-->
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Total Net Price:</span>
+            <span class="total">{{cartSummary.totalPrice + (cartSummary.totalPrice * (tax/ 100)) - (cartSummary.totalPrice * (discount / 100))}}</span>
         </p>
         <div class="cartCallToActions text-center">
-            <a [routerLink]="['/cart/check-out']" class="checkOut d-block btn btn-danger">
+            <!--<a (click) ="goToCheckOut()" class="checkOut d-block btn btn-danger">
                     CHECK OUT <i class="fas fa-door-open"></i>
             </a>
             <a [routerLink]="['/auth']" class="signIn d-block">
                 Sign In
-            </a>
+            </a>-->
         </div>
     </div>    
 </div>

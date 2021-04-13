@@ -15,6 +15,11 @@ import { HomeComponent } from './components/home/home.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { SalesOrder } from '../cart/models/sales-order.model';
 import { SalesOrderService } from '../cart/services/sales-order.service';
+import { BestPriceComponent } from './components/best-price/best-price.component';
+import { MostOrderedComponent } from './components/most-ordered/most-ordered.component';
+import { MostOrderedService } from './services/most-ordered';
+import { BestPriceService } from './services/best-price';
+import { RecentItemsComponent } from './components/recent-items/recent-items.component';
 
 @NgModule({
   imports: [
@@ -29,6 +34,9 @@ import { SalesOrderService } from '../cart/services/sales-order.service';
     AboutUsComponent,
     TestimonialsComponent,
     SpecialOffersComponent,
+    BestPriceComponent,
+    MostOrderedComponent,
+    RecentItemsComponent
   ],
   providers: [
     BaseService,
@@ -37,6 +45,8 @@ import { SalesOrderService } from '../cart/services/sales-order.service';
     TestimonialService,
     SpecialOffersService,
     SalesOrderService,
+    MostOrderedService,
+    BestPriceService,
   ]
 })
 

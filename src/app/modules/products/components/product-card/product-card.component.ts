@@ -9,6 +9,7 @@ import { CartService } from '../../../../modules/cart/services/cart.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductModalComponent } from '../product-modal/product-modal.component';
 import { HttpHelperService } from '../../../../shared/services/http-helper.service';
+import { ItemTypeAttribute } from '../../models/ItemTypeAttribute.model';
 
 @Component({
   selector: 'app-product-card',
@@ -18,13 +19,14 @@ import { HttpHelperService } from '../../../../shared/services/http-helper.servi
 export class ProductCardComponent implements OnInit {
   @Input() item: Item;
   @Output() selectedProduct: EventEmitter<Item> = new EventEmitter<Item>();
-
+   itemTypeAttribute:ItemTypeAttribute;
+   public itemCount:number;
   constructor(private mVCHTMLService: MVCHTMLService,
     private router: Router,
     private cartService: CartService,
-    public httpHelperService:HttpHelperService,
+    public httpHelperService:HttpHelperService,private productService: ProductService,
     public dialog: MatDialog) { }
-
+ 
   ngOnInit(): void {
     // this.getView();
   }
@@ -51,15 +53,22 @@ export class ProductCardComponent implements OnInit {
   }
 
   openDialog(product: Item): void {
-    const dialogRef = this.dialog.open(ProductModalComponent, {
-      width: '300px',
-      height: '400px',
-      data: { productId: product.Id }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
+    this.productService.GetRequiredItemTypeAttribute(product.ItemTypeId).subscribe(res => {
+      this.itemCount = res;
+      if(this.itemCount !=null){
+        const dialogRef = this.dialog.open(ProductModalComponent, {
+          width: '300px',
+          height: '400px',
+          data: { productId: product.Id }
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+        });
+      }else{
+        product.generatedId = Math.ceil( Math.random() * 100);
+        this.cartService.addToCart(product);
+      }
     });
   }
+   
 }

@@ -1,3 +1,5 @@
+import { ItemTypeAttributeValue } from "../../products/models/ItemTypeAttributeValue.model";
+
 export class SalesOrderDetails {
     Id: number;
     Price: number;
@@ -13,4 +15,5 @@ export class SalesOrderDetails {
     SoldItemPriceCost: number;
     TaxValue: number;
     DiscountValue: number;
+    itemAttributeValue: Array<ItemTypeAttributeValue> = [];
 }

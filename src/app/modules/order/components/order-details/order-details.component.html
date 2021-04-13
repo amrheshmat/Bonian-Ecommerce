@@ -1,0 +1,86 @@
+<section id="cartOverView" style="padding-top:200px;">
+    <div class="container">
+        <div class="row">
+        <div class="col-lg-8" style="border: 1px solid#c4e3ef;border-radius: 4px;padding: 16px 0px; background-color: #e0e5e6;color: #0978a2;font-weight: bold;">
+            <div class="row">
+                    <div class="col-lg-3" style="margin:auto">
+                        Item Name
+                    </div>
+                    <div class="col-lg-2 " style="margin:auto">
+                        Quantity
+                    </div>
+                    <div class="col-lg-2" style="margin:auto">
+                        Price
+                    </div>
+                    <div class="col-lg-2" style="margin:auto">
+                        Total Price
+                    </div>
+                    <div class="col-lg-1" style="margin:auto">
+                        ...
+                    </div>
+                    
+            </div>
+        </div>
+    </div>
+        <div class="row">
+        <div *ngFor="let order of orderDetails" class="col-lg-8 " style="border: 1px solid#c4e3ef;padding: 15px 0px; border-radius: 5px; margin-top: 5px;    height: 59px;">
+           <div class="row" >
+                <div class="col-lg-3" style="margin:auto">
+                    {{order.ItemName}}
+                </div>
+                <div class="col-lg-2 " style="margin:auto">
+                <input [class.disabledCancel] ="orderStatus != 6 || isPreparation != false"  min="1" type="number" class="form-control" [value]="order.Quantity" style="width: 40%; height: 30px; padding: 3px;" (change)="getQuantity($event.target.value,order.SalesOrderDetailsId)">    
+                </div>
+                <div class="col-lg-2" style="margin:auto">
+                    {{order.Price}}
+                </div>
+                <div class="col-lg-2 " style="margin:auto">
+                    {{order.Price * order.Quantity}}
+                </div>
+                <div *ngIf="orderStatus == 6 && isPreparation == false" class="col-lg-1" style="margin:auto">
+                    <span style="cursor: pointer;color: #a00808;" class="productRemove {{order.SalesOrderDetailsId }}">
+                        <i class="fas fa-trash-alt" (click)="removeItem(orderId,order.SalesOrderDetailsId,order.Price)" ></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="isPreparation == false" class="col-lg-3" style="position: absolute;right: 100px;top: 139px;">
+            <div class="cartOrderReview">
+    
+                <h3 class="w-100">Order Information <i class="fas fa-leaf fa-fw secondaryColor"></i> </h3>
+              
+                <div class="orederReview">
+                    <p class="lastOrderInfo d-flex justify-content-between">
+                        <span class="values"> Price:</span>
+                        <span class="total">{{totalPriceAfterUpdateQuantity}} EGP</span>
+                    </p>
+                    <p class="lastOrderInfo d-flex justify-content-between">
+                        <span class="values">Tax:</span>
+                        <span class="total">{{tax}} %</span>
+                    </p>
+                    <p class="lastOrderInfo d-flex justify-content-between">
+                        <span class="values">Discount:</span>
+                        <span class="total">{{discount}} %</span>
+                    </p>
+                    <p class="lastOrderInfo d-flex justify-content-between">
+                        <span class="values"> Net Price:</span>
+                        <span class="total">{{totalPriceAfterUpdateQuantity + (totalPriceAfterUpdateQuantity * (tax/ 100)) - (totalPriceAfterUpdateQuantity * (discount / 100))}}</span>
+                    </p>
+                    
+                    <p class="lastOrderInfo d-flex justify-content-between" *ngIf="userProfileModel.ProfileTypeId == 10">
+                        <span class="values">Username </span>
+                        <span class="total">{{userProfileModel.Username}}</span>
+                    </p>
+                </div>    
+            </div>
+        </div>
+        </div>
+        <div *ngIf="orderStatus == 6 && isPreparation == false" style="margin-top: 20px;margin-left: 24%;"  >
+            <button class="btn btn-primary" (click)="SaveEdit()" style="  margin-right: 20px;  background-color: #39a6d0;border-color: #39a6d0;">Save</button>
+            <button class="btn btn-primary" (click)="cancelEdit()" style="    background-color: #c51020;
+            border-color: #c51020;">Cancel</button>
+        </div>
+    </div>
+</section>
+
+

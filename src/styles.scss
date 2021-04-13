@@ -61,7 +61,7 @@ ul {
 body {
   font-size: 14px;
   line-height: 1.7;
-
+overflow-x: hidden;
 }
 
 .secondaryColor {
@@ -439,7 +439,7 @@ a {
   top: 0;
   right: 5px;
   padding: 0 5px 3px 5px;
-  background-color: $greenColor;
+  background-color: #39a6d0;
   font-size: 12px;
   font-weight: bold;
   border-bottom-left-radius: 14px;
@@ -466,7 +466,7 @@ a {
 }
 
 .navCart .sliderBody .item .cartItemsControl .plus {
-  color: $greenColor;
+  color: #39a6d0;
   font-size: 18px
 }
 
@@ -509,7 +509,7 @@ a {
 .navCart .cartIcon .cartItemsCount {
   font-size: 15px;
   color: #FFF;
-  background-color: $greenColor;
+  background-color: #39a6d0;
   font-weight: bold;
   border-radius: 50%;
   padding: 6px 10px;
@@ -682,7 +682,7 @@ header .divider {
 }
 
 #aboutus .missionAndVision {
-  margin-top: 40px
+  margin-top: 248px;
 }
 
 #aboutus .missionAndVision h3 {
@@ -1225,7 +1225,54 @@ header .divider {
 }
 
 /*end spinner*/
+.editContact .mat-form-field-underline, .checkOutAddress .mat-form-field-underline{
+  display: none;
 
+}
+.mat-form-field-appearance-fill .mat-form-field-flex{
+  margin-top: -26px;
+  background: none;
+}
+.mat-select-arrow-wrapper{
+  padding-top: 21px;
+}
+.mat-accent .mat-slider-track-fill, .mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label{
+background-color: #39a6d0;
+}
+
+.orderHeader{
+  font-weight: bold;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance:button; 
+  margin: 0; 
+}
+.disabledCancel{
+  pointer-events: none;
+  background-color: #ced4d6!important;
+  border-color: #d6dde0 !important
+}
+.hideRow{
+  display: none;
+ 
+}
+/////////////////////
+@media only screen and (min-width: 600px){
+  .image-view-cart{
+    width: 50px  !important;
+    height: 50px !important;
+    margin-top: 32%;
+
+  }
+  .view-cart-header span{
+    font-size: 15px !important;
+  }
+  .view-cart-itemname{
+    font-size: 10px !important;
+  }
+  
+}
 @import "assets/sass/pages/_ecommerceHomePage.scss";
 @import "assets/sass/pages/_productOverView.scss";
 @import "assets/sass/pages/_cartView.scss";

@@ -1,37 +1,52 @@
 <div class="cartItems"> 
   <div *ngFor="let item of items" style="border: 1px solid #EEE; padding: 15px;margin: 15px 0;border-radius: 10px;">
-  <div  class="cartItem d-flex" >
-    <div class="cartItemImage d-inline-block">
-      <img src="{{httpHelperService.imageUrl}}?referenceId={{item.Id}}&referenceTypeId=22" class="d-none d-sm-block">
+  <div  class="cartItem d-flex row" >
+    <div class="cartItemImage d-inline-block col-lg-2">
+      <img src="{{httpHelperService.imageUrl}}?referenceId={{item.Id}}&referenceTypeId=22" class="d-none d-sm-block" style="    border-radius: 10px;">
     </div>
-    <div class="cartItemDescription d-flex w-100">
-      <div class="productData">
-        <div class="productName">
-          <h2><a class="productLink">{{item.ItemName}}</a></h2>
-        </div>
-        <div class="productPrice">
-          <span class="amount">{{item.ItemPrice}} EGP</span>
-        </div>
-
-        <span class="productRemove">
-          <a (click)="removeItem(item)" class="removeProduct">remove</a>
-        </span>
+      <div class="productData col-lg-2" style="    margin-top: 31px;">
+          <h2><a class="productLink" style="font-size: 12px;">{{item.ItemName}}</a></h2>
       </div>
-      <div class="quantityTotal" style="border: 1px solid #eee; width: 55px; border-radius: 5px;">
-          <span style="position: absolute; margin-left: 10px; margin-top: 3px; font-size: 15px;">{{item.Quantity}}</span>
-          <i class="fas fa-caret-up" (click)="increaseQuantity(item)" style="position: absolute; margin-left: 41px;font-size: 18px; cursor: pointer;"></i>
-          <i class="fas fa-caret-down" (click)="decreaseQuantity(item)" style="margin-left: 41px;margin-top: 11px;font-size: 18px; cursor: pointer;"></i>
+      <div class="productPrice col-lg-2" style="    margin-top: 31px;">
+        <span class="amount">{{item.ItemPrice}} EGP</span>
       </div>
-      <div class="quantityTotal">
+      <div class=" col-lg-2" style="    margin-top: 31px;">
+        <div class="quantityTotal" style="border: 1px solid #eee; width: 55px; border-radius: 5px;">
+            <span style="position: absolute; margin-left: 10px; margin-top: 3px; font-size: 15px;">{{item.Quantity}}</span>
+            <i class="fas fa-caret-up" (click)="increaseQuantity(item)" style="position: absolute; margin-left: 41px;font-size: 18px; cursor: pointer;"></i>
+            <i class="fas fa-caret-down" (click)="decreaseQuantity(item)" style="margin-left: 41px;margin-top: 11px;font-size: 18px; cursor: pointer;"></i>
+        </div>
+      </div>  
+      <div class="quantityTotal col-lg-2" style="    margin-top: 31px;">
         <p class="totalPrice">{{item.Quantity * item.ItemPrice}} EGP</p>
       </div>
-      <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample{{item.Id}}" role="button" aria-expanded="false">more</a>
-    </div>
+      <div class="col-lg-2" style="    margin-top: 31px;">
+        <a data-toggle="collapse" style=" color: #39a6d0;   margin-right: 20px;font-size:18px" href="#collapseExample{{item.generatedId}}" role="button" aria-expanded="false" (click)="getItemTypeAttributeValue(item.ItemAttributeValue,item.ItemAttributeList)">
+          <i class="fas fa-info" ></i>
+        </a>
+        <span style="cursor: pointer;color: #a00808;" class="productRemove">
+          <i class="fas fa-trash-alt" (click)="removeItem(item)" ></i>
+        </span>
+      </div>
+      
     
   </div>
-  <div class="collapse" id="collapseExample{{item.Id}}">
-    <p>{{item.CategoryId}}</p>
-    <p>test </p>
+  <div class="collapse col-lg-8 offset-lg-2" id="collapseExample{{item.generatedId}}">
+    <span *ngFor="let recipient1 of item.ItemAttributeValue | keyvalue">
+      <span *ngFor="let recipient of item.ItemAttributeList | keyvalue">
+        <span *ngFor="let recipientName of recipient.value| keyvalue">
+          <span *ngIf="recipientName.value == recipient1.key && recipientName.key=='Id' ">
+            <span *ngFor="let recipientName2 of recipient.value| keyvalue">
+              <span *ngIf="recipientName2.key == 'ItemTypeAttributeName' " style="font-size: 15px;font-family: cursive;font-weight: bold;">
+                {{recipientName2.value}} :
+              </span>
+              
+            </span>
+          </span>
+        </span>
+        </span>
+        <span style="color: #39a6d0; margin-right: 20px;font-size: 15px;font-family: cursive;font-weight: bold;">{{recipient1.value}}</span>
+    </span>
   </div>
   </div>
 </div>

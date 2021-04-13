@@ -2,7 +2,8 @@
 @import "assets/sass/_mixins.scss";
 
 html{
-    direction:rtl
+    direction:rtl;
+    overflow-x: hidden;
 }
 .main-nav #ajaxLoaderGif{
     left: 49px;

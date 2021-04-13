@@ -59,7 +59,6 @@ export class BaseService {
     }
 
     errorHandler(error: Response) {
-        console.log(error);
         return Observable.throw(error);
     }
 }

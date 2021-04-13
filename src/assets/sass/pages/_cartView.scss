@@ -20,7 +20,7 @@
     border-top-right-radius:12px;
 }
 .cartOrderReview .orederReview{
-    padding: 20px;
+    padding: 5px 15px;
 }
 @include breakpoint(extra-small){
     .cartOrderReview{
@@ -238,8 +238,8 @@
     margin: 10px 0;
     font-family:'Raleway', arial, sans-serif;
     color:#7e7b73;  
-    font-weight:600;
-    font-size:1.25em;
+    //font-weight:600;
+   // font-size:1.25em;
 }
 #productsListFullWidth .card .card-body p.card-desc{
     font-size:0.75em

@@ -1,3 +1,5 @@
+import { SecurityObject } from "./security-object.model";
+
 export class UserProfileModel {
     Username: string;
     Password: string;
@@ -9,4 +11,8 @@ export class UserProfileModel {
     DistrictId: number;
     UserID:number;
     ProfileID:number;
+    newPassword:string;
+    confirmPassword:string;
+    ProfileTypeId:number;
+    securityObject : SecurityObject[];
 }

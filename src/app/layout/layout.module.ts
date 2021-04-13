@@ -8,6 +8,8 @@ import { ContactUsService } from './services/contact-us.service';
 import { SharedModule } from '../shared/shared.module';
 import { ProductService } from '../modules/products/services/products.service';
 import { AuthModule } from '../modules/authentication/auth.module';
+import { RouterModule } from '@angular/router';
+import { OrdersModule } from '../modules/order/orders.module';
 
 
 
@@ -15,7 +17,9 @@ import { AuthModule } from '../modules/authentication/auth.module';
   imports: [
     SharedModule,
     LayoutRoutingModule,
-    AuthModule
+    AuthModule,
+    OrdersModule,
+    RouterModule
   ],
   declarations: [
     FooterComponent,

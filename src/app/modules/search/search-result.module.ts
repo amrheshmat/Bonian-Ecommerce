@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxLoadingModule } from 'ngx-loading';
 import { SearchResultRoutingModule } from './search-result-routing.module';
 
 
@@ -8,7 +9,10 @@ import { SearchResultRoutingModule } from './search-result-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    SearchResultRoutingModule
+    NgxLoadingModule.forRoot({}),
+    SearchResultRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class SearchResultModule { }

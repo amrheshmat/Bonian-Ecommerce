@@ -14,7 +14,7 @@
                 <i class="fas fa-search fa-fw"></i>
               </a>
               <a href="#" class="nav-link">
-                <img class="logoSmallScreens" src="../assets/images/output-onlinepngtools (1).png" width="80"
+                <img class="logoSmallScreens" src="assets/images/output-onlinepngtools (1).png" width="80"
                   height="70">
               </a>
               <a href="cart-view.html" class="nav-link">
@@ -26,7 +26,7 @@
             </div>
             <form class="form-inline my-2 my-lg-0 searchBarMobile">
               <div class="input-group w-100">
-                <img src="../assets/images/ajax-loader(2).gif" id="ajaxLoaderGif" />
+                <img src="assets/images/ajax-loader(2).gif" id="ajaxLoaderGif" />
                 <input type="text" class="form-control" placeholder="Search" aria-label="Search"
                   aria-describedby="basic-addon1" >
                 <div class="input-group-prepend">
@@ -38,7 +38,7 @@
               </div>
               <div class="viewItems">
                 <div class="itemInSearch d-flex justify-content-between">
-                  <img src="../assets/images/animal-blur-bull-162240.jpg" />
+                  <img src="assets/images/animal-blur-bull-162240.jpg" />
                   <div class="itemsDesc">
                     <p class="itemDesc">Steak</p>
                     <span class="itemPrice">250 EGP</span>
@@ -61,7 +61,13 @@
                 <a class="nav-link" [routerLink]="['/cart/view-cart']">Cart</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/orders']">Orders</a>
+                <a class="nav-link" [routerLink]="[NavigateUrl]" *ngIf="orderPageNavLen == true">{{orderPageNav}}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/orders']" *ngIf="orderPageNavLen == false">Orders</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/aboutUs']">About Us</a>
               </li>
             </ul>
             <ul class="navbar-nav loginAndLang">
@@ -73,11 +79,13 @@
               </li>
               <li class="nav-item" *ngIf="userProfile">
                 <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" style="background-color: #fff;color: #000;border-color: #fff;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <button class="btn btn-secondary dropdown-toggle" 
+                   style="background-color: #fff;color: #000;border-color: #fff;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{userProfile.Username}} <i class="fas fa-user"></i>
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item"  (click)="myProfile()">Profile</a>
+                    <a class="dropdown-item"  (click)="changePassword()">Change Password</a>
                     <a class="dropdown-item"  (click)="myOrders()">My Orders</a>
                     <a class="dropdown-item" (click)="logOut()">Logout</a>
                   </div>
@@ -100,15 +108,15 @@
           <div class="col-12 d-flex justify-content-between">
             <div class="searchAndLogoLarge d-flex">
               <a class="navbar-brand" href="#">
-                <img src="../assets/images/output-onlinepngtools (1).png" width="100" height="85">
+                <img src="assets/images/output-onlinepngtools (1).png" width="100" height="85">
               </a>
               <form class="form-inline my-2 my-lg-0 searchBarLargeScreen">
                 <div class="input-group w-100">
                   <input type="text" class="form-control" #searchValue matInput placeholder="Search" aria-label="Search" name="searchValue"
                     aria-describedby="basic-addon1">
-                  <img src="../assets/images/ajax-loader(2).gif" id="ajaxLoaderGif" />
+                  <img src="assets/images/ajax-loader(2).gif" id="ajaxLoaderGif" />
                   <div class="input-group-prepend">
-                    <button type="submit"   (click)="purchaseLater(searchValue.value)" class="input-group-text" id="basic-addon1">
+                    <button type="submit"   (click)="searvhResut(searchValue.value)" class="input-group-text" id="basic-addon1">
                       <i class="fa fa-search"></i>
                     </button>
                   </div>
@@ -116,7 +124,7 @@
 
                 <div class="viewItems">
                   <div class="itemInSearch d-flex justify-content-between">
-                    <img src="../assets/images/animal-blur-bull-162240.jpg" />
+                    <img src="assets/images/animal-blur-bull-162240.jpg" />
                     <div class="itemsDesc">
                       <p class="itemDesc">Steak</p>
                       <span class="itemPrice">250 EGP</span>
@@ -127,7 +135,7 @@
               </form>
             </div>
             <div class="navCart d-flex w-100">
-              <div class="carouselOuter w-100" id="carouselOuter">
+              <div class="carouselOuter w-100" id="carouselOuter" >
 
                 <div class="controllers left" id="translateLeft">
                   <button>
@@ -135,7 +143,7 @@
                   </button>
                 </div>
 
-                <app-navbar-cart></app-navbar-cart>
+                <app-navbar-cart *ngIf="cartItemsCount > 0"></app-navbar-cart>
 
                 <div class="controllers right" id="translateRight">
                   <button>
@@ -145,7 +153,7 @@
               </div>
               <div class="cartIcon" [routerLink]="['/cart/view-cart']" style="cursor: pointer;">
                 <a>
-                  <img src="../assets/images/cart.png" width="100" height="85">
+                  <img src="assets/images/cart.png" width="100" height="85">
                 </a>
                 <span class="cartItemsCount">
                   {{cartItemsCount}}

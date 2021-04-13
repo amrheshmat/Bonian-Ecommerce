@@ -1,8 +1,8 @@
-import { ResultType } from '../enums/resulttype.enum';
 
 export class Result{
     Id:number =0;
+    ResultType:number;
     Message:string;
     ObjectSerial:string;
-    ResultType:ResultType;
+    ReturnObject: string;
 }

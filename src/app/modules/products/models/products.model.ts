@@ -1,6 +1,8 @@
 import { ItemTypeAttribute } from './ItemTypeAttribute.model';
+import { ItemTypeAttributeValue } from './ItemTypeAttributeValue.model';
 
 export class Item {
+  generatedId: number; // to distinct item with same id and different attribute ...
   Id: number;
   ItemName: string;
   CategoryName: string;
@@ -30,6 +32,8 @@ export class Item {
   ImagePath: string;
   Quantity: number;
   ItemAttributeList: ItemTypeAttribute[];
+  ItemAttributeValue: ItemTypeAttributeValue[];
+  ItemAttributeValueList :  ItemTypeAttributeValue[];
   // IsActive :boolean;
   // CreationTime : Date;
   // CreatedBy:number;

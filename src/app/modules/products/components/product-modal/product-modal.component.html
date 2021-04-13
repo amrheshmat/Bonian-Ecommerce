@@ -4,12 +4,12 @@
 
     <div class="row">
       <!--Text-->
-      <div class="col-lg-12">
+     <!-- <div class="col-lg-12">
         <mat-form-field>
           <mat-label>Notes</mat-label>
           <input  matInput [(ngModel)]="attributes['Notes']">
         </mat-form-field>
-      </div>
+      </div>-->
       <!--END Text-->
     </div>
 
@@ -18,20 +18,20 @@
 
 
       <!--Text-->
-      <div class="col-lg-12" *ngIf="item.ItemTypeAttributeType==documentAttributeType.Text">
+      <div class="col-lg-12" *ngIf="item.ItemTypeAttributeType==documentAttributeType.Text && item.IsRequired == true">
         <mat-form-field>
           <mat-label>{{item.ItemTypeAttributeName}}</mat-label>
-          <input matInput [(ngModel)]="attributes[item.ItemTypeAttributeName]">
+          <input matInput [(ngModel)]="attributes[item.Id]" [value]="item.ItemTypeAttributeId" class="test">
         </mat-form-field>
       </div>
       <!--END Text-->
 
       <!--Drop Down List-->
-      <div class="col-lg-12" *ngIf="item.ItemTypeAttributeType==documentAttributeType.DropDownList">
+      <div class="col-lg-12" *ngIf="item.ItemTypeAttributeType==documentAttributeType.DropDownList && item.IsRequired == true">
         <mat-form-field>
           <mat-label>{{item.ItemTypeAttributeName}}</mat-label>
-          <mat-select [(ngModel)]="attributes[item.ItemTypeAttributeName]">
-            <mat-option *ngFor="let itemType of item.ItemTypeAttributeItemList" [value]="itemType.Id">
+          <mat-select [(ngModel)]="attributes[item.Id]">
+            <mat-option *ngFor="let itemType of item.ItemTypeAttributeItemList" [value]="itemType.ItemTypeAttributeItemName">
               {{itemType.ItemTypeAttributeItemName}}
             </mat-option>
           </mat-select>
@@ -44,9 +44,19 @@
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="close()">Cancel</button>
-    <a (click)="addToCart(product)" class="btn btn-success addToCart">ADD TO CART &nbsp;<i
-        class="fab fa-opencart"></i></a>
-
+    <a (click)="addToCart(product)" class="btn btn-primary  addToCart">Add To Card&nbsp;<i class="fa fa-cart-plus"></i></a>
   </div>
 
 </div>
+
+<div *ngIf="!product" >
+  <div mat-dialog-content style="    border-bottom: 1px solid#e8f4f9;padding-bottom: 26px;" >
+    <h1 mat-dialog-title style="font-family: fantasy;"> {{Message}}</h1>
+  </div>
+  <div mat-dialog-actions style="margin-left: 25%; ">
+    <a (click)="confirmAction()"  class="btn btn-primary  addToCart" style="background: #27718d; border: 1px solid#27718d;width: 56px;height: 38px;margin-right: 6px;">Ok</a>
+    <button (click)="cancelAction()" mat-button style="background-color: #9c1414;color: #fff; border: 1px solid#9c1414;  padding: 0px;">Cancel</button>
+  </div>
+
+</div>
+

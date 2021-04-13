@@ -229,7 +229,7 @@
       <div class="col-md-8">
         <div class="checkOutFrom">
           <h3>Personal Information</h3>
-          <form >
+          <form #f="ngForm"  ngNativeValidate>
             <div class="form-row">
               <div class="form-group col-sm-6" >
                 <label for="exampleInputName1">Full Name</label>
@@ -241,7 +241,7 @@
                 <input type="text" [(ngModel)]="userProfileModel.Username" class="form-control" #Username="ngModel"
                   id="Username" name="Username" required>
               </div>
-              <div class="form-group col-12">
+              <div class="form-group col-6">
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" [(ngModel)]="userProfileModel.Email" class="form-control" #Email="ngModel"
                   id="email" name="email" aria-describedby="emailHelp" required>
@@ -253,71 +253,27 @@
                 <input type="text" [(ngModel)]="userProfileModel.Mobile" class="form-control" #mobile="ngModel"
                   id="mobile" name="mobile">
               </div>
-              <div class="form-group col-sm-6">
-                <label for="exampleInputNumber1">Address</label>
-                <input type="text" [(ngModel)]="userProfileModel.Address" class="form-control" #Address="ngModel"
-                  id="Address" name="Address">
+              <div class="form-group col-sm-6 checkOutAddress" >
+                <label for="exampleInputNumber1">Address</label><br>
+                  <mat-form-field  style="width: 102%;" [(ngModel)]="contactInformation.IsDefault" appearance="fill" >
+                  <mat-select class="form-control" [(value)]="selected" id="Address" (selectionChange)="deliveryAddress($event)">
+                    <mat-option  *ngFor="let address of delievryInfo"  [(value)]="address.DistrictId">{{address.Address}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
               </div>
-              <div class="form-group col-sm-6">
+              <div class="form-group col-sm-6" style="margin-top: 35px;">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelectCountry">Country</label>
+                    <label class="input-group-text" for="inputGroupSelectArea">paymentWay</label>
                   </div>
-                  <select class="custom-select" id="inputGroupSelectCountry">
-                    <option selected>Choose ...</option>
-                    <option *ngFor="let item of countryList" value="item.Id">
-                      {{item.CountryName}}
+                  <select class="custom-select" id="deliveryWay" (change)="paymentWay($event.target.value)">
+                    <option  value="1">
+                      Online Payment 
+                    </option>
+                    <option  value="2">
+                     cashOnDelivery
                     </option>
                   </select>
-                </div>
-              </div>
-              <div class="form-group col-sm-6">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelectArea">Area</label>
-                  </div>
-                  <select class="custom-select" id="inputGroupSelectArea">
-                    <option selected>Choose...</option>
-                    <option *ngFor="let item of areaList" value="item.Id">
-                      {{item.AreaName}}
-                    </option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group col-sm-6">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelectArea">City</label>
-                  </div>
-                  <select class="custom-select" id="inputGroupSelectArea">
-                    <option selected>Choose...</option>
-                    <option *ngFor="let item of cityList" value="item.Id">
-                      {{item.CityName}}
-                    </option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group col-sm-6">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelectArea">District</label>
-                  </div>
-                  <select class="custom-select" id="inputGroupSelectArea" [(ngModel)]="userProfileModel.DistrictId">
-                    <option selected>Choose...</option>
-                    <option *ngFor="let item of districtList" value="item.DistrictId">
-                      {{item.DistrictName}}
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group col-12">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Street Name</span>
-                  </div>
-                  <input type="text" class="form-control" aria-label="Dollar amount (with dot and two decimal places)">
                 </div>
               </div>
 
@@ -330,10 +286,10 @@
                   to the <a href="#">terms and conditions</a></label>
               </div>
             </div>
-            <button type="submit" (click)="checkOut()" class="checkOut d-block btn btn-danger">
-              CHECK OUT <i class="fas fa-door-open"></i>
+            <button type="submit" (click)="checkOut(f)" class="checkOut d-block btn btn-danger">
+              CHECK OUT <i class="fas fa-money-check-alt"></i>
             </button>
-            <button type="submit"  (click)="purchaseLater()" class="checkOut d-block btn btn-success" style="margin-left: 10%;">
+            <button type="submit"  (click)="purchaseLater()" class="checkOut d-block btn btn-primary" style="margin-left: 10%;">
               Purchase Later <i class="fas fa-archive"></i>
             </button>
           </form>

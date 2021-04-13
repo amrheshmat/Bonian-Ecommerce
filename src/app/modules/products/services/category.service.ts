@@ -15,7 +15,9 @@ export class CategoryService extends BaseService {
   urlGetAll = "getallcategories"
   urlGetAllItemsByCategoryId = "getallitemsbycategoryid";
   urlGetAllItems = "GetAllItems";
-
+  urlGetMaxPrice = "GetMaxPrice";
+  urlGetMinPrice = "GetMinPrice";
+  urlGetAllItemsByMaxPriceAndLatestDate= "GetAllItemsByMaxPriceAndLatestDate";
 
   // ?categoryid = 145 & start=-1 & end=0 & searchvalue=& orderby=& dir=
 
@@ -27,4 +29,13 @@ export class CategoryService extends BaseService {
     return this._http.get(`${this.baseUrl}api/${this.controllerName}/${this.urlGetAllItems}?start=${categoryFilter.Start}&end=${categoryFilter.End}&searchvalue=${categoryFilter.SearchValue}&orderby=&dir=`);
   }
 
+  getMaxPrice(searchValue : string): any {
+    return this._http.get(`${this.baseUrl}api/${this.controllerName}/${this.urlGetMaxPrice}?searchValue=${searchValue}`);
+  }
+  getMinPrice(searchValue : string): any {
+    return this._http.get(`${this.baseUrl}api/${this.controllerName}/${this.urlGetMinPrice}?searchValue=${searchValue}`);
+  }
+  getAllItemsByMaxPriceAndLatestDate(categoryFilter: CategoryFilter,maxPrice:number,latestDate:Date): any {
+    return this._http.get(`${this.baseUrl}api/${this.controllerName}/${this.urlGetAllItemsByMaxPriceAndLatestDate}?start=${categoryFilter.Start}&end=${categoryFilter.End}&searchvalue=${categoryFilter.SearchValue}&orderby=&dir=&maxPrice=${maxPrice}&latestDate=${latestDate}`);
+  }
 }

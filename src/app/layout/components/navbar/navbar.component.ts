@@ -16,7 +16,10 @@ import {Router} from "@angular/router"
 })
 
 export class NavbarComponent implements OnInit {
-
+  public orderPageNav :any;
+  public orderPageNavLen :any = false;
+  public NavigateUrl;
+  public permission :any;
   cartItemsCount: number;
   searchValue:string;
   public userProfile: UserProfileModel;//Logged UserName
@@ -35,9 +38,24 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+     this.permission = this.authService.getUserSecurityObjectFRomLocalStorage();
+    if(this.permission.length  != 0){
+      this.orderPageNavLen = true;
+      this.orderPageNav = this.permission[0].ChildObjects[0].LinkName;
+      this.NavigateUrl = this.permission[0].ChildObjects[0].NavigateUrl;
+    }else{
+      this.orderPageNavLen = false;
+    }
+    
     this.getUserName();
+    this.userProfile;
     this.updateCartItemsCount();
     this.cartService.isCartChanged.subscribe(res => {
+      if (res) {
+        this.updateCartItemsCount();
+      }
+    });
+    this.cartService.isCartRemoved.subscribe(res=>{
       if (res) {
         this.updateCartItemsCount();
       }
@@ -60,7 +78,7 @@ export class NavbarComponent implements OnInit {
     let cartSummary: CartSummary = this.cartService.getCartSammry();
     this.cartItemsCount = cartSummary.totalQuantity;
   }
-  public purchaseLater(searchvalue) {
+  public searvhResut(searchvalue) {
     this.searchValue = searchvalue;
     //console.log(this.searchValue);
     this.router.navigate(['/searchResult/'+this.searchValue])
@@ -75,13 +93,17 @@ export class NavbarComponent implements OnInit {
   }
   logOut() {
     this.authService.clearLocalStorage();
+    //window.location.reload() ;
     this.router.navigateByUrl('/auth/login');
   }
   myOrders(){
     this.router.navigate(['/orders']);
   }
   myProfile(){
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/auth/profile']);
+  }
+  changePassword(){
+    this.router.navigate(['/auth/change-password']);
   }
 
 

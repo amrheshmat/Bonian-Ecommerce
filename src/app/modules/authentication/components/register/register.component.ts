@@ -34,15 +34,14 @@ export class RegisterComponent {
     this.authService.setUserProfileInLocalStorage(this.userProfileModel)
     this.userProfileModel.DistrictId = Math.floor((Math.random() * 100000) + 1);
     this.authService.register(this.userProfileModel).subscribe(response => {
-      // response.UserModel = this.generateUserModel();
-      //response.Success = false;
       let success = (<any>response).Success;
       if (success) {
         let token = (<any>response).Data.Token;
         localStorage.setItem("jwt", token); 
+        this.userProfileModel = (<any>response).UserModel;
         this.authService.setUserProfileInLocalStorage(this.userProfileModel);
         this.router.navigate(["/"]);
-        this.alertService.showSuccess("Login Successfully", "Success")
+        this.alertService.showSuccess("Login Successfully", "Success");
 
       }
     }, err => {

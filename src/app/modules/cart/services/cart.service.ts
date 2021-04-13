@@ -12,6 +12,7 @@ export class CartService {
   private messageSource = new BehaviorSubject<string>("default message");
 
   public isCartChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+  public isCartRemoved: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private alertService: AlertService) { }
 
@@ -22,7 +23,7 @@ export class CartService {
 
   public updateItemInCart(product: Item) {
     let cart: Cart = this.getCartFromLocalStorage();
-    cart.items.find(x => x.Id == product.Id).Quantity = product.Quantity;//If this product is selected 
+    cart.items.find(x => x.generatedId == product.generatedId).Quantity = product.Quantity;//If this product is selected 
     this.updateCartInLocalStorage(cart);
   }
 
@@ -33,20 +34,34 @@ export class CartService {
       cart.items = new Array<Item>();
     }
     let item = cart.items.find(x => x.Id == product.Id);
-    if (item) {
-      cart.items.find(x => x.Id == product.Id).Quantity++;//If this product is selected 
+     /*if (item) {
+     if(item.ItemAttributeValue !=null){
+        var keys = Object.keys(item.ItemAttributeValue);
+        var values = Object.values(item.ItemAttributeValue);
+        var len = keys.length;
+        for (let i = 0; i < len; i++){
+          let attr = item.ItemAttributeValue.find(x=> x.AttributeValue == values[i].toString());
+          if(attr){
+            product.Quantity = 1;
+          cart.items.push(product);
+          }else{
+            
+          }
+        }
+      }
+     // cart.items.find(x => x.Id == product.Id).Quantity++;//If this product is selected 
     }
-    else {
+    else {*/
       product.Quantity = 1;
       cart.items.push(product);
-    }
+    //}
     this.updateCartInLocalStorage(cart);
     this.alertService.showSuccess("You have added item successfully", "Success")
   }
 
   public removeFromCart(product: Item) {
     let cart: Cart = this.getCartFromLocalStorage();
-    cart.items = cart.items.filter(x => x.Id != product.Id);
+    cart.items = cart.items.filter(x => x.generatedId != product.generatedId);
     this.updateCartInLocalStorage(cart);
   }
 
@@ -60,10 +75,11 @@ export class CartService {
 
   public removeCartFromLocalStorage(): any {
     localStorage.removeItem('cart');
+     this.isCartRemoved.emit(true);
   }
 
   public updateCartInLocalStorage(cart: Cart) {
-    this.removeCartFromLocalStorage();
+   // this.removeCartFromLocalStorage();
     this.addCartToLocalStorage(cart);
     this.isCartChanged.emit(true);
   }
@@ -73,6 +89,7 @@ export class CartService {
     let cartSummary = new CartSummary();
     if (cart) {
       var items = cart.items
+  //    if(items.length >0)
       cartSummary.totalPrice = 0;
       cartSummary.totalQuantity = 0;
       cartSummary.totalDiscount = 15;
@@ -85,5 +102,4 @@ export class CartService {
     }
     return cartSummary;
   }
-
 }

@@ -32,7 +32,7 @@ export class AppComponent {
 
   getTranslator(){
     this.translatorService.generateTranslation().subscribe(res => { 
-      console.log("translation added")
+    //  console.log("translation added")
     })
   } 
   

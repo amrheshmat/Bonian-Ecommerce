@@ -3,28 +3,36 @@
     <h2 class="categorySectionName subTitleColor"> {{category}} </h2>
     <app-small-filter-aside (onCategorySelected)="onCategorySelected($event)"></app-small-filter-aside>
     <div class="row">
-      <main class="productsList col-md-8 col-lg-9">
+      <main class="productsList col-md-6 col-lg-7">
 
 
 
       <mat-tab-group (selectedTabChange)="onTabChanged($event)"> 
-          <mat-tab label="All">
+          <mat-tab >
+            <ng-template mat-tab-label>
+                <!--<img src="{{httpHelperService.imageUrl}}?referenceId={{item.Id}}&referenceTypeId=47"  class="card-img-top" alt="..." style="width: 50px;height: 50px;">-->
+                <span>All</span>
+            </ng-template>
             <span *ngFor="let item of itemsList">
               <div class="search-results">
                 <app-product-card [item]="item"></app-product-card>
               </div>
             </span>  
-         </mat-tab>	    
+         </mat-tab>	  
 
-         <mat-tab *ngFor="let category of categoryList" [label]="category.CategoryName">
+         <mat-tab *ngFor="let category of categoryList" >
+          <ng-template mat-tab-label>
+                <img src="{{httpHelperService.imageUrl}}?referenceId={{category.Id}}&referenceTypeId=47"  class="card-img-top" alt="..." style="width: 45px;  height: 44px;border-radius: 10px;">
+                <span>{{category.CategoryName}}</span>
+            </ng-template>
           <span *ngFor="let item of itemsList">
             <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
               (scrolled)="onScroll()" [scrollWindow]="true">
               <app-product-card [item]="item"></app-product-card>
             </div>
           </span>  
-       </mat-tab>	    
-        </mat-tab-group>
+         </mat-tab>	    
+      </mat-tab-group>
         <!-- <span *ngFor="let item of itemsList">
           <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
             (scrolled)="onScroll()" [scrollWindow]="true">
@@ -33,9 +41,11 @@
         </span>  -->
 
       </main>
-      <div class=" d-none d-md-block col-md-4 col-lg-3">
-        <app-large-filter-aside (onCategorySelected)="onCategorySelected($event)"></app-large-filter-aside>
+      <div class=" d-none d-md-block col-md-6 col-lg-5" *ngIf="items && items.items.length > 0">
+        <app-view-cart></app-view-cart>
+        <app-order-information></app-order-information>
       </div>
+      
     </div>
   </div> 
 

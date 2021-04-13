@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FullLayoutComponent } from './components/full-layout/full-layout.component';
-import { EditAccountInfoComponent} from '../modules/profile/components/edit-account-info/edit-account-info.component';
-import { EditPersonalInfoComponent} from '../modules/profile/components/edit-personal-info/edit-personal-info.component';
-import { EditContactInfoComponent} from '../modules/profile/components/edit-contact-info/edit-contact-info.component';
+import { LoginComponent } from '../modules/authentication/components/login/login.component';
+import { AboutUsComponent } from '../modules/home/components/about-us/about-us.component';
+import { CasherOrderComponent } from '../modules/order/components/casher-order/casher-order.component';
+import { OrderDetailsComponent } from '../modules/order/components/order-details/order-details.component';
+import { OrderPrepareComponent } from '../modules/order/components/order-prepare/order-prepare.component';
+import { PaymentStatusComponent } from '../modules/payments/components/payment-status/payment-status.component';
+import { FullLayoutComponent } from './components/full-layout/full-layout.component'; 
 
 
 const routes: Routes = [
@@ -20,27 +23,27 @@ const routes: Routes = [
         path: 'cart', loadChildren: () => import('../modules/cart/cart.module').then(m => m.CartModule)
       },
       {
-        path: 'orders', loadChildren: () => import('../modules/orders/orders.module').then(m => m.OrdersModule)
+        path: 'orders', loadChildren: () => import('../modules/order/orders.module').then(m => m.OrdersModule)
+      },
+      {
+        path: 'Ecommerce/Orders',  component: CasherOrderComponent
+      },
+      {
+        path: 'Ecommerce/prepareOrder',  component: OrderPrepareComponent
       },
       {
         path: 'payments', loadChildren: () => import('../modules/payments/payments.module').then(m => m.PaymentsModule)
       },
+      
       {
         path: 'searchResult/:searchValue', loadChildren: () => import('../modules/payments/payments.module').then(m => m.PaymentsModule)
+      },{
+        path: 'order/order-details/:orderId/:orderStatus/:total', component: OrderDetailsComponent
+      },{
+        path: 'paymentStatus', component: PaymentStatusComponent
       },
       {
-        path: 'profile', loadChildren: () => import('../modules/profile/profile.module').then(m => m.ProfileModule)
-      },
-      {
-        path: 'editAccountInfo', component :  EditAccountInfoComponent
-      }
-      ,
-      {
-        path: 'editPersonalInfo', component :  EditPersonalInfoComponent
-      }
-      ,
-      {
-        path: 'editContactInfo', component :  EditContactInfoComponent
+        path: 'aboutUs', component: AboutUsComponent
       }
     ]
   }

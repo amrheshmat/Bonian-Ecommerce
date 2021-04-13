@@ -1,0 +1,20 @@
+
+<section  id="personalInfo">
+    <div class="col-lg-4 col-md-4 offset-lg-4" style="margin-bottom: 180px; top: 167px;">
+        <h1 style="margin-bottom: 10px;font-weight: bold;">Personal Information</h1>
+        <div style=" padding: 6px 16px 30px 14px;background-color: #f7f7f7;border-radius: 3px;">
+            <div class="row">
+                <div  class="col-lg-10" style="margin-bottom: 10px;">
+                    <form #personalInfo="ngForm" (ngSubmit)="saveEditPersonalInfo()">
+                        <label>Full Name : </label>
+                        <input class="form-control" type="text"  [(ngModel)]="personalInformation.fullName" [ngModelOptions]="{standalone: true}" id="fullName">
+                        <br>
+                        <label>Gender : </label>
+                        <input class="form-control" type="text" [(ngModel)]="personalInformation.gender" [ngModelOptions]="{standalone: true}" id="gender">
+                        <button type="submit"   class="btn btn-primary"  value="save" style="margin-top: 15px;">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

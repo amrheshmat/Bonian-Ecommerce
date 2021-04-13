@@ -1,17 +1,19 @@
 <div class="card">
-  <a (click)="selectProduct(item)">
+  <a (click)="selectProduct(item)" style="cursor: pointer;">
     <img src="{{httpHelperService.imageUrl}}?referenceId={{item.Id}}&referenceTypeId=22" class="card-img-top" alt="...">
 
   </a>
   <div class="card-body">
-    <h3 class="card-title">{{item.ItemName}}</h3>
-    <p class="card-desc">{{item.DefaultPurchaseDiscount}} </p>
+    <h3 class="card-title" style="font-size: 10px;font-weight: bold;width: 120%;overflow: hidden;">{{item.ItemName}}</h3>
+    <p class="card-desc">
+      <i class="fas fa-star" style="color: #f1ce22;"></i>
+      <i class="fas fa-star" style="color: #f1ce22;"></i>
+       <i class="fas fa-star" style="color: #f1ce22;"></i>
+       <i class="fas fa-star" style="color: #f1ce22;"></i>
+       <i class="far fa-star"></i>
+      </p>
     <p class="price">{{item.ItemPrice}} EGP</p>
-    <a class="btn btn-success addToCart" (click)="openDialog(item)"> View Item &nbsp;<i class="fa fa-eye"></i></a>
+    <a class="btn btn-primary  addToCart" (click)="openDialog(item)"> Add To Card&nbsp;<i class="fa fa-cart-plus"></i></a>
   </div>
 </div>
 
-
-<!-- <div id="view">
-
-</div> -->

@@ -22,7 +22,35 @@
         <h6>{{product.ItemName}}</h6>
         <p class="description">{{product.ItemDescription}}</p>
         <p class="price">{{product.ItemPrice}} EGP</p>
-        <a (click)="addToCart(product)" class="btn btn-success addToCart">ADD TO CART &nbsp;<i class="fab fa-opencart"></i></a>
+
+        <div *ngFor="let item of product.ItemAttributeList">
+
+
+
+          <!--Text-->
+          <div class="col-lg-12" *ngIf="item.ItemTypeAttributeType==documentAttributeType.Text && item.IsRequired == true">
+            <mat-form-field>
+              <mat-label>{{item.ItemTypeAttributeName}}</mat-label>
+              <input matInput [(ngModel)]="attributes[item.Id]" [value]="item.ItemTypeAttributeId" class="test">
+            </mat-form-field>
+          </div>
+          <!--END Text-->
+    
+          <!--Drop Down List-->
+          <div class="col-lg-12" *ngIf="item.ItemTypeAttributeType==documentAttributeType.DropDownList && item.IsRequired == true">
+            <mat-form-field>
+              <mat-label>{{item.ItemTypeAttributeName}}</mat-label>
+              <mat-select [(ngModel)]="attributes[item.Id]">
+                <mat-option *ngFor="let itemType of item.ItemTypeAttributeItemList" [value]="itemType.ItemTypeAttributeItemName">
+                  {{itemType.ItemTypeAttributeItemName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <!--END Drop Down List-->
+    
+        </div>
+        <a (click)="addToCart(product)" class="btn btn-primary addToCart">Add To Card&nbsp;<i class="fa fa-cart-plus"></i></a>
 
       </div>
 

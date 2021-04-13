@@ -4,6 +4,9 @@ import { CategoryService } from '../../services/category.service';
 import { Item } from '../../models/Products.model';
 import { ProductService } from '../../services/products.service';
 import { CategoryFilter } from '../../models/category-filter.model';
+import { CartService } from 'src/app/modules/cart/services/cart.service';
+import { Cart } from 'src/app/modules/cart/models/cart.model';
+import { HttpHelperService } from 'src/app/shared/services/http-helper.service';
 
 @Component({
   selector: 'app-all-products',
@@ -11,18 +14,29 @@ import { CategoryFilter } from '../../models/category-filter.model';
   styleUrls: ['./all-products.component.scss']
 })
 export class AllProductsComponent implements OnInit {
-  
+  items: Cart;
   itemsList: Item[];
   categoryFilter: CategoryFilter = new CategoryFilter();
   totalCount: number = 0;
-  constructor(private _categoryService: CategoryService, private _itemService: ProductService) { }
+  constructor( public httpHelperService:HttpHelperService,private _categoryService: CategoryService, private _itemService: ProductService,private cartService: CartService) { }
   category: string;
   categoryList: Category[];
   selectedCategory: any;
-
+  showCart: any;
   ngOnInit(): void {
     this.getCategories();
     this.getAllItems();
+     this.items = this.cartService.getCartFromLocalStorage();
+     
+    this.cartService.isCartChanged.subscribe(res => {
+      if(res){
+        this.items = this.cartService.getCartFromLocalStorage();
+      }
+    });
+    this.cartService.isCartRemoved.subscribe(res=>{
+      this.items = this.cartService.getCartFromLocalStorage();
+    })
+    
   }
 
   onTabChanged(event) {

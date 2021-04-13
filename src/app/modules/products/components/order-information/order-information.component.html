@@ -1,0 +1,44 @@
+<div class="cartOrderReview">
+    
+    <h3 class="w-100">Order Information <i class="fas fa-leaf fa-fw secondaryColor"></i> </h3>
+  
+    <div class="orederReview">
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values"> Price:</span>
+            <span class="total">{{cartSummary.totalPrice}} EGP</span>
+        </p>
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Tax:</span>
+            <span class="total">{{tax}} %</span>
+        </p>
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Discount:</span>
+            <span class="total">{{discount}} %</span>
+        </p>
+        <p class="lastOrderInfo d-flex justify-content-between">
+            <span class="values">Total Net Price:</span>
+            <span class="total">{{cartSummary.totalPrice + (cartSummary.totalPrice * (tax/ 100)) - (cartSummary.totalPrice * (discount / 100))}}</span>
+        </p>
+        
+        <p class="lastOrderInfo d-flex justify-content-between" *ngIf="userProfileModel.ProfileTypeId == 10">
+            <span class="values">Username </span>
+            <span class="total">{{userProfileModel.Username}}</span>
+        </p>
+        <p class="lastOrderInfo d-flex justify-content-between" *ngIf="userProfileModel.ProfileTypeId != 10">
+            <span class="values">Username </span>
+            <select *ngIf="allCustomers" class="form-control" style="width: 50%;margin-right: 30%;" (change)="filterMenaces($event.target.value)">
+                <option></option>
+                <option  *ngFor="let customer of allCustomers.CustomerList" [value]="customer.ProfileId"> {{customer.CustomerName}}</option>
+            </select>
+           <!-- <span><a href="#">Add User</a></span>-->
+        </p>
+        <div class="cartCallToActions text-center" >
+           <a (click) ="confirmOrder()" class="checkOut  btn btn-primary" style="    font-family: 'Roboto';color: #fff;font-weight: bold; margin-right: 10px;border-color: #39a6d0;    background-color: #39a6d0;">
+                    Confirm Order <i class="fas fa-money-check-alt"></i>
+            </a>
+             <a (click)="cancelOrder()" class="signIn btn btn-danger" style="color: #fff;font-weight: bold; margin-right: 10px;    font-family: 'Roboto';">
+                Cancel
+            </a>
+        </div>
+    </div>    
+</div>
