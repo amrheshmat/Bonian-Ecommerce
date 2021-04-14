@@ -9,8 +9,8 @@ export const environment = {
  // apiUrl: "https://localhost/boniantech.ECommerce.presentation/",
    // apiUrl: "http://Test.boniantech.com/ecommerce/",
    imageUrl:"https://test.boniantech.com/erp/Api/ApiAttachment/DownloadImage",
-   apiUrl: "http://localhost/boniantech.ECommerce.presentation/"
-  // apiUrl: "https://test.boniantech.com/erp/"
+   //apiUrl: "http://localhost/boniantech.ECommerce.presentation/"
+   apiUrl: "https://test.boniantech.com/erp/"
 
 };
 
