@@ -81,7 +81,7 @@ export class AllProductsComponent implements OnInit {
 
   }
 
-  onScroll() {
+  /*onScroll() {
     if (this.categoryFilter.End < this.totalCount) {
       this.categoryFilter.Start = 1;
       this.categoryFilter.End = this.categoryFilter.End + this.categoryFilter.PageSize;
@@ -93,6 +93,6 @@ export class AllProductsComponent implements OnInit {
       }
     }
 
-  }
+  }*/
 }
 

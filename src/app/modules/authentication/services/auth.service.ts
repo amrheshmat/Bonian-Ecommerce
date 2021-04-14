@@ -13,6 +13,7 @@ import { DeliveryInformation } from '../../cart/models/delivery-information';
 import { EventEmitter } from '@angular/core';
 import { SecurityObject } from '../models/security-object.model';
 import { SalesSttings } from '../models/sales-settings';
+import { CashWay } from '../models/cash-way';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -70,6 +71,9 @@ updateDefaultDeliveryInformation(model: ContactInfo): any {
   getSalesSttings(): any {
     return this.httpHelperService._http.get(`${this.httpHelperService.baseUrl}api/${this.controllerName2}/GetTaxAndDiscount`);
   }
+  getCashWay(): any {
+    return this.httpHelperService._http.get(`${this.httpHelperService.baseUrl}api/${this.controllerName2}/GetAvailablePaymentMethod`);
+  }
   clearLocalStorage() {
     localStorage.clear();
   }
@@ -91,6 +95,15 @@ updateDefaultDeliveryInformation(model: ContactInfo): any {
 
   getSalesSttingsFRomLocalStorage(): SalesSttings {
     return JSON.parse(localStorage.getItem('salesSttings'));
+  }
+
+  
+  setCashWayInLocalStorage(cashWay: CashWay) {
+    localStorage.setItem('cashWay', JSON.stringify(cashWay));
+  }
+
+  getCashWayFRomLocalStorage(): CashWay {
+    return JSON.parse(localStorage.getItem('cashWay'));
   }
 
   setUserDefaultDeliveryInfoInLocalStorage(deliveryInfoModel: DeliveryInformation) {

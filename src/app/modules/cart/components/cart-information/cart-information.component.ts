@@ -14,9 +14,12 @@ import { SalesOrderService } from '../../services/sales-order.service';
   templateUrl: './cart-information.component.html'
 })
 export class CartInformationComponent implements OnInit {
+ 
+ 
   salesSttings = new SalesSttings();
-  tax:any;
-  discount:any;
+    autoTax:any;
+    discountTax:any;
+    autoDiscount:any
   cartSummary: CartSummary ;
   discountCoupon : DiscountCoupon = new DiscountCoupon();
   couponAmount :number ;
@@ -25,13 +28,19 @@ export class CartInformationComponent implements OnInit {
     private authService: AuthService,private salesOrderService:SalesOrderService) { }
 
   ngOnInit(): void {
-    this.salesSttings = this.authService.getSalesSttingsFRomLocalStorage();
-    this.tax = this.salesSttings.AutomaticTax;
-    this.discount = this.salesSttings.DiscountTax + this.salesSttings.AutomaticDiscount;
+     this.getSalesSttings();
     this.cartSummary = this.cartService.getCartSammry();
     this.cartService.isCartChanged.subscribe(res => {
       if (res)
         this.cartSummary = this.cartService.getCartSammry();
+    });
+  }
+  private getSalesSttings(){
+    this.authService.getSalesSttings().subscribe(res=>{
+      this.salesSttings = res;
+      this.autoTax = this.salesSttings.AutomaticTax;
+      this.discountTax = this.salesSttings.DiscountTax ;
+      this.autoDiscount = this.salesSttings.AutomaticDiscount;
     });
   }
   goToCheckOut(){

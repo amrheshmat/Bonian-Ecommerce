@@ -15,8 +15,9 @@ import { SalesOrderService } from '../../services/sales-order.service';
 })
 export class OrderInformationComponent implements OnInit {
   salesSttings = new SalesSttings();
-  tax:any;
-  discount:any;
+  autoTax:any;
+  discountTax:any;
+  autoDiscount:any
   cartSummary: CartSummary ;
   deliveryPrice:number ;
   couponAmount:number;
@@ -26,9 +27,7 @@ export class OrderInformationComponent implements OnInit {
   constructor(private cartService: CartService,private router:Router,private authService: AuthService,private salesOrderService: SalesOrderService) { }
 
   ngOnInit(): void {
-    this.salesSttings = this.authService.getSalesSttingsFRomLocalStorage();
-    this.tax = this.salesSttings.AutomaticTax;
-    this.discount = this.salesSttings.DiscountTax + this.salesSttings.AutomaticDiscount;
+    this.getSalesSttings();
     this.cartSummary = this.cartService.getCartSammry();
     this.cartService.isCartChanged.subscribe(res => {
       if (res)
@@ -37,24 +36,32 @@ export class OrderInformationComponent implements OnInit {
 
     this.couponAmount = this.salesOrderService.getUserCouponFromLocalStorage();
 
-    this.deliveryInfo = this.authService.getUserDefaultDeliveryInfoFromLocalStorage();
-    this.getDeliveryPrice(this.deliveryInfo.DistrictId);
+    //this.deliveryInfo = this.authService.getUserDefaultDeliveryInfoFromLocalStorage();
+    //this.getDeliveryPrice(this.deliveryInfo.DistrictId);
 
-    this.deliveryPriceModel = this.salesOrderService.getUserDeliveryPriceFromLocalStorage();
-    this.deliveryPrice = this.deliveryPriceModel.Price;
+   // this.deliveryPriceModel = this.salesOrderService.getUserDeliveryPriceFromLocalStorage();
+    //this.deliveryPrice = this.deliveryPriceModel.Price;
 
-    this.authService.isDeliveryInfoChanged.subscribe(res=>{
+  /*  this.authService.isDeliveryInfoChanged.subscribe(res=>{
       if(res){
-        this.deliveryInfo = this.authService.getUserDefaultDeliveryInfoFromLocalStorage();
+       this.deliveryInfo = this.authService.getUserDefaultDeliveryInfoFromLocalStorage();
         this.getDeliveryPrice(this.deliveryInfo.DistrictId);
         this.deliveryPriceModel = this.salesOrderService.getUserDeliveryPriceFromLocalStorage();
-       this.deliveryPrice = this.deliveryPriceModel.Price;
+      this.deliveryPrice = this.deliveryPriceModel.Price;
       }
       
-    });
+    });*/
 
     
    
+  }
+  private getSalesSttings(){
+    this.authService.getSalesSttings().subscribe(res=>{
+      this.salesSttings = res;
+      this.autoTax = this.salesSttings.AutomaticTax;
+      this.discountTax = this.salesSttings.DiscountTax ;
+      this.autoDiscount = this.salesSttings.AutomaticDiscount;
+    });
   }
   goToCheckOut(){
     this.userProfileModel = this.authService.getUserProfileFromLocalStorage();

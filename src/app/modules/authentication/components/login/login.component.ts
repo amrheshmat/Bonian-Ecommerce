@@ -43,10 +43,13 @@ export class LoginComponent {
           this.router.navigate(["/"]);
           this.userProfile.Username = response.UserModel.Username;
           this.userProfile = this.authService.getUserProfileFromLocalStorage();
-          this.getDelievryInformationInfo(this.userProfile.ProfileID);
-         this.authService.getSalesSttings().subscribe(res=>{
-           this.authService.setSalesSttingsInLocalStorage(res);
-         });
+          //this.getDelievryInformationInfo(this.userProfile.ProfileID);
+         /* this.authService.getSalesSttings().subscribe(res=>{
+          this.authService.setSalesSttingsInLocalStorage(res);
+         });*/
+        /* this.authService.getCashWay().subscribe(res=>{
+          this.authService.setCashWayInLocalStorage(res);
+         });*/
           this.alertService.showSuccess("Login Successfully", "Success");
         }else{
           this.alertService.showError("Invalid Email Or Password !", "Error");

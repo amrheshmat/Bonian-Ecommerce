@@ -24,8 +24,9 @@ export class OrderDetailsComponent implements OnInit {
  public orderStatus;
  public orderDetails ;
  salesSttings = new SalesSttings();
-tax:any;
-discount:any;
+ autoTax:any;
+ discountTax:any;
+ autoDiscount:any
  public orderDetailsId ;
  public orderTotalPrice ;
  public orderIds :any = [];
@@ -71,9 +72,7 @@ discount:any;
       this.userProfile = this.authService.getUserProfileFromLocalStorage();
       console.log(this.totalPriceAfterUpdateQuantity);
  });
- this.salesSttings = this.authService.getSalesSttingsFRomLocalStorage();
-    this.tax = this.salesSttings.AutomaticTax;
-    this.discount = this.salesSttings.DiscountTax + this.salesSttings.AutomaticDiscount;
+ this.getSalesSttings();
   }
  
   getOrderDetails(orderId){
@@ -133,6 +132,14 @@ discount:any;
     dialogRef.afterClosed().subscribe(result => {
     });
 }
-
-
+private getSalesSttings(){
+  this.authService.getSalesSttings().subscribe(res=>{
+    this.salesSttings = res;
+    this.autoTax = this.salesSttings.AutomaticTax;
+    this.discountTax = this.salesSttings.DiscountTax ;
+    this.autoDiscount = this.salesSttings.AutomaticDiscount;
+  });
 }
+}
+
+

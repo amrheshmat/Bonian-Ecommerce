@@ -21,8 +21,9 @@ export class OrderPrepareComponent implements OnInit {
   public orderDetails ;
   public salesStatus;
   salesSttings = new SalesSttings();
-  tax:any;
-discount:any;
+  autoTax:any;
+  discountTax:any;
+  autoDiscount:any
   public tableNumber;
   public dialogMessage;
   public actionMethod;
@@ -37,9 +38,8 @@ discount:any;
   userProfileModel : UserProfileModel;
   orderStatusEnum : OrderStatus;
   ngOnInit(): void {
-    this.salesSttings = this.authService.getSalesSttingsFRomLocalStorage();
-    this.tax = this.salesSttings.AutomaticTax;
-    this.discount = this.salesSttings.DiscountTax + this.salesSttings.AutomaticDiscount;
+   this.getSalesSttings();
+    
     this.permission = this.authService.getUserSecurityObjectFRomLocalStorage();
     if(this.permission.length  == 0){
       this.router.navigate(['/']);
@@ -163,6 +163,14 @@ discount:any;
       dialogRef.afterClosed().subscribe(result => {
         this.getOrdersByProfileId(null,null,0,10);
       });
+}
+private getSalesSttings(){
+  this.authService.getSalesSttings().subscribe(res=>{
+    this.salesSttings = res;
+    this.autoTax = this.salesSttings.AutomaticTax;
+    this.discountTax = this.salesSttings.DiscountTax ;
+    this.autoDiscount = this.salesSttings.AutomaticDiscount;
+  });
 }
 }
 

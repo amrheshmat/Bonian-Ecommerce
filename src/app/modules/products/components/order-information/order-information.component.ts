@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CashWay } from 'src/app/modules/authentication/models/cash-way';
 import { SalesSttings } from 'src/app/modules/authentication/models/sales-settings';
 import { UserProfileModel } from 'src/app/modules/authentication/models/user-profile.model';
 import { AuthService } from 'src/app/modules/authentication/services/auth.service';
@@ -19,12 +20,15 @@ import { ItemTypeAttributeValue } from '../../models/ItemTypeAttributeValue.mode
 })
 export class OrderInformationComponent implements OnInit {
   cartSummary: CartSummary ;
+  cashWay : CashWay;
   deliveryPrice:number ;
   couponAmount:number;
+  bothDeliveryWay : boolean = false;
   cartId :number;
   salesSttings = new SalesSttings();
-  tax:any;
-  discount:any;
+  autoTax:any;
+  discountTax:any;
+  autoDiscount:any
   deliveryInfo : DeliveryInformation ;
   deliveryPriceModel : any = [];
   allCustomers : any ;
@@ -35,34 +39,36 @@ export class OrderInformationComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomers();
     this.cartSummary = this.cartService.getCartSammry();
+    
     this.cartService.isCartChanged.subscribe(res => {
-      if (res)
+      if (res){
         this.cartSummary = this.cartService.getCartSammry();
+      }
+        
     });
     this.cartService.isCartRemoved.subscribe(res => {
       if (res)
         this.cartSummary = this.cartService.getCartSammry();
     });
     this.userProfileModel = this.authService.getUserProfileFromLocalStorage();
-    this.couponAmount = this.salesOrderService.getUserCouponFromLocalStorage();
+   // this.couponAmount = this.salesOrderService.getUserCouponFromLocalStorage();
 
-    this.deliveryInfo = this.authService.getUserDefaultDeliveryInfoFromLocalStorage();
+   // this.deliveryInfo = this.authService.getUserDefaultDeliveryInfoFromLocalStorage();
 
-    this.deliveryPriceModel = this.salesOrderService.getUserDeliveryPriceFromLocalStorage();
+    //this.deliveryPriceModel = this.salesOrderService.getUserDeliveryPriceFromLocalStorage();
 
-    this.authService.isDeliveryInfoChanged.subscribe(res=>{
+    /*this.authService.isDeliveryInfoChanged.subscribe(res=>{
       if(res){
-        this.deliveryInfo = this.authService.getUserDefaultDeliveryInfoFromLocalStorage();
-        this.getDeliveryPrice(this.deliveryInfo.DistrictId);
-        this.deliveryPriceModel = this.salesOrderService.getUserDeliveryPriceFromLocalStorage();
-       this.deliveryPrice = this.deliveryPriceModel.Price;
+        //this.deliveryInfo = this.authService.getUserDefaultDeliveryInfoFromLocalStorage();
+      //  this.getDeliveryPrice(this.deliveryInfo.DistrictId);
+     //   this.deliveryPriceModel = this.salesOrderService.getUserDeliveryPriceFromLocalStorage();
+     //  this.deliveryPrice = this.deliveryPriceModel.Price;
 
       }
       
-    });
-    this.salesSttings = this.authService.getSalesSttingsFRomLocalStorage();
-    this.tax = this.salesSttings.AutomaticTax;
-    this.discount = this.salesSttings.DiscountTax + this.salesSttings.AutomaticDiscount;
+    });*/
+    this.getSalesSttings();
+    this.cashWay = this.getCashWay();
   }
 
   filterMenaces(str: number) {
@@ -84,14 +90,23 @@ export class OrderInformationComponent implements OnInit {
       this.couponAmount = this.salesOrderService.getUserCouponFromLocalStorage();
       this.deliveryPriceModel = this.salesOrderService.getUserDeliveryPriceFromLocalStorage();
       salesOrder.Total = this.cartSummary.totalPrice ;
-      salesOrder.TotalNet = this.cartSummary.totalPrice + (this.cartSummary.totalPrice * (this.cartSummary.totalDiscount /100));
-      this.createSalesOrder(salesOrder);
+      salesOrder.TotalNet = this.cartSummary.totalPrice + ((this.cartSummary.totalPrice * (this.autoTax/100)))  - (this.cartSummary.totalPrice * (this.discountTax/100)) - (((this.cartSummary.totalPrice * (this.autoTax/100))+this.cartSummary.totalPrice) * (this.autoDiscount/100));
+     
+      if(this.cashWay.PaymentMethodId == 1){
+        this.createSalesOrder(salesOrder);
+      }else if(this.cashWay.PaymentMethodId == 2){
+        this.createSalesOrderPayment(salesOrder);
+      }else{
+        this.bothDeliveryWay = true;
+      }
       this.cartService.removeCartFromLocalStorage();
     }else{
       this.router.navigate(["/auth/login"]);
     }
   }
- 
+  cahway(val){
+    this.cashWay.PaymentMethodId = val;
+  }
   cancelOrder(){
     this.cartService.removeCartFromLocalStorage();
   }
@@ -104,6 +119,21 @@ export class OrderInformationComponent implements OnInit {
     this.salesOrderService.createSalesOrderAndInvoice(salesOrder).subscribe(res => {
       this.cartId =res['Id'];
       
+    })
+  }
+
+  public sendApi(cart_currency,cart_amount,cart_id,userProfileModel){
+    this.salesOrderService.payment(cart_currency,cart_amount,cart_id,userProfileModel).subscribe(res => { 
+      var splitted = res.toString().split('&tran_ref='); //this will output ["1234", "56789"]
+    //  this.tranRef = splitted[1];
+      window.location.href =splitted[0];
+   });
+  }
+  
+  private createSalesOrderPayment(salesOrder: SalesOrder) { 
+    this.salesOrderService.createSalesOrder(salesOrder).subscribe(res => {
+      this.cartId =res['Id'];
+      this.sendApi("EGP",Math.ceil(salesOrder.TotalNet) ,this.cartId,this.userProfileModel);
     })
   }
 
@@ -147,6 +177,21 @@ export class OrderInformationComponent implements OnInit {
          this.salesOrderService.updateUserDeliveryPriceInLocalStorage(this.deliveryPriceModel);
         }
       }
+    });
+  }
+
+  private getCashWay():CashWay{
+    this.authService.getCashWay().subscribe(res=>{
+      this.cashWay = res;
+    });
+    return this.cashWay;
+  }
+  private getSalesSttings(){
+    this.authService.getSalesSttings().subscribe(res=>{
+      this.salesSttings = res;
+      this.autoTax = this.salesSttings.AutomaticTax;
+      this.discountTax = this.salesSttings.DiscountTax ;
+      this.autoDiscount = this.salesSttings.AutomaticDiscount;
     });
   }
 }

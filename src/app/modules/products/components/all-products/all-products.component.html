@@ -27,7 +27,7 @@
             </ng-template>
           <span *ngFor="let item of itemsList">
             <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
-              (scrolled)="onScroll()" [scrollWindow]="true">
+              >
               <app-product-card [item]="item"></app-product-card>
             </div>
           </span>  

@@ -59,7 +59,7 @@
                     {{order.ProfileId}}
                 </div>
                 <div class="col-lg-2 " style="border-right: 1px solid #d5e4e9;">
-                    {{order.Total  + (order.Total  * (tax/ 100)) - (order.Total  * (discount / 100))}}
+                    {{order.Total + ((order.Total * (autoTax/100)))  - (order.Total * (discountTax/100)) - (((order.Total * (autoTax/100))+order.Total) * (autoDiscount/100))}}
                 </div>
                 <div class="col-lg-2 " style="border-right: 1px solid #d5e4e9;">
                     <span class="btn" style="background-color:#39a6d0;border-color:#39a6d0;color: #fff; margin-right: 10px;"  [class.disabledCancel]="order.SaleStatus != 6" (click)="orderStatusUpdate(5,order.Id)"><i class="fas fa-play"></i></span>
