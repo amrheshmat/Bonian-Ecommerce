@@ -37,6 +37,8 @@ export class OrderInformationComponent implements OnInit {
   constructor(private cartService: CartService,private router:Router,private authService: AuthService,private salesOrderService: SalesOrderService) { }
 
   ngOnInit(): void {
+   
+    
     this.getCustomers();
     this.cartSummary = this.cartService.getCartSammry();
     
@@ -67,8 +69,10 @@ export class OrderInformationComponent implements OnInit {
       }
       
     });*/
+
     this.getSalesSttings();
-    this.cashWay = this.getCashWay();
+    this.getCashWay();
+   
   }
 
   filterMenaces(str: number) {
@@ -94,12 +98,14 @@ export class OrderInformationComponent implements OnInit {
      
       if(this.cashWay.PaymentMethodId == 1){
         this.createSalesOrder(salesOrder);
+        this.cartService.removeCartFromLocalStorage();
       }else if(this.cashWay.PaymentMethodId == 2){
         this.createSalesOrderPayment(salesOrder);
+        this.cartService.removeCartFromLocalStorage();
       }else{
         this.bothDeliveryWay = true;
       }
-      this.cartService.removeCartFromLocalStorage();
+      
     }else{
       this.router.navigate(["/auth/login"]);
     }
@@ -180,11 +186,17 @@ export class OrderInformationComponent implements OnInit {
     });
   }
 
-  private getCashWay():CashWay{
+  private getCashWay(){
     this.authService.getCashWay().subscribe(res=>{
       this.cashWay = res;
+      if(this.cashWay.PaymentMethodId == 1){
+        this.bothDeliveryWay =false;
+      }else if(this.cashWay.PaymentMethodId == 2){
+        this.bothDeliveryWay =false;
+      }else{
+        this.bothDeliveryWay =true;
+      }
     });
-    return this.cashWay;
   }
   private getSalesSttings(){
     this.authService.getSalesSttings().subscribe(res=>{

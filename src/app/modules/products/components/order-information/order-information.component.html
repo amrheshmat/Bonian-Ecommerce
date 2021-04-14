@@ -36,7 +36,7 @@
             </select>
            <!-- <span><a href="#">Add User</a></span>-->
         </p>
-        <p *ngIf="bothDeliveryWay == false"  class="lastOrderInfo d-flex justify-content-between" >
+        <p *ngIf="bothDeliveryWay == true"  class="lastOrderInfo d-flex justify-content-between" >
             <span class="values">Cash Way </span>
             <select class="form-control" style="width: 50%;margin-right: 30%;" (change)="cahway($event.target.value)">
                 <option></option>

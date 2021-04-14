@@ -59,8 +59,8 @@ export class SalesOrderService extends BaseService {
     return this._http.get(`${this.baseUrl}api/${this.controllerName}/GetOrderById?salesStatus=${salesStatus}&tableNumber=${tableNumber}&salesOrderId=${userId}`);
 
   }
-  paymentStatus() {
-    return this._http.get(`${this.baseUrl}api/${this.controllerName}/GetPaymentStatus`,{headers:this.header});
+  paymentStatus(profileId:number) {
+    return this._http.get(`${this.baseUrl}api/${this.controllerName}/GetPaymentStatus?profileId=${profileId}`);
   }
   getOrderDetailsArribute(salesOrderDetailsId: number) {
     return this._http.get(`${this.baseUrl}api/${this.controllerName}/GetSalesOrderDetailsDynamicAttribute?salesOrderDetailsId=${salesOrderDetailsId}`);

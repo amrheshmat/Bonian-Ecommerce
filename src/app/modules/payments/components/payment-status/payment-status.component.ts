@@ -15,7 +15,7 @@ export class PaymentStatusComponent implements OnInit {
     userProfileModel : UserProfileModel;
   ngOnInit(): void {
     this.userProfileModel = this.authService.getUserProfileFromLocalStorage();
-    this.salesOrderService.paymentStatus().subscribe(res=>{
+    this.salesOrderService.paymentStatus(this.userProfileModel.ProfileID).subscribe(res=>{
       this.paymentstatus = res;
     });
    
