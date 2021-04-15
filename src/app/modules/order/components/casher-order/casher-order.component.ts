@@ -32,6 +32,8 @@ export class CasherOrderComponent implements OnInit {
   public currentPage = 1;
   selected : number = 1;
   public  permission ;
+  public disablePrevious ;
+  public disableNext ;
   constructor(private authService: AuthService,
    private salesOrderService:SalesOrderService,private router: Router,private activatedRoute:ActivatedRoute,public dialog: MatDialog) {
     
@@ -39,6 +41,8 @@ export class CasherOrderComponent implements OnInit {
   userProfileModel : UserProfileModel;
   orderStatusEnum : OrderStatus;
   ngOnInit(): void {
+    this.disablePrevious = true;
+    this.disableNext = false;
      this.getSalesSttings();
    
     this.permission = this.authService.getUserSecurityObjectFRomLocalStorage();
@@ -82,27 +86,49 @@ export class CasherOrderComponent implements OnInit {
 
   }
   previouspagination(){
+    this.disableNext = false;
     if(this.currentPage !=1 ){
-    var pageNumber = this.currentPage - 1;
-    var start = ((pageNumber -1) * 10 ) + 1;
-    var end = pageNumber * 10;
-    this.getOrdersByProfileId(null,null,start,end);
-    this.currentPage = this.currentPage - 1;
+      var pageNumber = this.currentPage - 1;
+      if(pageNumber !=1){
+        this.disablePrevious=false;
+      }else{
+        this.disablePrevious= true;
+      }
+      var start = ((pageNumber -1) * 10 ) + 1;
+      var end = pageNumber * 10;
+      this.getOrdersByProfileId(null,null,start,end);
+      this.currentPage = this.currentPage - 1;
     }
-    
   }
 
   nextpagination(){
-    if(this.currentPage !=this.totalPage  ){
+    this.disablePrevious=false;
+    if(this.currentPage != this.totalPage  ){
     var pageNumber = this.currentPage + 1;
+    if(pageNumber !=this.totalPage){
+      this.disableNext = false;
+    }else{
+      this.disableNext = true;
+    }
     var start = ((pageNumber -1) * 10 ) + 1;
     var end = pageNumber * 10;
     this.getOrdersByProfileId(null,null,start,end);
     this.currentPage = this.currentPage + 1;
     }
   }
+
   paginationChange(pageNumber){
     this.currentPage = pageNumber;
+    if(pageNumber ==1){
+      this.disablePrevious=true;
+      this.disableNext =false;
+    }else if(pageNumber == this.totalPage){
+      this.disablePrevious=false;
+      this.disableNext =true;
+    }else{
+      this.disablePrevious= false;
+      this.disableNext =false;
+    }
     var start = ((pageNumber -1) * 10 ) + 1;
     var end = pageNumber * 10;
     this.getOrdersByProfileId(null,null,start,end);

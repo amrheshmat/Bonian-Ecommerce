@@ -1251,7 +1251,29 @@ input[type=number]::-webkit-outer-spin-button {
 .disabledCancel{
   pointer-events: none;
   background-color: #ced4d6!important;
-  border-color: #d6dde0 !important
+  border-color: #d6dde0 !important;
+  cursor: not-allowed !important;
+}
+.page-item{
+  cursor: pointer;
+  }
+.disablepaginagtion{
+  cursor: not-allowed !important;
+}
+.disablepaginagtion a{
+  background-color: #ced4d6!important;
+  border-color: #d6dde0 !important;
+}
+.activePagination{
+  background-color: #39a6d0 !important;
+  border-color: #39a6d0 !important;
+  color: #fff !important;
+}
+
+.activePagination:hover{
+  background-color: #39a6d0 !important;
+  border-color: #39a6d0 !important;
+  color: #fff !important;
 }
 .hideRow{
   display: none;

@@ -115,16 +115,11 @@ formatLabel(value: number) {
   
   @HostListener("window:scroll", ["$event"])
   onWindowScroll() {
-  //alert(this.totalCount);
-  //In chrome and some browser scroll is given to body tag
   var scrollPosition = window.pageYOffset;
   var windowSize     = window.innerHeight;
   var bodyHeight     = document.body.offsetHeight;
   var  ScrollFromBottom = Math.max(bodyHeight - (scrollPosition + windowSize), 0);
-  //alert(ScrollFromBottom);
-  // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
- //if scroll position 30% from  max size ...
- //alert(ScrollFromBottom);
+
  var total = Math.ceil(this.totalCount / 10) * 10;
  if(ScrollFromBottom < 400){
  if(this.endScroll <= total ){

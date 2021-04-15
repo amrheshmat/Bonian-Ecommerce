@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Category } from '../../models/category.model';
 import { CategoryService } from '../../services/category.service';
 import { Item } from '../../models/Products.model';
@@ -15,6 +15,9 @@ import { HttpHelperService } from 'src/app/shared/services/http-helper.service';
 })
 export class AllProductsComponent implements OnInit {
   items: Cart;
+  endScroll :number =10;
+  endScroll2 :number =20;
+  startScroll :number =0;
   itemsList: Item[];
   categoryFilter: CategoryFilter = new CategoryFilter();
   totalCount: number = 0;
@@ -23,8 +26,18 @@ export class AllProductsComponent implements OnInit {
   categoryList: Category[];
   selectedCategory: any;
   showCart: any;
+  public currentPage = 1;
+  public pagination;
+  public totalPage;
+  public disablePrevious ;
+  public disableNext ;
+
   ngOnInit(): void {
+    this.disablePrevious = true;
+    this.disableNext = false;
     this.getCategories();
+    this.categoryFilter.Start = 0;
+    this.categoryFilter.End = this.categoryFilter.PageSize;
     this.getAllItems();
      this.items = this.cartService.getCartFromLocalStorage();
      
@@ -40,8 +53,13 @@ export class AllProductsComponent implements OnInit {
   }
 
   onTabChanged(event) {
+    console.log(event);
+    this.currentPage =1;
     this.category = event.tab.textLabel;
-    if (this.category == 'All') {
+    if (event.index == 0) {
+      this.categoryFilter.CategorId = 0;
+      this.categoryFilter.Start = 0;
+      this.categoryFilter.End = this.categoryFilter.PageSize;
       this.getAllItems();
     }
     else {
@@ -51,6 +69,67 @@ export class AllProductsComponent implements OnInit {
 
   }
 
+  previouspagination(){
+    this.disableNext = false;
+    if(this.currentPage !=1 ){
+    var pageNumber = this.currentPage - 1;
+    if(pageNumber !=1){
+      this.disablePrevious=false;
+    }else{
+      this.disablePrevious= true;
+    }
+    this.categoryFilter.Start = ((pageNumber -1) * 10 ) + 1;
+    this.categoryFilter.End = pageNumber * 10;
+    if(this.categoryFilter.CategorId == null || this.categoryFilter.CategorId ==0){
+      this.getAllItems();
+    }else{
+     this.getAllItemsByCategoryId();
+    }
+    this.currentPage = this.currentPage - 1;
+    }
+    
+  }
+
+  nextpagination(){
+    this.disablePrevious=false;
+    if(this.currentPage !=this.totalPage  ){
+    var pageNumber = this.currentPage + 1;
+    if(pageNumber !=this.totalPage){
+      this.disableNext = false;
+    }else{
+      this.disableNext = true;
+    }
+     this.categoryFilter.Start = ((pageNumber -1) * 10 ) + 1;
+     this.categoryFilter.End= pageNumber * 10;
+     if(this.categoryFilter.CategorId == null || this.categoryFilter.CategorId ==0){
+       this.getAllItems();
+     }else{
+      this.getAllItemsByCategoryId();
+     }
+     this.currentPage = this.currentPage + 1;
+    }
+  }
+
+  paginationChange(pageNumber){
+    this.currentPage = pageNumber;
+    if(pageNumber ==1){
+      this.disablePrevious=true;
+      this.disableNext =false;
+    }else if(pageNumber == this.totalPage){
+      this.disablePrevious=false;
+      this.disableNext =true;
+    }else{
+      this.disablePrevious= false;
+      this.disableNext =false;
+    }
+    this.categoryFilter.Start = ((pageNumber -1) * 10 ) + 1;
+    this.categoryFilter.End = pageNumber * 10;
+    if(this.categoryFilter.CategorId == null || this.categoryFilter.CategorId ==0){
+      this.getAllItems();
+    }else{
+     this.getAllItemsByCategoryId();
+    }
+  }
 
   getCategories(): void {
     this._categoryService.getAll().subscribe(data => {
@@ -61,15 +140,20 @@ export class AllProductsComponent implements OnInit {
     this._categoryService.getAllItemsByCategoryId(this.categoryFilter).subscribe(res => {
       this.itemsList = res.ItemList;
       this.totalCount = res.TotalCount;
+      this.totalPage = Math.ceil(this.totalCount/10);
+        this.pagination = Math.ceil(this.totalCount/10);
+        this.pagination = Array(this.pagination).fill(this.pagination).map((x,i)=>i);
     });
   }
 
   getAllItems(): void {
-    this.categoryFilter.Start = 0;
-    this.categoryFilter.End = this.categoryFilter.PageSize;
+    
     this._categoryService.getAllItems(this.categoryFilter).subscribe(res => {
       this.itemsList = res.ItemList;
       this.totalCount = res.TotalCount;
+      this.totalPage = Math.ceil(this.totalCount/10);
+        this.pagination = Math.ceil(this.totalCount/10);
+        this.pagination = Array(this.pagination).fill(this.pagination).map((x,i)=>i);
     });
   }
 
@@ -78,7 +162,6 @@ export class AllProductsComponent implements OnInit {
     this.categoryFilter.Start = 0;
     this.categoryFilter.End = this.categoryFilter.PageSize;
     this.getAllItemsByCategoryId();
-
   }
 
   /*onScroll() {

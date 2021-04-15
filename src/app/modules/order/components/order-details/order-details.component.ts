@@ -80,6 +80,24 @@ export class OrderDetailsComponent implements OnInit {
       this.orderDetails = response;
     });
   }
+  getQuantity(quantity,orderDetailsId){
+    this.orderDetailsIds[orderDetailsId] = quantity;
+    /*
+    this.salesOrderService.updateOrderDetailsQuantity(orderDetailsId,quantity).subscribe(response =>{
+      this.salesOrderService.getOrderDetails(this.orderId).subscribe(response => {
+        var keys = Object.keys(response);
+        var values = Object.values(response);
+        this.totalPriceAfterUpdateQuantity = 0;
+        for(let i =0; i< keys.length ; i++){
+          this.totalPriceAfterUpdateQuantity +=(values[i].Price * values[i].Quantity);
+        }
+        this.cartSummary.totalPrice = this.totalPriceAfterUpdateQuantity;
+        this.salesOrderService.updateOrderPrice(this.totalPriceAfterUpdateQuantity,this.orderId).subscribe(response => {
+          this.ngOnInit();
+        });
+      });
+    });*/
+  }
   SaveEdit(){
    var keys = Object.keys(this.orderDetailsIds);
    var values = Object.values(this.orderDetailsIds);
@@ -97,13 +115,9 @@ export class OrderDetailsComponent implements OnInit {
         this.salesOrderService.updateOrderPrice(this.totalPriceAfterUpdateQuantity,this.orderId).subscribe(response => {
           this.ngOnInit();
         });
-        
-        
       });
     });
-    
    }
-   
    //this._location.back();
   }
   
@@ -118,9 +132,7 @@ export class OrderDetailsComponent implements OnInit {
    this.openDialog(orderId,orderDetailsId,price);
    
   }
-  getQuantity(quantity,orderDetailsId){
-    this.orderDetailsIds[orderDetailsId] = quantity;
-  }
+ 
 
   openDialog(orderId,orderDetailsId,price): void {
     const dialogRef = this.dialog.open(ProductModalComponent ,{
