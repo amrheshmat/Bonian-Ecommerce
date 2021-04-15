@@ -1,35 +1,33 @@
 <div class="cartItems"> 
   <div *ngFor="let item of items" style="border: 1px solid #EEE; padding: 15px;margin: 15px 0;border-radius: 10px;">
-  <div  class="cartItem d-flex row" >
-    <div class="cartItemImage d-inline-block col-lg-2">
+  <div  class="cartItem d-flex row">
+    <div class="cartItemImage d-inline-block col-sm-2">
       <img src="{{httpHelperService.imageUrl}}?referenceId={{item.Id}}&referenceTypeId=22" class="d-none d-sm-block image-view-cart" style="  border-radius: 10px;">
     </div>
-      <div class="productData col-lg-2" style="    margin-top: 31px;">
+      <div class="productData col-sm-2" style="margin-top: 31px;">
           <h2 style="    word-break: break-word;    margin-top: -13px;"><a class="productLink view-cart-itemname">{{item.ItemName}}</a></h2>
       </div>
-      <div class="productPrice col-lg-2" style="    margin-top: 31px;">
+      <div class="productPrice col-sm-2" style="margin-top: 31px;">
         <span class="amount" style="font-size: 11px;">{{item.ItemPrice}} EGP</span>
       </div>
-      <div class=" col-lg-2" style="    margin-top: 31px;">
+      <div class="col-sm-2" style="margin-top: 31px;">
         <div class="quantityTotal" style="border: 1px solid #eee; width:  40px; border-radius: 5px;">
             <span style="position: absolute; margin-left: 10px; margin-top: 3px; font-size: 15px;">{{item.Quantity}}</span>
             <i class=" fas fa-caret-up" (click)="increaseQuantity(item)" style="position: absolute; margin-left: 25px;font-size: 18px; cursor: pointer;"></i>
             <i class="fas fa-caret-down" (click)="decreaseQuantity(item)" style="margin-left: 25px;margin-top: 11px;font-size: 18px; cursor: pointer;"></i>
         </div>
       </div>  
-      <div class="quantityTotal col-lg-2" style="    margin-top: 31px;">
+      <div class="quantityTotal col-sm-2" style="margin-top: 31px;">
         <p class="totalPrice" style="font-size: 11px;">{{item.Quantity * item.ItemPrice}} EGP</p>
       </div>
-      <div class="col-lg-2" style="    margin-top: 31px;">
+      <div class="col-sm-2" style="margin-top: 31px;">
         <a data-toggle="collapse" style=" color: #39a6d0;   margin-right: 20px;font-size:18px" href="#collapseExample{{item.generatedId}}" role="button" aria-expanded="false" (click)="getItemTypeAttributeValue(item.ItemAttributeValue,item.ItemAttributeList)">
           <i class="increaseQuantity fas fa-info" ></i>
         </a>
         <span style="cursor: pointer;color: #a00808;" class="productRemove">
           <i class="fas fa-trash-alt" (click)="removeItem(item)"></i>
         </span>
-      </div>
-      
-    
+      </div> 
   </div>
   <div class="collapse col-lg-8 offset-lg-2" id="collapseExample{{item.generatedId}}">
     <span *ngFor="let recipient1 of item.ItemAttributeValue | keyvalue">

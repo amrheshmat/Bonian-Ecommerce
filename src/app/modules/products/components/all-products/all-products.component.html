@@ -3,12 +3,9 @@
     <h2 class="categorySectionName subTitleColor"> {{category}} </h2>
     <app-small-filter-aside (onCategorySelected)="onCategorySelected($event)"></app-small-filter-aside>
     <div class="row">
-      <main class="productsList col-md-6 col-lg-7">
-
-
-
+      <main class="productsList col-lg-7"> 
       <mat-tab-group (selectedTabChange)="onTabChanged($event)"> 
-          <mat-tab >
+          <mat-tab>
             <ng-template mat-tab-label>
                 <!--<img src="{{httpHelperService.imageUrl}}?referenceId={{item.Id}}&referenceTypeId=47"  class="card-img-top" alt="..." style="width: 50px;height: 50px;">-->
                 <span>All</span>
@@ -22,8 +19,8 @@
 
          <mat-tab *ngFor="let category of categoryList" >
           <ng-template mat-tab-label>
-                <img src="{{httpHelperService.imageUrl}}?referenceId={{category.Id}}&referenceTypeId=47"  class="card-img-top" alt="..." style="width: 45px;  height: 44px;border-radius: 10px;">
-                <span>{{category.CategoryName}}</span>
+                <img src="{{httpHelperService.imageUrl}}?referenceId={{category.Id}}&referenceTypeId=47"  class="card-img-top" alt="..." style="width: 40px;  height: 40px;border-radius: 10px;object-fit: cover;">
+                <span style="margin: 0 10px;">{{category.CategoryName}}</span>
             </ng-template>
           <span *ngFor="let item of itemsList">
             <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
@@ -41,8 +38,15 @@
         </span>  -->
 
       </main>
-      <div class=" d-none d-md-block col-md-6 col-lg-5" *ngIf="items && items.items.length > 0">
-        <app-view-cart></app-view-cart>
+
+      <div class="d-block d-lg-none" style="margin: 25px 0;">
+        <div class="container">
+          <hr>
+        </div>
+      </div>
+
+      <div class="col-lg-5" *ngIf="items && items.items.length > 0">
+          <app-view-cart></app-view-cart> 
         <app-order-information></app-order-information>
       </div>
       
