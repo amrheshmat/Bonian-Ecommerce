@@ -82,8 +82,6 @@ export class CasherOrderComponent implements OnInit {
       this.tableNumber = str;
     }
     this.getOrdersByProfileId(this.salesStatus,this.tableNumber,0,10);
-    
-
   }
   previouspagination(){
     this.disableNext = false;
@@ -96,7 +94,7 @@ export class CasherOrderComponent implements OnInit {
       }
       var start = ((pageNumber -1) * 10 ) + 1;
       var end = pageNumber * 10;
-      this.getOrdersByProfileId(null,null,start,end);
+      this.getOrdersByProfileId(this.salesStatus,this.tableNumber,start,end);
       this.currentPage = this.currentPage - 1;
     }
   }
@@ -112,7 +110,7 @@ export class CasherOrderComponent implements OnInit {
     }
     var start = ((pageNumber -1) * 10 ) + 1;
     var end = pageNumber * 10;
-    this.getOrdersByProfileId(null,null,start,end);
+    this.getOrdersByProfileId(this.salesStatus,this.tableNumber,start,end);
     this.currentPage = this.currentPage + 1;
     }
   }
@@ -131,7 +129,7 @@ export class CasherOrderComponent implements OnInit {
     }
     var start = ((pageNumber -1) * 10 ) + 1;
     var end = pageNumber * 10;
-    this.getOrdersByProfileId(null,null,start,end);
+    this.getOrdersByProfileId(this.salesStatus,this.tableNumber,start,end);
   }
   getOrdersByProfileId(salesStatus,tableNumber,end,start){
     this.loading = true;
@@ -166,6 +164,9 @@ export class CasherOrderComponent implements OnInit {
            if(values[i].SaleStatus != 2){ 
             this.salesOrderService.updateOrderStatus(orderId,orderStatus).subscribe(response => {
               this.getOrdersByProfileId(null,null,0,10);
+              if(orderStatus == 8){
+                this.addInvoice(orderId);
+              }
             });
            }else{
             this.getOrdersByProfileId(null,null,0,10);
@@ -174,6 +175,10 @@ export class CasherOrderComponent implements OnInit {
         }
   });
  }
+ private addInvoice(salesOrderId: number) { 
+  this.salesOrderService.createSalesOrderAndInvoice(salesOrderId).subscribe(res => {
+  })
+}
  CancelOrder(orderId,orderStatus){
   this.dialogMessage = "Do You Want Cancel Order?";
   this.actionMethod = "Cancel";

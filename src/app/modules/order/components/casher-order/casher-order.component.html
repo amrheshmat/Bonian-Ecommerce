@@ -63,7 +63,7 @@
                
                 </div>
                 <div class="col-lg-2 " style="border-right: 1px solid #d5e4e9;">
-                    <select [disabled] ="(order.SaleStatus  == 2  || order.SaleStatus ==8 ) ? true :  false "  class="form-control"  [ngModel]="order.SaleStatus" (ngModelChange)="orderStatusUpdate($event,order.Id)">
+                    <select [disabled] ="(order.SaleStatus  == 2) ? true :  false "  class="form-control"  [ngModel]="order.SaleStatus" (ngModelChange)="orderStatusUpdate($event,order.Id)">
                         <option [value]="6">Recieved</option>
                         <option [value]="5">Under Prepare</option>
                         <option [value]="9">Prepared</option>

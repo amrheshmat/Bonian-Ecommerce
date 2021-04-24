@@ -167,6 +167,9 @@ export class OrdersComponent implements OnInit {
            if(values[i].SaleStatus != 2){ 
             this.salesOrderService.updateOrderStatus(orderId,orderStatus).subscribe(response => {
               this.getOrdersByProfileId(null,null,0,10);
+              if(orderStatus == 8){
+                this.addInvoice(orderId);
+              }
             });
            }else{
             this.getOrdersByProfileId(null,null,0,10);
@@ -175,6 +178,10 @@ export class OrdersComponent implements OnInit {
   });
  }
 
+ private addInvoice(salesOrderId: number) { 
+  this.salesOrderService.createSalesOrderAndInvoice(salesOrderId).subscribe(res => {
+  })
+}
 // Open Dialog To Confirm Or Rollback Order Cancel 😀
  CancelOrder(orderId,orderStatus){
   this.dialogMessage = "Do You Want Cancel Order?";

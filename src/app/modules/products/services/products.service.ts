@@ -6,7 +6,7 @@ export class ProductService extends BaseService {
   controllerName = "ApiECommerceInventory";
   urlGetById = "GetItemById";
   urlGetAllItemTypes = "GetAllItemTypes";
-  urlGetitemtypebyid = "GetItemTypeByTd";
+  urlGetitemtypebyid = "GetItemTypeById";
   urlGetRequiredItemTypeAttribute = "GetRequiredItemTypeAttribute";
   getById(id: number): any {
     return this._http.get(`${this.baseUrl}api/${this.controllerName}/${this.urlGetById}?itemId=${id}`);

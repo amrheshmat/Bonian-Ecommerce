@@ -63,7 +63,7 @@
                 </div>
                 <div class="col-lg-2 " style="border-right: 1px solid #d5e4e9;">
                     <span class="btn" style="background-color:#39a6d0;border-color:#39a6d0;color: #fff; margin-right: 10px;"  [class.disabledCancel]="order.SaleStatus != 6" (click)="orderStatusUpdate(5,order.Id)"><i class="fas fa-play"></i></span>
-                    <span class="btn" style="background-color:#39a6d0;border-color:#39a6d0;color: #fff;"  [class.disabledCancel] ="order.SaleStatus != 5  "  (click)="orderStatusUpdate(9,order.Id)"><i class="fas fa-pause"></i></span>
+                    <span class="btn" style="background-color:#39a6d0;border-color:#39a6d0;color: #fff;"  [class.disabledCancel] ="order.SaleStatus != 5 "  (click)="orderStatusUpdate(9,order.Id)"><i class="fas fa-pause"></i></span>
                  </div>
                 <div class="col-lg-2 " >
                     <span class="btn" style="background-color:#39a6d0;border-color:#39a6d0;color: #fff; margin-right: 10px;" (click)="getOrderId(order.Id,order.SaleStatus,order.Total)"><i class="fas fa-plus-circle"></i></span>

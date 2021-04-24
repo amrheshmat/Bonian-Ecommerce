@@ -23,7 +23,7 @@ export class RelatedProductComponent implements OnInit {
   ngOnInit(): void {
     this.categoryFilter.CategorId = this.categoryId;
     this.categoryFilter.Start = 0;
-    this.categoryFilter.End = this.categoryFilter.PageSize;
+    this.categoryFilter.End = 3;
     this.getItems();
   }
 

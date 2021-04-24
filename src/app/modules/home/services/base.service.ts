@@ -23,7 +23,7 @@ export class BaseService {
     constructor(public _http: HttpClient
         //, private toastrService: ToastrService
         ) {
-        this.baseUrl = environment.apiUrl;
+        this.baseUrl =  "http://Test.boniantech.com/ecommerce/";
     }
 
     getAll(dataSourceModel): any {

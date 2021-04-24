@@ -10,6 +10,7 @@ import { SalesOrderDetails } from 'src/app/modules/cart/models/sales-order-detai
 import { SalesOrder } from 'src/app/modules/cart/models/sales-order.model';
 import { CartService } from 'src/app/modules/cart/services/cart.service';
 import { SalesOrderService } from 'src/app/modules/cart/services/sales-order.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 import { CategoryFilter } from '../../models/category-filter.model';
 import { ItemTypeAttributeValue } from '../../models/ItemTypeAttributeValue.model';
 
@@ -34,7 +35,7 @@ export class OrderInformationComponent implements OnInit {
   allCustomers : any ;
   categoryFilter : CategoryFilter = new CategoryFilter();
   userProfileModel: UserProfileModel = new UserProfileModel();
-  constructor(private cartService: CartService,private router:Router,private authService: AuthService,private salesOrderService: SalesOrderService) { }
+  constructor(private alertService:AlertService,private cartService: CartService,private router:Router,private authService: AuthService,private salesOrderService: SalesOrderService) { }
 
   ngOnInit(): void {
    
@@ -90,19 +91,22 @@ export class OrderInformationComponent implements OnInit {
       this.cartSummary = this.cartService.getCartSammry();
       let salesOrder = this.prepareSalesOrderEntity();
       salesOrder.ProfileId = this.userProfileModel.ProfileID;
+      salesOrder.Discount = (this.cartSummary.totalPrice * (this.discountTax/100)) + ((this.cartSummary.totalPrice + ((this.cartSummary.totalPrice * (this.autoTax/100))))* (this.autoDiscount/100));
+      salesOrder.AdditionalTax = this.cartSummary.totalPrice * (this.autoTax/100)
       salesOrder.SaleStatus = 6;
       this.couponAmount = this.salesOrderService.getUserCouponFromLocalStorage();
       this.deliveryPriceModel = this.salesOrderService.getUserDeliveryPriceFromLocalStorage();
       salesOrder.Total = this.cartSummary.totalPrice ;
       salesOrder.TotalNet = this.cartSummary.totalPrice + ((this.cartSummary.totalPrice * (this.autoTax/100)))  - (this.cartSummary.totalPrice * (this.discountTax/100)) - (((this.cartSummary.totalPrice * (this.autoTax/100))+this.cartSummary.totalPrice) * (this.autoDiscount/100));
      
-      if(this.cashWay.PaymentMethodId == 1){
+      if(this.cashWay.PaymentMethodId == 1){//cashOnDelivery
         this.createSalesOrder(salesOrder);
         this.cartService.removeCartFromLocalStorage();
-      }else if(this.cashWay.PaymentMethodId == 2){
+      }else if(this.cashWay.PaymentMethodId == 2){ // 
         this.createSalesOrderPayment(salesOrder);
         this.cartService.removeCartFromLocalStorage();
       }else{
+        this.alertService.showError("Please Select Cash Way","Cash Way");
         this.bothDeliveryWay = true;
       }
       
@@ -121,12 +125,7 @@ export class OrderInformationComponent implements OnInit {
     salesOrder.salesOrderDetails = this.getCartItems();
     return salesOrder;
   }
-  private createSalesOrder(salesOrder: SalesOrder) { 
-    this.salesOrderService.createSalesOrderAndInvoice(salesOrder).subscribe(res => {
-      this.cartId =res['Id'];
-      
-    })
-  }
+
 
   public sendApi(cart_currency,cart_amount,cart_id,userProfileModel){
     this.salesOrderService.payment(cart_currency,cart_amount,cart_id,userProfileModel).subscribe(res => { 
@@ -136,6 +135,11 @@ export class OrderInformationComponent implements OnInit {
    });
   }
   
+  private createSalesOrder(salesOrder: SalesOrder) { 
+    this.salesOrderService.createSalesOrder(salesOrder).subscribe(res => {
+      this.cartId =res['Id'];
+    })
+  }
   private createSalesOrderPayment(salesOrder: SalesOrder) { 
     this.salesOrderService.createSalesOrder(salesOrder).subscribe(res => {
       this.cartId =res['Id'];

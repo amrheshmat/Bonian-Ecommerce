@@ -10,6 +10,7 @@ import { SalesOrderService } from 'src/app/modules/cart/services/sales-order.ser
 import { ProductModalComponent } from 'src/app/modules/products/components/product-modal/product-modal.component';
 import {Location} from '@angular/common';
 import { SalesSttings } from 'src/app/modules/authentication/models/sales-settings';
+import { SalesOrder } from 'src/app/modules/cart/models/sales-order.model';
 
 @Component({
   selector: 'app-order-details',
@@ -26,6 +27,7 @@ export class OrderDetailsComponent implements OnInit {
  salesSttings = new SalesSttings();
  autoTax:any;
  discountTax:any;
+ salesOrder = new SalesOrder();
  autoDiscount:any
  public orderDetailsId ;
  public orderTotalPrice ;
@@ -58,7 +60,6 @@ export class OrderDetailsComponent implements OnInit {
       }
     }
     this.userProfileModel = this.authService.getUserProfileFromLocalStorage();
-    this.getOrderDetails(this.orderId);
     this.activatedRoute.paramMap.subscribe(params => { 
       this.orderId= params.get('orderId'); 
       this.orderStatus = params.get('orderStatus');
@@ -112,7 +113,11 @@ export class OrderDetailsComponent implements OnInit {
           this.totalPriceAfterUpdateQuantity +=(values[i].Price * values[i].Quantity);
         }
         this.cartSummary.totalPrice = this.totalPriceAfterUpdateQuantity;
-        this.salesOrderService.updateOrderPrice(this.totalPriceAfterUpdateQuantity,this.orderId).subscribe(response => {
+        this.salesOrder.Total = this.totalPriceAfterUpdateQuantity;
+        this.salesOrder.TotalNet = this.totalPriceAfterUpdateQuantity+ ((this.totalPriceAfterUpdateQuantity* (this.autoTax/100)))  - (this.totalPriceAfterUpdateQuantity* (this.discountTax/100)) - (((this.totalPriceAfterUpdateQuantity * (this.autoTax/100))+this.totalPriceAfterUpdateQuantity) * (this.autoDiscount/100));
+        this.salesOrder.Discount = (this.totalPriceAfterUpdateQuantity* (this.discountTax/100)) + ((this.totalPriceAfterUpdateQuantity + ((this.totalPriceAfterUpdateQuantity * (this.autoTax/100))))* (this.autoDiscount/100))
+        this.salesOrder.AdditionalTax = this.totalPriceAfterUpdateQuantity * (this.autoTax/100);
+        this.salesOrderService.updateOrderPrice(this.salesOrder,this.orderId).subscribe(response => {
           this.ngOnInit();
         });
       });

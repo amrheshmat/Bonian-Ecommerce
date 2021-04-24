@@ -7,7 +7,7 @@ export class HttpHelperService {
     baseUrl: string = "";
     imageUrl: string;
     constructor(public _http: HttpClient) {
-        this.baseUrl = environment.apiUrl;
-        this.imageUrl = environment.imageUrl;
+        this.baseUrl ="http://Test.boniantech.com/ecommerce/";
+        this.imageUrl = "https://test.boniantech.com/erp/Api/ApiAttachment/DownloadImage";
     }
 }

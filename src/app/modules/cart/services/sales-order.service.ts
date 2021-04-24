@@ -28,8 +28,8 @@ export class SalesOrderService extends BaseService {
   createSalesOrder(salesOrder: SalesOrder) {
     return this._http.post(`${this.baseUrl}Api/${this.controllerName}/AddSalesOrder`, salesOrder);
   }
-  createSalesOrderAndInvoice(salesOrder: SalesOrder) {
-    return this._http.post(`${this.baseUrl}Api/${this.controllerName}/AddSalesOrderAndInovice`, salesOrder);
+  createSalesOrderAndInvoice(salesOrderId: number) {
+    return this._http.post(`${this.baseUrl}Api/${this.controllerName}/AddSalesInoviceWhenCash?salesOrderId=${salesOrderId}`, salesOrderId);
   }
   getOrderByProfileId(salesStatus : number,tableNumber : number,start : number,end:number) {
     return this._http.get(`${this.baseUrl}api/${this.controllerName}/GetOrderByProfileId?start=${start}&end=${end}&salesStatus=${salesStatus}&tableNumber=${tableNumber}`,{headers:this.header});
@@ -45,8 +45,8 @@ export class SalesOrderService extends BaseService {
   updateOrderDetailsQuantity(salesOrderDetailsId: number , quantity:any) {
     return this._http.get(`${this.baseUrl}api/${this.controllerName}/UpdateOrderDetailsQuantity?orderDetailsId=${salesOrderDetailsId}&quantity=${quantity}`);
   }
-  updateOrderPrice(totalPrice: number , orderId:any) {
-    return this._http.get(`${this.baseUrl}api/${this.controllerName}/UpdateOrderPrice?totalPrice=${totalPrice}&orderId=${orderId}`);
+  updateOrderPrice(salesOrder :SalesOrder, orderId:any) {
+    return this._http.put(`${this.baseUrl}api/${this.controllerName}/UpdateOrderPrice?orderId=${orderId}`,salesOrder);
   }
   
   payment(cart_currency : string,cart_amount : number,cart_id: number ,userProfileModel: UserProfileModel) {
