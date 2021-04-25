@@ -11,6 +11,7 @@ import { SalesOrder } from 'src/app/modules/cart/models/sales-order.model';
 import { CartService } from 'src/app/modules/cart/services/cart.service';
 import { SalesOrderService } from 'src/app/modules/cart/services/sales-order.service';
 import { AlertService } from 'src/app/shared/services/alert.service';
+import { environment } from 'src/environments/environment';
 import { CategoryFilter } from '../../models/category-filter.model';
 import { ItemTypeAttributeValue } from '../../models/ItemTypeAttributeValue.model';
 
@@ -30,16 +31,32 @@ export class OrderInformationComponent implements OnInit {
   autoTax:any;
   discountTax:any;
   autoDiscount:any
+  public permission :any;
   deliveryInfo : DeliveryInformation ;
   deliveryPriceModel : any = [];
   allCustomers : any ;
+  public readQr = false;
+  public qrUrl ;
   categoryFilter : CategoryFilter = new CategoryFilter();
   userProfileModel: UserProfileModel = new UserProfileModel();
   constructor(private alertService:AlertService,private cartService: CartService,private router:Router,private authService: AuthService,private salesOrderService: SalesOrderService) { }
 
   ngOnInit(): void {
+    this.qrUrl = "intent:#Intent;action=com.boniantech.lmsvideoplayer;category=android.intent.category.DEFAULT;category=android.intent.category.BROWSABLE;S.appURL=" + "http://Test.boniantech.com/ecommerce/" + ";S.VideoId=" + + ";S.token=" + encodeURIComponent(localStorage.getItem("jwt")) + ";end";
+    this.permission = this.authService.getUserSecurityObjectFRomLocalStorage();
    
-    
+    if (navigator.platform.toLowerCase().includes("win")) {
+      this.readQr = false;
+    } else if (navigator.platform.toLowerCase().includes("linux") || navigator.platform.toLowerCase().includes("android")) {
+      this.readQr = true;
+    }
+    else if (navigator.platform.toLowerCase().includes("ipad") || navigator.platform.toLowerCase().includes("iphone") || navigator.platform.toLowerCase().includes("macintel")) {
+      // scope.opratingSystem = "IOS";
+      this.readQr = false;
+    }
+    else {
+      this.readQr = false;
+    }
     this.getCustomers();
     this.cartSummary = this.cartService.getCartSammry();
     
@@ -76,6 +93,9 @@ export class OrderInformationComponent implements OnInit {
    
   }
 
+  openQrUrl(){
+    window.open(this.qrUrl, "_blank");
+  }
   filterMenaces(str: number) {
     this.userProfileModel.ProfileID = str;
 }

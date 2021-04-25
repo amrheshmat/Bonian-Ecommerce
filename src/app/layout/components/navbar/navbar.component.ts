@@ -39,7 +39,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
      this.permission = this.authService.getUserSecurityObjectFRomLocalStorage();
-    if(this.permission.length  != 0){
+    if(this.permission  && this.permission.length  != 0){
       this.orderPageNavLen = true;
       this.orderPageNav = this.permission[0].ChildObjects[0].LinkName;
       this.NavigateUrl = this.permission[0].ChildObjects[0].NavigateUrl;

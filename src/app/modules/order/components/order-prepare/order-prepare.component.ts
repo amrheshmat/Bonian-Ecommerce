@@ -160,7 +160,8 @@ export class OrderPrepareComponent implements OnInit {
       let values = Object.values(res);
        let len = keys.length;
          for (let i = 0; i < len; i++){
-           if(values[i].SaleStatus != 2){ 
+           if(values[i].SaleStatus == 6 && values[i].SaleStatus ==5 ){ 
+             alert( values[i].SaleStatus );
             this.salesOrderService.updateOrderStatus(orderId,orderStatus).subscribe(response => {
               this.getOrdersByProfileId(null,null,0,10);
             });

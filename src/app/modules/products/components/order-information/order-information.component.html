@@ -24,11 +24,11 @@
             
         </p>
         
-        <p class="lastOrderInfo d-flex justify-content-between" *ngIf="userProfileModel.ProfileTypeId == 10">
+        <p class="lastOrderInfo d-flex justify-content-between" *ngIf="permission && permission.length ==0">
             <span class="values">Username </span>
             <span class="total">{{userProfileModel.Username}}</span>
         </p>
-        <p class="lastOrderInfo d-flex justify-content-between" *ngIf="userProfileModel.ProfileTypeId != 10">
+        <p class="lastOrderInfo d-flex justify-content-between" *ngIf="permission && permission.length !=0 && readQr==false">
             <span class="values">Username </span>
             <select *ngIf="allCustomers" class="form-control" style="width: 50%;margin-right: 30%;" (change)="filterMenaces($event.target.value)">
                 <option></option>
@@ -36,6 +36,7 @@
             </select>
            <!-- <span><a href="#">Add User</a></span>-->
         </p>
+        <a *ngIf="readQr == true" class="btn btn-primary" style="color:#fff;" (click)="openQrUrl()">Read QR</a>
         <p *ngIf="bothDeliveryWay == true"  class="lastOrderInfo d-flex justify-content-between" >
             <span class="values">Cash Way </span>
             <select class="form-control" style="width: 50%;margin-right: 30%;" (change)="cahway($event.target.value)">
@@ -47,8 +48,10 @@
                    cashOnDelivery
                   </option>
             </select>
+
            <!-- <span><a href="#">Add User</a></span>-->
         </p>
+        <!--<input type="file" accept="image/*" capture="environment">-->
         <div class="cartCallToActions text-center" >
            <a (click) ="confirmOrder()" class="checkOut  btn btn-primary" style="color: #fff; margin-right: 10px;border-color: #39a6d0;    background-color: #39a6d0;">
                     Confirm Order <i class="fas fa-money-check-alt"></i>

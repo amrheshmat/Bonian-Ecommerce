@@ -19,7 +19,7 @@ export class BaseService {
     controllerName: string = "";
 
     constructor(public _http: HttpClient) {
-        this.baseUrl =  "http://Test.boniantech.com/ecommerce/";
+        this.baseUrl = environment.apiUrl;
     }
 
 

@@ -31,8 +31,11 @@ export class AllProductsComponent implements OnInit {
   public totalPage;
   public disablePrevious ;
   public disableNext ;
+ 
 
   ngOnInit(): void {
+    
+ 
     this.disablePrevious = true;
     this.disableNext = false;
     this.getCategories();
